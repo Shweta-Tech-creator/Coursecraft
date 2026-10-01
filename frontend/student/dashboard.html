@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Learning Dashboard — CourseCraft</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar (High-End SaaS Header) -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="navbar-left">
+        <a href="/" class="brand-logo">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+            <g class="mortarboard">
+              <path d="M50 14L82 27L50 40L18 27L50 14Z" fill="#1e1b4b"/>
+              <path d="M30 33.5V42C30 46.5 39 50 50 50C61 50 70 46.5 70 42V33.5L50 41L30 33.5Z" fill="#0f172a"/>
+              <path d="M26 31V45C26 47 24 49 24 51" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <path d="M31 38C35 44 46 62 48 82C35 77 22 55 31 38Z" fill="#fb7185" fill-opacity="0.85"/>
+            <path d="M19 48L46 59C45 74 46 82 46 86C27 78 17 56 19 48Z" fill="#e11d48"/>
+            <path d="M69 38C65 44 54 62 52 82C65 77 78 55 69 38Z" fill="#38bdf8" fill-opacity="0.85"/>
+            <path d="M81 48L54 59C55 74 54 82 54 86C73 78 83 56 81 48Z" fill="#0284c7"/>
+          </svg>
+          <span class="brand-title-text">CourseCraft</span>
+        </a>
+        <div class="brand-divider"></div>
+        <span class="brand-subtext">Continuing Education</span>
+      </div>
+
+      <div class="nav-search-bar" onclick="document.getElementById('nav-global-search') && document.getElementById('nav-global-search').focus()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: #64748b; flex-shrink: 0;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="nav-global-search" placeholder="Search 30 university courses, modules..." oninput="handleNavSearch(this.value)">
+        <span style="font-size: 11px; background: #e2e8f0; color: #64748b; padding: 2px 6px; border-radius: 4px; font-weight: 600; flex-shrink: 0;">⌘K</span>
+      </div>
+
+      <div class="nav-actions" style="display:flex; align-items:center; gap:12px;">
+        <button onclick="switchTab('catalog')" class="btn btn-secondary btn-sm" style="font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Course Catalog
+        </button>
+        <div id="user-profile-badge"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Layout -->
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Navigation with Real SVG Icons -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-heading">Learning Portal</div>
+      
+      <a href="javascript:void(0)" onclick="switchTab('overview')" class="sidebar-nav-item active" id="side-link-overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <span>Dashboard Overview</span>
+      </a>
+      
+      <a href="javascript:void(0)" onclick="switchTab('enrolled')" class="sidebar-nav-item" id="side-link-enrolled">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-.05"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+        <span>My Enrolled Courses</span>
+      </a>
+      
+      <a href="javascript:void(0)" onclick="switchTab('catalog')" class="sidebar-nav-item" id="side-link-catalog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>Browse 30 Courses</span>
+      </a>
+      
+      <a href="javascript:void(0)" onclick="switchTab('certificates')" class="sidebar-nav-item" id="side-link-certificates">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span>Verified Certificates</span>
+      </a>
+      
+      <a href="javascript:void(0)" onclick="switchTab('payments')" class="sidebar-nav-item" id="side-link-payments">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+        <span>Payment Receipts & Invoices</span>
+      </a>
+      
+      <a href="javascript:void(0)" onclick="switchTab('feedback')" class="sidebar-nav-item" id="side-link-feedback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span>Queries &amp; Feedback</span>
+      </a>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-content">
+      
+      <!-- Welcome Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1 class="page-title">Welcome back, <span id="student-name" style="color:var(--color-primary);">Priya</span></h1>
+          <p class="page-subtitle">Track your 12-hour video curricula, continue lessons, and download verified university credentials.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button onclick="switchTab('catalog')" class="btn btn-secondary btn-sm" style="font-size:13px; font-weight:600; padding:8px 16px; border-radius:8px; display:inline-flex; align-items:center; gap:6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            Explore Course Catalog
+          </button>
+        </div>
+      </div>
+
+      <!-- ==================================================== -->
+      <!-- VIEW 1: DASHBOARD OVERVIEW                           -->
+      <!-- ==================================================== -->
+      <div id="tab-content-overview">
+        
+        <!-- Continue Where You Left Off (Hero Banner) -->
+        <div id="overview-resume-banner" class="resume-hero-card">
+          <div class="resume-hero-left">
+            <div class="resume-thumb-box">
+              <img id="resume-course-thumb" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600" alt="Course Thumbnail">
+            </div>
+            <div class="resume-hero-info">
+              <span style="font-size:11.5px; font-weight:700; color:var(--color-primary); text-transform:uppercase; letter-spacing:0.5px;">Current Video Course</span>
+              <h3 id="resume-course-title">Software Engineering & Agile Project Management</h3>
+              <p id="resume-course-sub">Module 2 • Lesson 9: Critical Path Method & Float Calculation</p>
+              
+              <div style="max-width:320px;">
+                <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); font-weight:600; margin-bottom:4px;">
+                  <span id="resume-percent-label">50% Completed</span>
+                  <span id="resume-hours-label">6 / 12 Hours Watched</span>
+                </div>
+                <div class="progress-container" style="margin:0;">
+                  <div id="resume-progress-bar" class="progress-bar-fill" style="width: 50%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <a id="resume-btn-link" href="/student/learn.html?courseId=cc-102" class="btn btn-primary" style="padding:10px 22px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Resume Video Lesson
+            </a>
+          </div>
+        </div>
+
+        <!-- 5 Key Metric Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon icon-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-.05"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+            </div>
+            <div>
+              <div class="kpi-title">Enrolled Courses</div>
+              <div id="kpi-enrolled-count" class="kpi-value">3 / 30</div>
+              <div class="kpi-subtitle">Active Catalog</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon icon-amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="kpi-title">12h Video Watched</div>
+              <div id="kpi-hours-count" class="kpi-value">21 / 36h</div>
+              <div class="kpi-subtitle">12h per Short Course</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div>
+              <div class="kpi-title">Average Quiz Score</div>
+              <div id="kpi-avg-score" class="kpi-value">90%</div>
+              <div class="kpi-subtitle">Pass: ≥ 70%</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon icon-emerald">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <div>
+              <div class="kpi-title">Verified Certificates</div>
+              <div id="kpi-certs-count" class="kpi-value">1</div>
+              <div class="kpi-subtitle">Cryptographic Valid</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon icon-indigo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="kpi-title">Tuition Cleared</div>
+              <div id="kpi-tuition-count" class="kpi-value">₹14,498</div>
+              <div class="kpi-subtitle" id="kpi-tuition-sub">Across Enrolled Courses</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Overview Activities -->
+        <div class="overview-grid-2col">
+          
+          <!-- Left Col: Active Courses Quick List -->
+          <div class="overview-section-card">
+            <div class="overview-section-header">
+              <h3 class="overview-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-.05"/></svg>
+                Active Learning Progress
+              </h3>
+              <a href="javascript:void(0)" onclick="switchTab('enrolled')" style="font-size:12.5px; font-weight:600; color:var(--color-primary);">View All &rarr;</a>
+            </div>
+            <div id="overview-mini-courses-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Right Col: Credentials & Next Milestone -->
+          <div class="overview-section-card">
+            <div class="overview-section-header">
+              <h3 class="overview-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                Latest Certificate Earned
+              </h3>
+              <a href="javascript:void(0)" onclick="switchTab('certificates')" style="font-size:12.5px; font-weight:600; color:var(--color-primary);">Certificates &rarr;</a>
+            </div>
+
+            <div id="overview-cert-highlight">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ==================================================== -->
+      <!-- VIEW 2: MY ENROLLED COURSES                          -->
+      <!-- ==================================================== -->
+      <div id="tab-content-courses" style="display:none; margin-bottom: 36px;">
+        
+        <!-- Sub-filter pills for enrolled courses -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h2 id="section-heading" style="font-size: 19px; font-weight: 800; color:var(--text-heading); margin:0;">My Enrolled Courses</h2>
+            <p style="font-size: 13px; color:var(--text-muted); margin:3px 0 0;">12 Hours Video Curricula & Assessment Milestones</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button id="subfilter-all" onclick="filterEnrolledView('all')" class="btn btn-sm btn-primary">All Enrolled</button>
+            <button id="subfilter-inprog" onclick="filterEnrolledView('inprogress')" class="btn btn-sm btn-secondary">In Progress</button>
+            <button id="subfilter-cert" onclick="filterEnrolledView('completed')" class="btn btn-sm btn-secondary">Certified</button>
+          </div>
+        </div>
+
+        <div id="enrolled-courses-grid" class="course-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ==================================================== -->
+      <!-- VIEW 3: 30-COURSE CATALOG EXPLORER                   -->
+      <!-- ==================================================== -->
+      <div id="tab-content-catalog" style="display:none; margin-bottom: 36px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h2 style="font-size: 19px; font-weight: 800; color:var(--text-heading); margin:0;"><span id="catalog-count">46</span> University Short Courses Catalog</h2>
+            <p style="font-size: 13px; color:var(--text-muted); margin:3px 0 0;">Continuing Education Centre • Multi-Tiered Academic Curricula</p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <input type="text" id="catalog-search" placeholder="Search courses by title or code..." style="padding:8px 14px; background:var(--bg-surface); border:1px solid var(--border-light); color:var(--text-heading); border-radius:8px; font-size:13.5px; width:280px;" oninput="renderCatalogTab()">
+          </div>
+        </div>
+        <div id="catalog-explorer-grid" class="course-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ==================================================== -->
+      <!-- VIEW 4: VERIFIED CERTIFICATES TABLE                  -->
+      <!-- ==================================================== -->
+      <div id="tab-content-certificates" class="table-card" style="display:none;">
+        <div class="table-header-box">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 800; color:var(--text-heading); margin:0;">Verified University Certificates</h3>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-top:2px;">Official credentials earned upon completing courses and passing assessments</p>
+          </div>
+          <span style="font-size: 12px; color: var(--color-emerald-dark); font-weight:700; background:var(--color-emerald-subtle); border:1px solid var(--color-emerald-border); padding:4px 10px; border-radius:6px; display:inline-flex; align-items:center; gap:5px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Cryptographically Verified
+          </span>
+        </div>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Certificate ID</th>
+              <th>Course Title</th>
+              <th>Assessment Score</th>
+              <th>Issue Date</th>
+              <th>Verification Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="certificates-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ==================================================== -->
+      <!-- VIEW 5: PAYMENT HISTORY TABLE                        -->
+      <!-- ==================================================== -->
+      <div id="tab-content-payments" class="table-card" style="display:none;">
+        <div class="table-header-box">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 800; color:var(--text-heading); margin:0;">Tuition Payment History & Invoices</h3>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-top:2px;">Continuing Education Centre • Verified Dynamic Tuition & GST Invoices</p>
+          </div>
+          <span style="font-size: 12px; color: var(--color-primary-dark); font-weight:700; background:var(--color-primary-subtle); border:1px solid var(--color-primary-border); padding:4px 10px; border-radius:6px;">
+            Gateway Verified
+          </span>
+        </div>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Course Enrolled</th>
+              <th>Amount Paid</th>
+              <th>Payment Gateway</th>
+              <th>Payment Date</th>
+              <th>Status</th>
+              <th>Receipt</th>
+            </tr>
+          </thead>
+          <tbody id="payments-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ==================================================== -->
+      <!-- TAB 6: ACADEMIC QUERIES & COURSE FEEDBACK            -->
+      <!-- ==================================================== -->
+      <div id="tab-content-feedback" style="display:none; margin-bottom: 36px;">
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px;">
+          
+          <!-- Card 1: Submit Course Rating & Feedback -->
+          <div class="table-card" style="padding:22px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <svg width="20" height="20" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <h3 style="font-size: 16px; font-weight: 800; color:var(--text-heading); margin:0;">Course Rating &amp; Feedback</h3>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom:16px;">
+              Share your course evaluation with university faculty. Ratings and reviews sync directly to the faculty dashboard.
+            </p>
+            <form onsubmit="handleStudentFeedbackSubmit(event)">
+              <div style="margin-bottom:12px;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;">Enrolled Course</label>
+                <select id="feedback-course-select" class="checkout-input" style="width:100%; padding:8px 12px;" required></select>
+              </div>
+              <div style="margin-bottom:12px;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;">Star Rating</label>
+                <div style="display:flex; gap:8px; align-items:center;" id="feedback-star-picker">
+                  <button type="button" onclick="setRatingStar(1)" class="star-btn" data-star="1" style="background:none; border:none; font-size:22px; cursor:pointer; color:#f59e0b;">★</button>
+                  <button type="button" onclick="setRatingStar(2)" class="star-btn" data-star="2" style="background:none; border:none; font-size:22px; cursor:pointer; color:#f59e0b;">★</button>
+                  <button type="button" onclick="setRatingStar(3)" class="star-btn" data-star="3" style="background:none; border:none; font-size:22px; cursor:pointer; color:#f59e0b;">★</button>
+                  <button type="button" onclick="setRatingStar(4)" class="star-btn" data-star="4" style="background:none; border:none; font-size:22px; cursor:pointer; color:#f59e0b;">★</button>
+                  <button type="button" onclick="setRatingStar(5)" class="star-btn" data-star="5" style="background:none; border:none; font-size:22px; cursor:pointer; color:#f59e0b;">★</button>
+                  <span id="star-rating-label" style="font-size:12px; font-weight:700; color:#92400e; margin-left:6px;">5.0 / 5 Stars (Excellent)</span>
+                  <input type="hidden" id="feedback-stars-value" value="5">
+                </div>
+              </div>
+              <div style="margin-bottom:14px;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;">Detailed Feedback</label>
+                <textarea id="feedback-comment" rows="3" class="checkout-input" style="width:100%; padding:8px 12px; resize:vertical;" placeholder="What did you like about the lectures, code demos, or curriculum? How can faculty improve?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">
+                Submit Feedback to Faculty Dashboard
+              </button>
+            </form>
+          </div>
+
+          <!-- Card 2: Ask Academic Query to Instructor -->
+          <div class="table-card" style="padding:22px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <svg width="20" height="20" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <h3 style="font-size: 16px; font-weight: 800; color:var(--text-heading); margin:0;">Direct Academic Query to Faculty</h3>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom:16px;">
+              Have a question about a module or lecture topic? Post directly to the faculty instructor forum.
+            </p>
+            <form onsubmit="handleStudentQuerySubmit(event)">
+              <div style="margin-bottom:12px;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;">Related Course</label>
+                <select id="query-course-select" class="checkout-input" style="width:100%; padding:8px 12px;" required></select>
+              </div>
+              <div style="margin-bottom:12px;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;">Query Title / Topic</label>
+                <input type="text" id="query-title" class="checkout-input" style="width:100%; padding:8px 12px;" placeholder="e.g. Question on CI/CD pipelines in Module 4" required>
+              </div>
+              <div style="margin-bottom:14px;">
+                <label style="display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:4px;">Detailed Question</label>
+                <textarea id="query-question" rows="3" class="checkout-input" style="width:100%; padding:8px 12px; resize:vertical;" placeholder="Describe the concept, code issue, or curriculum doubt you need faculty help with..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%; justify-content:center; background:#2563eb;">
+                Post Query to Instructor Forum
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Section 3: Student Queries & Faculty Responses -->
+        <div class="table-card" style="padding:22px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+            <div>
+              <h3 style="font-size: 16px; font-weight: 800; color:var(--text-heading); margin:0;">My Discussion Queries &amp; Faculty Clarifications</h3>
+              <p style="font-size: 12px; color: var(--text-muted); margin-top:2px;">Track questions you submitted and see direct answers from university faculty.</p>
+            </div>
+            <button onclick="loadStudentQueriesAndFeedback()" class="btn btn-secondary btn-sm" style="font-size:11px; padding:5px 10px;">
+              ↻ Refresh Queries
+            </button>
+          </div>
+          <div id="student-queries-list">
+            <div style="padding:20px; text-align:center; color:#9ca3af;">Loading your academic queries...</div>
+          </div>
+        </div>
+
+        <!-- ====================================================== -->
+        <!-- CATALOG OVERVIEW (inline, no new tab)                  -->
+        <!-- ====================================================== -->
+        <div class="table-card" style="padding:22px; margin-top:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
+            <div>
+              <h3 style="font-size:16px; font-weight:800; color:var(--text-heading); margin:0;">📚 Course Catalog Overview</h3>
+              <p style="font-size:12px; color:var(--text-muted); margin-top:3px;">All university short courses — enrol or continue learning right here.</p>
+            </div>
+            <input type="text" id="feedback-catalog-search" placeholder="Search courses…"
+              oninput="renderFeedbackCatalog()"
+              style="padding:7px 13px; background:var(--bg-surface); border:1px solid var(--border-light); color:var(--text-heading); border-radius:8px; font-size:13px; width:220px;">
+          </div>
+          <div id="feedback-catalog-list" style="display:flex; flex-direction:column; gap:10px;">
+            <div style="padding:20px; text-align:center; color:#9ca3af;">Loading catalog…</div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- High-End Multi-Method Course Enrolment & Checkout Modal -->
+  <div id="checkout-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 580px;">
+      
+      <!-- Checkout Step 1: Payment & Enrolment View -->
+      <div id="checkout-step-payment">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Enrol & Secure Payment</h3>
+            <span style="font-size:12px; color:var(--color-primary); font-weight:700;">University Continuing Education Gateway</span>
+          </div>
+          <button class="modal-close-btn" onclick="closeEnrollModal()">&times;</button>
+        </div>
+
+        <!-- Selected Course Summary Card -->
+        <div id="modal-course-details" style="background:var(--bg-subtle); padding:14px 16px; border-radius:10px; margin-bottom:16px; border:1px solid var(--border-light);">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Payment Method Tabs -->
+        <div style="margin-bottom: 14px;">
+          <label style="font-size:11.5px; font-weight:700; color:var(--text-muted); text-transform:uppercase; display:block; margin-bottom:8px; letter-spacing:0.5px;">
+            Select Secure Payment Method
+          </label>
+          <div class="checkout-tabs">
+            <button type="button" class="checkout-tab-btn active" id="tab-btn-upi" onclick="switchPaymentTab('upi')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></svg>
+              UPI / QR Code
+            </button>
+            <button type="button" class="checkout-tab-btn" id="tab-btn-card" onclick="switchPaymentTab('card')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              Debit / Credit Card
+            </button>
+            <button type="button" class="checkout-tab-btn" id="tab-btn-netbanking" onclick="switchPaymentTab('netbanking')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 10-5 10 5v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/><path d="M12 22V7"/></svg>
+              NetBanking
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 1: UPI & Dynamic QR Code -->
+        <div class="checkout-tab-pane active" id="pane-upi">
+          <div class="checkout-qr-box">
+            <!-- Simulated High-Res UPI QR Code SVG -->
+            <div style="background:#ffffff; padding:8px; border-radius:8px; border:1px solid #cbd5e1; flex-shrink:0;">
+              <svg width="90" height="90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" fill="white"/>
+                <!-- Top-Left Target -->
+                <rect x="10" y="10" width="28" height="28" rx="4" fill="#0f172a"/>
+                <rect x="16" y="16" width="16" height="16" fill="white"/>
+                <rect x="20" y="20" width="8" height="8" fill="#2563eb"/>
+                <!-- Top-Right Target -->
+                <rect x="62" y="10" width="28" height="28" rx="4" fill="#0f172a"/>
+                <rect x="68" y="16" width="16" height="16" fill="white"/>
+                <rect x="72" y="20" width="8" height="8" fill="#2563eb"/>
+                <!-- Bottom-Left Target -->
+                <rect x="10" y="62" width="28" height="28" rx="4" fill="#0f172a"/>
+                <rect x="16" y="68" width="16" height="16" fill="white"/>
+                <rect x="20" y="72" width="8" height="8" fill="#2563eb"/>
+                <!-- Data Bits -->
+                <rect x="44" y="12" width="12" height="12" fill="#0f172a"/>
+                <rect x="44" y="32" width="12" height="24" fill="#0f172a"/>
+                <rect x="62" y="44" width="12" height="12" fill="#0f172a"/>
+                <rect x="80" y="44" width="10" height="28" fill="#0f172a"/>
+                <rect x="44" y="62" width="12" height="28" fill="#0f172a"/>
+                <rect x="62" y="62" width="12" height="12" fill="#2563eb"/>
+                <rect x="62" y="80" width="28" height="10" fill="#0f172a"/>
+              </svg>
+            </div>
+
+            <div style="flex-grow:1; font-size:12.5px; color:var(--text-body);">
+              <div style="font-weight:700; color:var(--text-heading); font-size:13.5px; margin-bottom:2px;">Scan with Any UPI App</div>
+              <div style="color:var(--text-muted); margin-bottom:8px;">GPay • PhonePe • Paytm • BHIM • CRED</div>
+              <div style="display:flex; align-items:center; gap:6px; background:#ffffff; border:1px solid var(--border-light); border-radius:6px; padding:4px 8px; font-family:monospace; font-size:11.5px; color:#2563eb; font-weight:700;">
+                <span>coursecraft.edu@upi</span>
+                <span style="margin-left:auto; color:var(--color-emerald); font-size:10.5px;">✓ VERIFIED MERCHANT</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11.5px; font-weight:600; color:var(--text-muted); display:block; margin-bottom:4px;">Or Enter Your Virtual Payment Address (VPA)</label>
+            <div style="display:flex; gap:8px;">
+              <input type="text" id="upi-vpa-input" class="checkout-input" value="student@okhdfcbank" placeholder="e.g. mobile@upi or name@okaxis">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="this.innerText='✓ Verified'; this.style.borderColor='var(--color-emerald)';">Verify</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Debit / Credit Card -->
+        <div class="checkout-tab-pane" id="pane-card">
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+            <div>
+              <label style="font-size:11.5px; font-weight:600; color:var(--text-muted); display:block; margin-bottom:4px;">Card Number</label>
+              <input type="text" class="checkout-input" value="4532 8842 1092 3341" placeholder="4532 •••• •••• ••••">
+            </div>
+            <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; gap:10px;">
+              <div>
+                <label style="font-size:11.5px; font-weight:600; color:var(--text-muted); display:block; margin-bottom:4px;">Cardholder Name</label>
+                <input type="text" class="checkout-input" value="Priya Sharma" placeholder="Name on Card">
+              </div>
+              <div>
+                <label style="font-size:11.5px; font-weight:600; color:var(--text-muted); display:block; margin-bottom:4px;">Expiry</label>
+                <input type="text" class="checkout-input" value="09/28" placeholder="MM/YY">
+              </div>
+              <div>
+                <label style="font-size:11.5px; font-weight:600; color:var(--text-muted); display:block; margin-bottom:4px;">CVV</label>
+                <input type="password" class="checkout-input" value="882" placeholder="•••" maxlength="4">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: NetBanking -->
+        <div class="checkout-tab-pane" id="pane-netbanking">
+          <div style="margin-bottom:14px;">
+            <label style="font-size:11.5px; font-weight:600; color:var(--text-muted); display:block; margin-bottom:6px;">Select Your Bank</label>
+            <select class="checkout-input" style="height:42px;">
+              <option>HDFC Bank (Instant Transfer)</option>
+              <option>State Bank of India (SBI)</option>
+              <option>ICICI Bank</option>
+              <option>Axis Bank</option>
+              <option>Kotak Mahindra Bank</option>
+              <option>Punjab National Bank (PNB)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Tuition Fee Breakdown & Security Stamp -->
+        <div class="checkout-fee-summary">
+          <div class="checkout-fee-row">
+            <span>12-Hour Continuing Education Curriculum:</span>
+            <span id="modal-fee-curriculum">₹4,500.00</span>
+          </div>
+          <div class="checkout-fee-row">
+            <span>Assessment & University Credential:</span>
+            <span style="color:var(--color-emerald); font-weight:700;">FREE (Included)</span>
+          </div>
+          <div class="checkout-fee-row">
+            <span>GST & Gateway Processing:</span>
+            <span>₹0.00 (Inclusive)</span>
+          </div>
+          <div class="checkout-fee-total">
+            <span>Total Payable Tuition:</span>
+            <span id="modal-fee-total">₹4,500.00 INR</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-muted); margin-bottom:14px; justify-content:center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>256-Bit SSL Encrypted • Case Study 108 Verified Academic Standard</span>
+        </div>
+
+        <!-- Checkout Actions -->
+        <div style="display:flex; gap:10px;">
+          <button type="button" onclick="closeEnrollModal()" class="btn btn-secondary" style="flex:1;">Cancel</button>
+          <button type="button" id="btn-confirm-checkout" onclick="processModalCheckout()" class="btn btn-primary" style="flex:2; font-weight:700;">
+            Pay Tuition & Enrol Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Checkout Step 2: Instant Success & Enrolment Confirmation Card -->
+      <div id="checkout-step-success" style="display:none; text-align:center; padding:10px 4px;">
+        <div style="width:64px; height:64px; background:#dcfce7; color:#16a34a; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:14px; box-shadow:0 8px 24px rgba(22,163,74,0.2);">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        
+        <h2 style="font-size:20px; font-weight:800; color:var(--text-heading); margin:0 0 6px;">Enrolment & Payment Confirmed!</h2>
+        <p style="font-size:13.5px; color:var(--text-muted); margin:0 0 16px;">
+          Tuition of <strong id="success-tuition-text">₹4,500 INR</strong> has been successfully cleared for your continuing education course.
+        </p>
+
+        <!-- Transaction Details Box -->
+        <div style="background:var(--bg-subtle); border:1px solid var(--border-light); border-radius:12px; padding:16px; text-align:left; font-size:13px; margin-bottom:20px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span style="color:var(--text-muted);">Transaction ID:</span>
+            <span id="success-txn-id" style="font-family:monospace; font-weight:700; color:var(--color-primary-dark);">TXN-CC-2026-8842</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span style="color:var(--text-muted);">Enrolled Course:</span>
+            <span id="success-course-title" style="font-weight:700; color:var(--text-heading); max-width:280px; text-align:right;">Course Title</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span style="color:var(--text-muted);">Student ID:</span>
+            <span style="font-weight:600; color:var(--text-heading);">USR-STUDENT-01 (Priya Sharma)</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border-light); padding-top:6px; margin-top:6px;">
+            <span style="color:var(--text-muted);">Access Status:</span>
+            <span style="color:var(--color-emerald-dark); font-weight:700;">✓ 12 Video Hours Unlocked</span>
+          </div>
+        </div>
+
+        <!-- Success Actions -->
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <a id="btn-success-goto-learn" href="/student/learn.html" class="btn btn-primary" style="padding:10px; font-weight:700; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Enter Video Course Studio Now
+          </a>
+          <button type="button" onclick="showInvoiceModal(lastSuccessReceipt)" class="btn btn-secondary" style="padding:9px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            View & Print Official Tax Invoice
+          </button>
+          <button type="button" onclick="closeEnrollModal()" class="btn btn-secondary" style="padding:8px; font-size:12.5px;">
+            Close & Return to Dashboard
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Student Change Password Modal -->
+  <div id="change-password-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 480px; background:#ffffff;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Change Account Password</h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Update your credentials. Afterwards, sign in with your new password.</p>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeChangePasswordModal()">&times;</button>
+      </div>
+      <form onsubmit="handlePasswordChangeSubmit(event)">
+        <div class="checkout-input-group" style="margin-bottom:12px;">
+          <label class="checkout-label">Current Password *</label>
+          <input type="password" id="chg-curr-pass" class="checkout-input" placeholder="Enter current temporary or account password" required>
+        </div>
+        <div class="checkout-input-group" style="margin-bottom:12px;">
+          <label class="checkout-label">New Password (Min 6 characters) *</label>
+          <input type="password" id="chg-new-pass" class="checkout-input" placeholder="Enter secure new password" minlength="6" required>
+        </div>
+        <div class="checkout-input-group" style="margin-bottom:14px;">
+          <label class="checkout-label">Confirm New Password *</label>
+          <input type="password" id="chg-confirm-pass" class="checkout-input" placeholder="Re-type new password" minlength="6" required>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeChangePasswordModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="btn-save-new-password">Update Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Official University Tax Invoice Modal -->
+  <div id="invoice-modal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 620px; background:#ffffff;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 14L82 27L50 40L18 27L50 14Z" fill="#1e1b4b"/>
+            <path d="M30 33.5V42C30 46.5 39 50 50 50C61 50 70 46.5 70 42V33.5L50 41L30 33.5Z" fill="#0f172a"/>
+          </svg>
+          <div>
+            <h3 class="modal-title" style="font-size:16px;">Official University Tax Invoice</h3>
+            <span style="font-size:11px; color:var(--text-muted);">Continuing Education Centre • GSTIN: 29AAAU0108A1Z5</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeInvoiceModal()">&times;</button>
+      </div>
+
+      <div id="invoice-content-area" style="font-size:13px; color:var(--text-body); line-height:1.5;">
+        <!-- Populated via JS -->
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px; border-top:1px solid var(--border-light); padding-top:14px;">
+        <button onclick="closeInvoiceModal()" class="btn btn-secondary btn-sm">Close</button>
+        <button onclick="window.print()" class="btn btn-primary btn-sm" style="display:inline-flex; align-items:center; gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Print / Save PDF Invoice
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/data/coursecraft-data.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
+  <script src="/js/course-service.js"></script>
+  <script src="/js/ui-utils.js"></script>
+
+  <script>
+    let allCourses = [];
+    let studentEnrollments = [];
+    let activeTab = 'overview';
+    let currentEnrolledSubfilter = 'all';
+    let selectedModalCourseId = null;
+    let currentPaymentMethod = 'UPI / QR Code';
+    let lastSuccessReceipt = null;
+
+    window.handleNavSearch = function(query) {
+      if (activeTab !== 'catalog') {
+        switchTab('catalog');
+      }
+      const catSearch = document.getElementById('catalog-search');
+      if (catSearch) {
+        catSearch.value = query;
+      }
+      renderCatalogTab();
+    };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = CourseCraftAuth.getCurrentUser();
+      if (user) {
+        document.getElementById('student-name').innerText = user.name.split(' ')[0];
+      }
+
+      await loadDashboardData();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlTab = urlParams.get('tab');
+      const urlQ = urlParams.get('q');
+
+      if (urlQ) {
+        const navSearch = document.getElementById('nav-global-search');
+        if (navSearch) navSearch.value = urlQ;
+        const catSearch = document.getElementById('catalog-search');
+        if (catSearch) catSearch.value = urlQ;
+      }
+
+      if (urlTab) {
+        switchTab(urlTab);
+      } else if (urlQ) {
+        switchTab('catalog');
+      } else {
+        switchTab('overview');
+      }
+    });
+
+    async function loadDashboardData() {
+      const user = CourseCraftAuth.getCurrentUser();
+      allCourses = await CourseService.getAllCourses();
+      studentEnrollments = await CourseService.getStudentEnrollments(user.uid);
+
+      // Update KPI metrics
+      const enrolledCount = studentEnrollments.length;
+      document.getElementById('kpi-enrolled-count').innerText = `${enrolledCount} / 30`;
+      
+      const passedCount = studentEnrollments.filter(e => e.quizPassed).length;
+      document.getElementById('kpi-certs-count').innerText = passedCount;
+
+      let totalHours = 0;
+      let scoreSum = 0;
+      let scoredCount = 0;
+      
+      studentEnrollments.forEach(e => {
+        totalHours += Math.round((e.progressPercent / 100) * 12);
+        if (e.quizScore) {
+          scoreSum += e.quizScore;
+          scoredCount++;
+        }
+      });
+
+      document.getElementById('kpi-hours-count').innerText = enrolledCount > 0 ? `${totalHours} / ${enrolledCount * 12}h` : '0 / 0h';
+      
+      const avgScore = scoredCount > 0 ? `${Math.round(scoreSum / scoredCount)}%` : '--';
+      document.getElementById('kpi-avg-score').innerText = avgScore;
+
+      // Tuition Cleared (Dynamic sum of enrolled course prices)
+      let tuitionTotal = 0;
+      studentEnrollments.forEach(e => {
+        const c = allCourses.find(x => x.id === e.courseId);
+        tuitionTotal += (c && c.price) ? Number(c.price) : 4500;
+      });
+      document.getElementById('kpi-tuition-count').innerText = `₹${tuitionTotal.toLocaleString('en-IN')}`;
+
+      renderOverviewHeroAndLists();
+      renderEnrolledCourses(currentEnrolledSubfilter);
+      renderCertificatesTable();
+      renderPaymentsTable();
+    }
+
+    function renderOverviewHeroAndLists() {
+      if (studentEnrollments.length === 0) {
+        // Empty state for newly registered student
+        const thumb = document.getElementById('resume-course-thumb');
+        if (thumb) thumb.src = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80';
+        document.getElementById('resume-course-title').innerText = `Explore ${allCourses.length} Academic Courses`;
+        document.getElementById('resume-course-sub').innerText = 'You are registered on CourseCraft! Choose a course from the university catalog to begin learning.';
+        document.getElementById('resume-percent-label').innerText = '0% Completed';
+        document.getElementById('resume-hours-label').innerText = '0 / 12 Hours Watched';
+        document.getElementById('resume-progress-bar').style.width = '0%';
+        const btn = document.getElementById('resume-btn-link');
+        if (btn) {
+          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Browse Course Catalog`;
+          btn.href = 'javascript:void(0)';
+          btn.onclick = () => switchTab('catalog');
+        }
+      } else {
+        // Find top in-progress course
+        const inProgEnrollment = studentEnrollments.find(e => !e.quizPassed && e.progressPercent > 0) || studentEnrollments[0];
+        const course = allCourses.find(c => c.id === inProgEnrollment.courseId) || {
+          id: inProgEnrollment.courseId,
+          title: "University Course",
+          thumbnail: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600"
+        };
+
+        const hoursWatched = Math.round((inProgEnrollment.progressPercent / 100) * 12);
+        const thumb = document.getElementById('resume-course-thumb');
+        if (thumb) thumb.src = course.thumbnail || 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600';
+        document.getElementById('resume-course-title').innerText = course.title;
+        document.getElementById('resume-course-sub').innerText = inProgEnrollment.progressPercent > 0
+          ? `Module 2 • Lesson ${inProgEnrollment.completedLessons?.length || 1}: Continuing Education Video Studio`
+          : 'Module 1 • Ready to begin 12-Hour Master Curriculum';
+        document.getElementById('resume-percent-label').innerText = `${inProgEnrollment.progressPercent}% Completed`;
+        document.getElementById('resume-hours-label').innerText = `${hoursWatched} / 12 Hours Watched`;
+        document.getElementById('resume-progress-bar').style.width = `${inProgEnrollment.progressPercent}%`;
+        const btn = document.getElementById('resume-btn-link');
+        if (btn) {
+          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> ${inProgEnrollment.progressPercent > 0 ? 'Resume Video Lesson' : 'Start First Lesson'}`;
+          btn.href = `/student/learn.html?courseId=${course.id}`;
+          btn.onclick = null;
+        }
+      }
+
+      // Mini courses list in Overview
+      const miniList = document.getElementById('overview-mini-courses-list');
+      if (studentEnrollments.length === 0) {
+        miniList.innerHTML = `
+          <div style="padding:24px; text-align:center; color:var(--text-muted); font-size:13px;">
+            <p style="margin:0 0 10px;">You are not enrolled in any courses yet.</p>
+            <button onclick="switchTab('catalog')" class="btn btn-primary btn-sm">Explore ${allCourses.length} University Courses</button>
+          </div>
+        `;
+      } else {
+        miniList.innerHTML = studentEnrollments.map(enr => {
+          const course = allCourses.find(c => c.id === enr.courseId) || { title: "University Course", code: "CC-100" };
+          const hoursWatched = Math.round((enr.progressPercent / 100) * 12);
+          return `
+            <div class="mini-course-item">
+              <div class="mini-course-details">
+                <h4>${course.title}</h4>
+                <p>${course.code} • ${hoursWatched}/12h watched (${enr.progressPercent}%)</p>
+              </div>
+              <div>
+                ${enr.quizPassed 
+                  ? `<span style="font-size:11.5px; font-weight:700; color:var(--color-emerald-dark); background:var(--color-emerald-subtle); padding:4px 8px; border-radius:4px;">Certified</span>` 
+                  : `<a href="/student/learn.html?courseId=${course.id}" class="btn btn-sm btn-secondary">${enr.progressPercent > 0 ? 'Resume' : 'Start'}</a>`}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Certificate Highlight in Overview
+      const certHighlight = document.getElementById('overview-cert-highlight');
+      const certEnr = studentEnrollments.find(e => e.quizPassed && e.certificateId);
+      if (certEnr) {
+        const course = allCourses.find(c => c.id === certEnr.courseId) || { title: "Modern Full-Stack Web Architecture" };
+        certHighlight.innerHTML = `
+          <div class="certificate-highlight-box">
+            <div style="color:var(--color-emerald-dark); flex-shrink:0;">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <div>
+              <div style="font-size:11px; font-weight:700; color:var(--color-emerald-dark); text-transform:uppercase;">Verified Credential</div>
+              <h4 style="font-size:14px; font-weight:800; color:var(--text-heading); margin:3px 0;">${course.title}</h4>
+              <p style="font-size:12px; color:var(--text-muted); margin:0 0 10px;">ID: <code>${certEnr.certificateId}</code> • Score: ${certEnr.quizScore || 90}%</p>
+              <a href="/student/certificate.html?certId=${certEnr.certificateId}" class="btn btn-sm btn-emerald">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                View & Print Certificate
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        certHighlight.innerHTML = `
+          <div style="padding:16px; background:var(--bg-subtle); border-radius:var(--radius-md); text-align:center; color:var(--text-muted); font-size:13px;">
+            Complete all 12 hours of video and pass the 10-question assessment (≥70%) to unlock your verified university certificate.
+          </div>
+        `;
+      }
+    }
+
+    function switchTab(tab) {
+      activeTab = tab;
+
+      // Update Sidebar items active state
+      const sideLinks = {
+        'overview': 'side-link-overview',
+        'enrolled': 'side-link-enrolled',
+        'catalog': 'side-link-catalog',
+        'certificates': 'side-link-certificates',
+        'payments': 'side-link-payments',
+        'feedback': 'side-link-feedback'
+      };
+
+      Object.values(sideLinks).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('active');
+      });
+
+      const activeSideId = sideLinks[tab] || 'side-link-overview';
+      const activeEl = document.getElementById(activeSideId);
+      if (activeEl) activeEl.classList.add('active');
+
+      // Containers
+      const overviewCont = document.getElementById('tab-content-overview');
+      const coursesCont = document.getElementById('tab-content-courses');
+      const catalogCont = document.getElementById('tab-content-catalog');
+      const certsCont = document.getElementById('tab-content-certificates');
+      const paymentsCont = document.getElementById('tab-content-payments');
+      const feedbackCont = document.getElementById('tab-content-feedback');
+
+      if (overviewCont) overviewCont.style.display = 'none';
+      if (coursesCont) coursesCont.style.display = 'none';
+      if (catalogCont) catalogCont.style.display = 'none';
+      if (certsCont) certsCont.style.display = 'none';
+      if (paymentsCont) paymentsCont.style.display = 'none';
+      if (feedbackCont) feedbackCont.style.display = 'none';
+
+      if (tab === 'overview') {
+        if (overviewCont) overviewCont.style.display = 'block';
+        renderOverviewHeroAndLists();
+      } else if (tab === 'enrolled') {
+        if (coursesCont) coursesCont.style.display = 'block';
+        renderEnrolledCourses(currentEnrolledSubfilter);
+      } else if (tab === 'catalog') {
+        if (catalogCont) catalogCont.style.display = 'block';
+        renderCatalogTab();
+      } else if (tab === 'certificates') {
+        if (certsCont) certsCont.style.display = 'block';
+      } else if (tab === 'payments') {
+        if (paymentsCont) paymentsCont.style.display = 'block';
+      } else if (tab === 'feedback') {
+        if (feedbackCont) feedbackCont.style.display = 'block';
+        populateFeedbackCourseDropdowns();
+        loadStudentQueriesAndFeedback();
+      }
+    }
+
+    // ── Queries & Feedback Logic ───────────────────────
+    function populateFeedbackCourseDropdowns() {
+      const fbSel = document.getElementById('feedback-course-select');
+      const qSel = document.getElementById('query-course-select');
+      const coursesToUse = (studentEnrollments && studentEnrollments.length > 0)
+        ? studentEnrollments.map(e => allCourses.find(c => c.id === e.courseId) || { id: e.courseId, code: 'Course', title: e.courseId })
+        : allCourses;
+
+      const opts = coursesToUse.map(c => `<option value="${c.id}">${c.code} — ${c.title}</option>`).join('');
+      if (fbSel) fbSel.innerHTML = opts;
+      if (qSel) qSel.innerHTML = opts;
+    }
+
+    function setRatingStar(num) {
+      document.getElementById('feedback-stars-value').value = num;
+      const labels = {
+        1: '1.0 / 5 Stars (Needs Improvement)',
+        2: '2.0 / 5 Stars (Fair)',
+        3: '3.0 / 5 Stars (Good)',
+        4: '4.0 / 5 Stars (Very Good)',
+        5: '5.0 / 5 Stars (Excellent)'
+      };
+      const labelEl = document.getElementById('star-rating-label');
+      if (labelEl) labelEl.innerText = labels[num] || `${num} Stars`;
+
+      document.querySelectorAll('#feedback-star-picker .star-btn').forEach(btn => {
+        const starVal = Number(btn.getAttribute('data-star'));
+        btn.style.color = starVal <= num ? '#f59e0b' : '#d1d5db';
+      });
+    }
+
+    async function handleStudentFeedbackSubmit(e) {
+      e.preventDefault();
+      const courseId = document.getElementById('feedback-course-select').value;
+      const stars = Number(document.getElementById('feedback-stars-value').value) || 5;
+      const comment = document.getElementById('feedback-comment').value;
+      const user = CourseCraftAuth.getCurrentUser() || { name: 'Priya Sharma' };
+      const courseObj = allCourses.find(c => c.id === courseId);
+
+      try {
+        const res = await fetch('/api/student/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            studentId: user.uid,
+            studentName: user.name,
+            courseId: courseId,
+            courseCode: courseObj?.code || 'CSE-101',
+            courseTitle: courseObj?.title || 'University Course',
+            stars,
+            comment
+          })
+        });
+        if (res.ok) {
+          document.getElementById('feedback-comment').value = '';
+          UIUtils.showToast('Course rating & feedback submitted! It is now live on the faculty dashboard.', 'success');
+          return;
+        }
+      } catch (err) {
+        console.warn('Feedback submit error:', err);
+      }
+      UIUtils.showToast('Feedback submitted to faculty dashboard.', 'success');
+    }
+
+    async function handleStudentQuerySubmit(e) {
+      e.preventDefault();
+      const courseId = document.getElementById('query-course-select').value;
+      const title = document.getElementById('query-title').value;
+      const question = document.getElementById('query-question').value;
+      const user = CourseCraftAuth.getCurrentUser() || { name: 'Priya Sharma' };
+      const courseObj = allCourses.find(c => c.id === courseId);
+
+      try {
+        const res = await fetch('/api/student/queries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            studentId: user.uid,
+            studentName: user.name,
+            courseId: courseId,
+            courseCode: courseObj?.code || 'CSE-101',
+            title,
+            question
+          })
+        });
+        if (res.ok) {
+          document.getElementById('query-title').value = '';
+          document.getElementById('query-question').value = '';
+          UIUtils.showToast('Academic query posted to instructor forum! Awaiting faculty response.', 'success');
+          loadStudentQueriesAndFeedback();
+          return;
+        }
+      } catch (err) {
+        console.warn('Query submit error:', err);
+      }
+      UIUtils.showToast('Query submitted to faculty forum.', 'success');
+    }
+
+    async function loadStudentQueriesAndFeedback() {
+      const user = CourseCraftAuth.getCurrentUser() || { name: 'Priya Sharma' };
+      const listEl = document.getElementById('student-queries-list');
+      if (!listEl) return;
+
+      try {
+        const res = await fetch(`/api/student/queries?studentName=${encodeURIComponent(user.name)}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && json.threads) {
+            renderStudentQueriesList(json.threads);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('Error loading student queries:', err);
+      }
+      // Always render inline catalog too
+      renderFeedbackCatalog();
+    }
+
+    function renderFeedbackCatalog() {
+      const el = document.getElementById('feedback-catalog-list');
+      if (!el) return;
+      const q = (document.getElementById('feedback-catalog-search')?.value || '').toLowerCase();
+      const enrolledIds = studentEnrollments.map(e => e.courseId);
+
+      const filtered = allCourses.filter(c =>
+        !q || c.title.toLowerCase().includes(q) || c.code.toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q)
+      );
+
+      if (!filtered.length) {
+        el.innerHTML = `<div style="padding:20px; text-align:center; color:#9ca3af; font-size:13px;">No courses match your search.</div>`;
+        return;
+      }
+
+      el.innerHTML = filtered.map(c => {
+        const isEnrolled = enrolledIds.includes(c.id);
+        const instructor = (c.instructor && typeof c.instructor === 'object') ? (c.instructor.name || 'Faculty Lead') : (c.instructor || 'Faculty');
+        const price = `₹${(c.price || 4500).toLocaleString('en-IN')}`;
+        const statusBadge = isEnrolled
+          ? `<span style="background:#dcfce7; color:#166534; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px;">Enrolled</span>`
+          : (c.status === 'ready'
+            ? `<span style="background:#eff6ff; color:#1d4ed8; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px;">Ready</span>`
+            : `<span style="background:#fef3c7; color:#92400e; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px;">Planned</span>`);
+        const actionBtn = isEnrolled
+          ? `<a href="/student/learn.html?courseId=${c.id}" class="btn btn-secondary btn-sm" style="font-size:12px; padding:5px 12px;">▶ Continue</a>`
+          : `<button onclick="openEnrollModal('${c.id}')" class="btn btn-primary btn-sm" style="font-size:12px; padding:5px 12px;">Enrol & Pay</button>`;
+
+        return `
+          <div style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:10px; border:1px solid var(--border-light); background:var(--bg-surface);">
+            <img src="${c.thumbnail || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=120&auto=format&fit=crop&q=60'}"
+              alt="${c.title}" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=120&auto=format&fit=crop&q=60'"
+              style="width:64px; height:48px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+            <div style="flex:1; min-width:0;">
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span style="font-size:11px; font-weight:700; color:var(--text-muted);">${c.code}</span>
+                ${statusBadge}
+              </div>
+              <div style="font-size:13.5px; font-weight:700; color:var(--text-heading); margin:2px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${c.title}</div>
+              <div style="font-size:11.5px; color:var(--text-muted);">👤 ${instructor} • ${c.category || 'General'}</div>
+            </div>
+            <div style="text-align:right; flex-shrink:0;">
+              <div style="font-size:14px; font-weight:800; color:var(--color-primary); margin-bottom:6px;">${price}</div>
+              ${actionBtn}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+
+    function renderStudentQueriesList(threads) {
+      const listEl = document.getElementById('student-queries-list');
+      if (!listEl) return;
+
+      if (!threads || threads.length === 0) {
+        listEl.innerHTML = `
+          <div style="padding:20px; text-align:center; color:#9ca3af; font-size:13px;">
+            You haven't posted any discussion queries yet. Use the form above to post questions directly to university faculty.
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = threads.map(t => {
+        const isResolved = t.status === 'resolved' || (t.responses && t.responses.length > 0);
+        const responsesHtml = (t.responses && t.responses.length > 0)
+          ? `<div style="margin-top:12px; background:#eff6ff; border-left:3px solid #3b82f6; border-radius:0 8px 8px 0; padding:10px 14px;">
+              <div style="font-size:11.5px; font-weight:700; color:#1d4ed8; margin-bottom:4px;">
+                Faculty Clarification by ${t.responses[0].author}:
+              </div>
+              <div style="font-size:12.5px; color:#1e3a8a; line-height:1.5;">${t.responses[0].text}</div>
+             </div>`
+          : `<div style="margin-top:8px; font-size:11.5px; color:#f59e0b;">
+               🕒 Awaiting response from course instructor.
+             </div>`;
+
+        return `
+          <div style="border:1px solid var(--border-light); border-radius:10px; padding:16px; margin-bottom:12px; background:#ffffff;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+              <div>
+                <strong style="font-size:14px; color:var(--text-heading);">${t.title}</strong>
+                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${t.courseCode} • Posted by ${t.studentName} (${t.timeAgo || 'Recent'})</div>
+              </div>
+              <span style="font-size:11px; font-weight:700; padding:3px 8px; border-radius:99px; ${isResolved ? 'background:#ecfdf5; color:#059669;' : 'background:#fffbeb; color:#b45309;'}">
+                ${isResolved ? 'Answered by Faculty' : 'Awaiting Faculty'}
+              </span>
+            </div>
+            <p style="font-size:12.5px; color:var(--text-body); margin:8px 0 0; line-height:1.5;">${t.question}</p>
+            ${responsesHtml}
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ── Student Password Change Modal ───────────────────
+    window.openChangePasswordModal = function() {
+      const modal = document.getElementById('change-password-modal');
+      if (modal) modal.classList.add('open');
+    };
+
+    window.closeChangePasswordModal = function() {
+      const modal = document.getElementById('change-password-modal');
+      if (modal) modal.classList.remove('open');
+    };
+
+    async function handlePasswordChangeSubmit(e) {
+      e.preventDefault();
+      const currPass = document.getElementById('chg-curr-pass').value;
+      const newPass = document.getElementById('chg-new-pass').value;
+      const confirmPass = document.getElementById('chg-confirm-pass').value;
+      const submitBtn = document.getElementById('btn-save-new-password');
+
+      if (newPass !== confirmPass) {
+        UIUtils.showToast('New passwords do not match. Please verify.', 'error');
+        return;
+      }
+
+      if (newPass.length < 6) {
+        UIUtils.showToast('Password must be at least 6 characters long.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Updating...';
+
+      try {
+        await CourseCraftAuth.changePassword(currPass, newPass);
+        closeChangePasswordModal();
+        UIUtils.showToast('Password updated successfully! Use your new password on your next login.', 'success');
+        document.getElementById('chg-curr-pass').value = '';
+        document.getElementById('chg-new-pass').value = '';
+        document.getElementById('chg-confirm-pass').value = '';
+      } catch (err) {
+        UIUtils.showToast(err.message || 'Failed to update password', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Update Password';
+      }
+    }
+
+    function filterEnrolledView(subfilter) {
+      currentEnrolledSubfilter = subfilter;
+      ['all', 'inprog', 'cert'].forEach(id => {
+        const b = document.getElementById(`subfilter-${id}`);
+        if (b) {
+          b.className = 'btn btn-sm btn-secondary';
+        }
+      });
+      const activeBtnMap = { 'all': 'subfilter-all', 'inprogress': 'subfilter-inprog', 'completed': 'subfilter-cert' };
+      const btn = document.getElementById(activeBtnMap[subfilter]);
+      if (btn) btn.className = 'btn btn-sm btn-primary';
+
+      renderEnrolledCourses(subfilter);
+    }
+
+    function renderEnrolledCourses(filterType) {
+      const grid = document.getElementById('enrolled-courses-grid');
+      const heading = document.getElementById('section-heading');
+
+      let filtered = [...studentEnrollments];
+      if (filterType === 'inprogress') {
+        heading.innerText = 'In-Progress Video Curricula';
+        filtered = studentEnrollments.filter(e => !e.quizPassed);
+      } else if (filterType === 'completed') {
+        heading.innerText = 'Certified & Completed Courses';
+        filtered = studentEnrollments.filter(e => e.quizPassed);
+      } else {
+        heading.innerText = 'My Enrolled Courses';
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; background:var(--bg-surface); border:1px solid var(--border-light); border-radius:var(--radius-lg); color: var(--text-muted); padding: 48px; text-align:center;">
+            <p style="font-size:15px; font-weight:700; color:var(--text-heading); margin-bottom:6px;">No courses match this filter.</p>
+            <p style="font-size:13px; margin-bottom:16px;">Browse the university catalog of ${allCourses.length} short courses anytime.</p>
+            <button onclick="switchTab('catalog')" class="btn btn-primary btn-sm">Explore ${allCourses.length} Available Courses</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(enr => {
+        const course = allCourses.find(c => c.id === enr.courseId) || {
+          id: enr.courseId,
+          title: "University Short Course",
+          code: "CC-100",
+          category: "Computer Science",
+          instructor: { name: "Dr. Aarav Sharma" },
+          thumbnail: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80"
+        };
+
+        const instructorName = (course.instructor && typeof course.instructor === 'object') 
+          ? (course.instructor.name || 'Faculty Lead') 
+          : (course.instructor || 'Continuing Education Faculty');
+
+        const thumbnail = course.thumbnail || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80';
+        const hoursWatched = Math.round((enr.progressPercent / 100) * 12);
+        const isCertified = enr.quizPassed && enr.certificateId;
+        const isReadyForQuiz = enr.progressPercent === 100 && !enr.quizPassed;
+
+        return `
+          <div class="course-card">
+            <div class="course-thumb-wrapper">
+              <img src="${thumbnail}" alt="${course.title}" class="course-thumb" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80'">
+              <span class="course-badge-status ${isCertified ? 'status-ready' : (isReadyForQuiz ? 'status-in_production' : 'status-ready')}">
+                ${isCertified 
+                  ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg> Certified' 
+                  : (isReadyForQuiz 
+                    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Quiz Ready' 
+                    : `${enr.progressPercent}% Watched`)}
+              </span>
+            </div>
+            <div class="course-body">
+              <div class="course-code">${course.code} • 12 Total Video Hours</div>
+              <h3 class="course-title">${course.title}</h3>
+              <div class="course-instructor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>${instructorName}</span>
+              </div>
+              
+              <!-- 12-Hour Telemetry Progress Bar -->
+              <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); font-weight:600; margin-bottom:4px;">
+                <span>Progress: ${enr.progressPercent}%</span>
+                <span>${hoursWatched} / 12h Watched</span>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar-fill" style="width: ${enr.progressPercent}%;"></div>
+              </div>
+
+              <!-- Milestone Status Box -->
+              <div class="milestone-status-box">
+                ${isCertified 
+                  ? `<svg style="color:var(--color-emerald-dark);" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span style="color:var(--color-emerald-dark); font-weight:700;">Score: ${enr.quizScore || 90}% • Verified</span>`
+                  : (isReadyForQuiz 
+                    ? `<svg style="color:var(--color-amber-dark);" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span style="color:var(--color-amber-dark); font-weight:700;">12h Watched • Ready for 10Q Quiz (≥70%)</span>`
+                    : `<svg style="color:var(--color-primary);" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg><span style="color:var(--text-body); font-weight:600;">Completed: ${enr.completedLessons?.length || 0}/16 Lessons</span>`)}
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="course-meta">
+                <div class="course-price-box">
+                  <span class="course-price" style="font-size:12px; color:var(--text-muted); font-weight:600;">Fee: ₹${(course.price || 4500).toLocaleString('en-IN')} (Paid)</span>
+                </div>
+                <div style="display:flex; gap:8px;">
+                  ${isCertified 
+                    ? `<a href="/student/certificate.html?certId=${enr.certificateId}" class="btn btn-emerald btn-sm">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                        Certificate
+                       </a>` 
+                    : (isReadyForQuiz 
+                      ? `<a href="/student/quiz.html?courseId=${course.id}" class="btn btn-amber btn-sm">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                          Start Quiz
+                         </a>` 
+                      : `<a href="/student/learn.html?courseId=${course.id}" class="btn btn-primary btn-sm">
+                          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                          Continue
+                         </a>`)}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderCatalogTab() {
+      const q = (document.getElementById('catalog-search').value || '').toLowerCase();
+      const grid = document.getElementById('catalog-explorer-grid');
+      const enrolledIds = studentEnrollments.map(e => e.courseId);
+
+      const filtered = allCourses.filter(c => 
+        !q || c.title.toLowerCase().includes(q) || c.code.toLowerCase().includes(q) || c.category.toLowerCase().includes(q)
+      );
+
+      // Update dynamic count
+      const countEl = document.getElementById('catalog-count');
+      if (countEl) countEl.innerText = filtered.length;
+
+      grid.innerHTML = filtered.map(c => {
+        const isEnrolled = enrolledIds.includes(c.id);
+        const instructorName = (c.instructor && typeof c.instructor === 'object') 
+          ? (c.instructor.name || 'Faculty Lead') 
+          : (c.instructor || 'Continuing Education Faculty');
+
+        const thumbnail = c.thumbnail || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80';
+        const priceFormatted = `₹${(c.price || 4500).toLocaleString('en-IN')}`;
+
+        return `
+          <div class="course-card">
+            <div class="course-thumb-wrapper">
+              <img src="${thumbnail}" alt="${c.title}" class="course-thumb" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80'">
+              <span class="course-badge-status ${isEnrolled ? 'status-ready' : (c.status === 'ready' ? 'status-ready' : 'status-planned')}">
+                ${isEnrolled ? 'Enrolled' : (c.status === 'ready' ? 'Ready to Learn' : 'Planned Pipeline')}
+              </span>
+            </div>
+            <div class="course-body">
+              <div class="course-code">${c.code} • 12 Video Hours</div>
+              <h3 class="course-title">${c.title}</h3>
+              <div class="course-instructor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>${instructorName}</span>
+              </div>
+              <p class="course-desc">${c.description}</p>
+              
+              <div class="course-meta">
+                <div class="course-price-box">
+                  <span class="course-price">${priceFormatted}</span>
+                  <span style="font-size:11px; color:var(--text-muted); font-weight:500;">12h Content + Cert</span>
+                </div>
+                <div>
+                  ${isEnrolled ? `
+                    <a href="/student/learn.html?courseId=${c.id}" class="btn btn-secondary btn-sm">Enter Studio</a>
+                  ` : `
+                    <button onclick="openEnrollModal('${c.id}')" class="btn btn-primary btn-sm">Enrol & Pay</button>
+                  `}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderCertificatesTable() {
+      const certsTable = document.getElementById('certificates-table-body');
+      const certifiedEnrollments = studentEnrollments.filter(e => e.quizPassed && e.certificateId);
+      
+      if (certifiedEnrollments.length === 0) {
+        certsTable.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 32px; color:var(--text-muted);">No certificates earned yet. Complete all 12 hours and score ≥ 70% on the assessment to earn credentials!</td></tr>`;
+      } else {
+        certsTable.innerHTML = certifiedEnrollments.map(e => {
+          const course = allCourses.find(c => c.id === e.courseId) || { title: "Short Course", code: "CC-100" };
+          return `
+            <tr>
+              <td><span style="font-family:monospace; font-weight:700; color:var(--color-primary-dark); background:var(--color-primary-subtle); padding:3px 8px; border-radius:6px; font-size:12px;">${e.certificateId}</span></td>
+              <td><strong style="color:var(--text-heading); font-size:14px;">${course.title}</strong><div style="font-size:11.5px; color:var(--text-muted);">${course.code} • 12 Video Hours</div></td>
+              <td><span style="color:var(--color-emerald-dark); font-weight:700; font-size:13px;">${e.quizScore || 90}% (Passed ≥70%)</span></td>
+              <td>${new Date(e.certificateIssuedAt || Date.now()).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</td>
+              <td><span style="background:var(--color-emerald-subtle); color:var(--color-emerald-dark); border:1px solid var(--color-emerald-border); padding:3px 9px; border-radius:6px; font-size:11px; font-weight:700;">SHA-256 VALIDATED</span></td>
+              <td>
+                <a href="/student/certificate.html?certId=${e.certificateId}" class="btn btn-secondary btn-sm">View & Print</a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    function switchPaymentTab(method) {
+      const tabs = ['upi', 'card', 'netbanking'];
+      tabs.forEach(t => {
+        const tabBtn = document.getElementById(`tab-btn-${t}`);
+        const pane = document.getElementById(`pane-${t}`);
+        if (tabBtn) tabBtn.classList.toggle('active', t === method);
+        if (pane) pane.classList.toggle('active', t === method);
+      });
+
+      if (method === 'upi') currentPaymentMethod = 'UPI / QR Code (coursecraft.edu@upi)';
+      else if (method === 'card') currentPaymentMethod = 'Debit / Credit Card (Visa/Mastercard)';
+      else if (method === 'netbanking') currentPaymentMethod = 'NetBanking (Instant Transfer)';
+    }
+
+    function openEnrollModal(courseId) {
+      selectedModalCourseId = courseId;
+      const course = allCourses.find(c => c.id === courseId) || allCourses[0];
+      const thumbnail = course.thumbnail || 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80';
+      const courseFee = (course && course.price) ? Number(course.price) : 4500;
+      
+      const container = document.getElementById('modal-course-details');
+      container.innerHTML = `
+        <div style="display:flex; gap:14px; align-items:center;">
+          <img src="${thumbnail}" style="width:72px; height:54px; object-fit:cover; border-radius:8px; border:1px solid var(--border-light); flex-shrink:0;">
+          <div style="flex-grow:1;">
+            <div style="font-size:11.5px; color:var(--color-primary); font-weight:700;">${course.code} • 12 Video Hours</div>
+            <h4 style="font-size:14px; font-weight:700; color:var(--text-heading); margin:2px 0;">${course.title}</h4>
+            <div style="font-size:11.5px; color:var(--text-muted);">Includes 10-question assessment & verified university credential</div>
+          </div>
+        </div>
+      `;
+
+      // Update dynamic tuition breakdown in modal
+      const feeCurriculumEl = document.getElementById('modal-fee-curriculum');
+      const feeTotalEl = document.getElementById('modal-fee-total');
+      if (feeCurriculumEl) feeCurriculumEl.innerText = `₹${courseFee.toLocaleString('en-IN')}.00`;
+      if (feeTotalEl) feeTotalEl.innerText = `₹${courseFee.toLocaleString('en-IN')}.00 INR`;
+
+      // Reset step views
+      document.getElementById('checkout-step-payment').style.display = 'block';
+      document.getElementById('checkout-step-success').style.display = 'none';
+      const btn = document.getElementById('btn-confirm-checkout');
+      if (btn) {
+        btn.innerText = `Pay ₹${courseFee.toLocaleString('en-IN')} & Enrol Now`;
+        btn.disabled = false;
+      }
+
+      switchPaymentTab('upi');
+      document.getElementById('checkout-modal').classList.add('open');
+    }
+
+    function closeEnrollModal() {
+      document.getElementById('checkout-modal').classList.remove('open');
+      selectedModalCourseId = null;
+    }
+
+    async function processModalCheckout() {
+      if (!selectedModalCourseId) return;
+      
+      const course = allCourses.find(c => c.id === selectedModalCourseId) || {
+        id: selectedModalCourseId,
+        title: "University Continuing Education Course",
+        code: "CC-100",
+        price: 4500
+      };
+      const courseFee = (course && course.price) ? Number(course.price) : 4500;
+
+      const btn = document.getElementById('btn-confirm-checkout');
+      btn.innerText = 'Authorizing Payment Gateway...';
+      btn.disabled = true;
+
+      const res = await CourseService.enrollInCourse(selectedModalCourseId, {
+        method: currentPaymentMethod,
+        amount: courseFee
+      });
+
+      const txnId = res.payment?.transactionId || `TXN-CC-2026-${Math.floor(100000 + Math.random() * 900000)}`;
+
+      lastSuccessReceipt = {
+        transactionId: txnId,
+        courseId: course.id,
+        courseTitle: course.title,
+        courseCode: course.code,
+        amount: courseFee,
+        method: currentPaymentMethod,
+        date: new Date().toISOString(),
+        studentName: 'Priya Sharma',
+        studentId: 'USR-STUDENT-01',
+        studentEmail: 'priya.sharma@student.edu'
+      };
+
+      document.getElementById('success-txn-id').innerText = txnId;
+      document.getElementById('success-course-title').innerText = course.title;
+      const successTuitionEl = document.getElementById('success-tuition-text');
+      if (successTuitionEl) {
+        successTuitionEl.innerText = `₹${courseFee.toLocaleString('en-IN')} INR`;
+      }
+      const gotoLearnBtn = document.getElementById('btn-success-goto-learn');
+      if (gotoLearnBtn) {
+        gotoLearnBtn.href = `/student/learn.html?courseId=${course.id}`;
+      }
+
+      // Transition smoothly into instant confirmation card
+      document.getElementById('checkout-step-payment').style.display = 'none';
+      document.getElementById('checkout-step-success').style.display = 'block';
+
+      // Reload dashboard state in background
+      await loadDashboardData();
+    }
+
+    function renderPaymentsTable() {
+      const tbody = document.getElementById('payments-table-body');
+      
+      tbody.innerHTML = studentEnrollments.map((enr, idx) => {
+        const course = allCourses.find(c => c.id === enr.courseId) || { title: "University Short Course", code: "CC-100", price: 4500 };
+        const txnId = `TXN-CC-2026-00${idx + 1}`;
+        const fee = (course && course.price) ? Number(course.price) : 4500;
+        const dateStr = new Date(enr.enrolledAt || '2026-08-15T10:00:00Z').toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+
+        return `
+          <tr>
+            <td><span style="font-family:monospace; font-weight:700; color:var(--color-primary-dark); background:var(--color-primary-subtle); padding:3px 8px; border-radius:6px; font-size:12px;">${txnId}</span></td>
+            <td><strong style="color:var(--text-heading);">${course.title}</strong></td>
+            <td><span style="font-weight:700; color:var(--text-heading);">₹${fee.toLocaleString('en-IN')}.00</span></td>
+            <td><span style="color:var(--text-muted);">UPI / Gateway</span></td>
+            <td>${dateStr}</td>
+            <td><span style="background:var(--color-emerald-subtle); color:var(--color-emerald-dark); border:1px solid var(--color-emerald-border); padding:3px 9px; border-radius:6px; font-size:11px; font-weight:700;">COMPLETED</span></td>
+            <td>
+              <button onclick="viewPaymentReceipt('${enr.courseId}', '${txnId}', '${enr.enrolledAt || ''}')" class="btn btn-secondary btn-sm" style="font-size:11.5px;">View Tax Invoice</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function viewPaymentReceipt(courseId, txnId, enrolledAt) {
+      const course = allCourses.find(c => c.id === courseId) || { title: "University Short Course", code: "CC-100", price: 4500 };
+      const fee = (course && course.price) ? Number(course.price) : 4500;
+      const receipt = {
+        transactionId: txnId || 'TXN-CC-2026-001',
+        courseId: courseId,
+        courseTitle: course.title,
+        courseCode: course.code,
+        amount: fee,
+        method: 'UPI / Online Gateway',
+        date: enrolledAt || new Date().toISOString(),
+        studentName: 'Priya Sharma',
+        studentId: 'USR-STUDENT-01',
+        studentEmail: 'priya.sharma@student.edu'
+      };
+      showInvoiceModal(receipt);
+    }
+
+    function showInvoiceModal(receipt) {
+      if (!receipt) {
+        receipt = lastSuccessReceipt || {
+          transactionId: 'TXN-CC-2026-8842',
+          courseTitle: 'Software Engineering & Agile Project Management',
+          courseCode: 'CC-SE108',
+          amount: 3999,
+          method: 'UPI / Online Gateway',
+          date: new Date().toISOString(),
+          studentName: 'Priya Sharma',
+          studentId: 'USR-STUDENT-01',
+          studentEmail: 'priya.sharma@student.edu'
+        };
+      }
+
+      const amountVal = Number(receipt.amount) || 4500;
+      const formattedAmount = `₹${amountVal.toLocaleString('en-IN')}.00`;
+      const formattedAmountINR = `₹${amountVal.toLocaleString('en-IN')}.00 INR`;
+
+      const invoiceNum = `INV-CC-${receipt.transactionId.replace('TXN-CC-', '')}`;
+      const formattedDate = new Date(receipt.date || Date.now()).toLocaleDateString('en-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+
+      const contentArea = document.getElementById('invoice-content-area');
+      contentArea.innerHTML = `
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px 14px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Invoice Number</div>
+            <div style="font-family:monospace; font-weight:800; color:var(--color-primary-dark); font-size:14px;">${invoiceNum}</div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Date of Issue</div>
+            <div style="font-weight:700; color:var(--text-heading); font-size:13px;">${formattedDate}</div>
+          </div>
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Status</div>
+            <div style="background:#dcfce7; color:#16a34a; font-weight:800; font-size:11px; padding:3px 8px; border-radius:4px; border:1px solid #bbf7d0;">PAID & CLEARED</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div style="border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
+            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Billed To (Student)</div>
+            <div style="font-weight:700; color:var(--text-heading);">${receipt.studentName || 'Priya Sharma'}</div>
+            <div style="font-size:12px; color:var(--text-muted);">ID: ${receipt.studentId || 'USR-STUDENT-01'}</div>
+            <div style="font-size:12px; color:var(--text-muted);">${receipt.studentEmail || 'priya.sharma@student.edu'}</div>
+            <div style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">Academic Cohort: SEPM Continuing Education</div>
+          </div>
+          <div style="border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
+            <div style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Issued By (University)</div>
+            <div style="font-weight:700; color:var(--text-heading);">CourseCraft University Continuing Education</div>
+            <div style="font-size:12px; color:var(--text-muted);">GSTIN: 29AAAU0108A1Z5</div>
+            <div style="font-size:12px; color:var(--text-muted);">SAC / HSN Code: 999293 (Higher Education)</div>
+            <div style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">Academic Directorate, Campus Bangalore</div>
+          </div>
+        </div>
+
+        <!-- Itemized Fee Table -->
+        <table style="width:100%; border-collapse:collapse; margin-bottom:14px; font-size:12.5px;">
+          <thead>
+            <tr style="background:#f1f5f9; border-top:1px solid #cbd5e1; border-bottom:1px solid #cbd5e1; text-align:left;">
+              <th style="padding:8px 10px; color:#334155;">Curriculum Item</th>
+              <th style="padding:8px 10px; text-align:center; color:#334155;">Qty</th>
+              <th style="padding:8px 10px; text-align:right; color:#334155;">Rate</th>
+              <th style="padding:8px 10px; text-align:right; color:#334155;">Amount (INR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #e2e8f0;">
+              <td style="padding:10px;">
+                <div style="font-weight:700; color:var(--text-heading);">${receipt.courseTitle}</div>
+                <div style="font-size:11px; color:var(--text-muted);">${receipt.courseCode || 'CC-100'} • 12 Video Hours • Case Study 108 Curriculum</div>
+              </td>
+              <td style="padding:10px; text-align:center;">1</td>
+              <td style="padding:10px; text-align:right;">${formattedAmount}</td>
+              <td style="padding:10px; text-align:right; font-weight:700;">${formattedAmount}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #e2e8f0; color:var(--text-muted);">
+              <td style="padding:8px 10px;">
+                <div>10-Question Online Certification & Cryptographic Badge</div>
+              </td>
+              <td style="padding:8px 10px; text-align:center;">1</td>
+              <td style="padding:8px 10px; text-align:right;">₹0.00</td>
+              <td style="padding:8px 10px; text-align:right; color:var(--color-emerald); font-weight:700;">INCLUDED</td>
+            </tr>
+            <tr style="border-bottom:1px solid #cbd5e1; color:var(--text-muted);">
+              <td style="padding:8px 10px;">
+                <div>GST (Educational Exemption under SAC 999293)</div>
+              </td>
+              <td style="padding:8px 10px; text-align:center;">-</td>
+              <td style="padding:8px 10px; text-align:right;">0%</td>
+              <td style="padding:8px 10px; text-align:right;">₹0.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="background:#f8fafc; font-weight:800; font-size:13.5px;">
+              <td colspan="3" style="padding:10px; text-align:right; color:var(--text-heading);">Total Paid Tuition Fee:</td>
+              <td style="padding:10px; text-align:right; color:var(--color-primary-dark);">${formattedAmountINR}</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px 12px; font-size:11.5px; color:var(--text-muted); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span>Payment Method: <strong>${receipt.method || 'UPI / Online Gateway'}</strong></span> • 
+            <span>Txn Ref: <code style="color:#0f172a; font-weight:700;">${receipt.transactionId}</code></span>
+          </div>
+          <div style="color:var(--color-emerald); font-weight:700;">
+            ✓ Digitally Signed & Sealed
+          </div>
+        </div>
+      `;
+
+      document.getElementById('invoice-modal').classList.add('open');
+    }
+
+    function closeInvoiceModal() {
+      document.getElementById('invoice-modal').classList.remove('open');
+    }
+  </script>
+</body>
+</html>

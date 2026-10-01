@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Learning Studio — CourseCraft</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/learn.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a href="/student/dashboard.html" class="btn btn-secondary btn-sm">← Back to Dashboard</a>
+        <span id="header-course-title" style="font-weight:700; font-size:15px; color:#fff;">Course Learning Studio</span>
+      </div>
+
+      <div class="nav-actions">
+        <div id="user-profile-badge"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Learning Studio Layout -->
+  <div class="learn-layout">
+    
+    <!-- Main Video & Lesson Content Area -->
+    <main class="video-main-area">
+      
+      <!-- Video Stream Control Banner -->
+      <div class="video-control-banner">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="live-stream-badge"><span class="pulse-dot"></span> TOPIC SLIDE DECK</span>
+          <span id="video-source-label" style="font-size:12px; color:#94a3b8; font-weight:600;">Interactive University Lecture Presentation</span>
+        </div>
+        
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <button id="btn-toggle-narration" onclick="toggleSpeechNarration()" class="btn-voice-toggle" title="Toggle Professor Voice Narration">
+            <span id="voice-icon">🔊</span>
+            <span id="voice-text">Voice Narration: ON</span>
+          </button>
+
+          <button onclick="prevSlide()" class="btn btn-secondary btn-sm" style="font-size:12px; padding:5px 10px;" title="Previous Slide">
+            ⏮ Prev Slide
+          </button>
+          <button id="btn-slide-playpause" onclick="toggleSlideAutoPlay()" class="btn btn-primary btn-sm" style="font-size:12px; padding:5px 12px;" title="Play/Pause Presentation">
+            ⏸ Pause
+          </button>
+          <button onclick="nextSlide()" class="btn btn-secondary btn-sm" style="font-size:12px; padding:5px 10px;" title="Next Slide">
+            Next Slide ⏭
+          </button>
+        </div>
+      </div>
+
+      <!-- Real Presentation Slide Viewport -->
+      <div class="video-viewport" id="video-container" style="background:#070d1e;">
+        
+        <div class="topic-slide-player-wrap" id="topic-slide-player">
+          
+          <!-- Story-style 5-Segment Slide Progress Bar -->
+          <div class="slide-segments-header">
+            <div class="slide-segments-bar" id="slide-segments-container">
+              <div class="slide-segment-track" onclick="goToSlide(0)"><div class="slide-segment-fill" id="seg-0"></div></div>
+              <div class="slide-segment-track" onclick="goToSlide(1)"><div class="slide-segment-fill" id="seg-1"></div></div>
+              <div class="slide-segment-track" onclick="goToSlide(2)"><div class="slide-segment-fill" id="seg-2"></div></div>
+              <div class="slide-segment-track" onclick="goToSlide(3)"><div class="slide-segment-fill" id="seg-3"></div></div>
+              <div class="slide-segment-track" onclick="goToSlide(4)"><div class="slide-segment-fill" id="seg-4"></div></div>
+            </div>
+            
+            <div class="slide-segments-meta">
+              <span id="slide-segment-label">Slide 1 of 5: Topic Overview & Objectives</span>
+              <span id="slide-time-remaining">12s</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Slide Content Stage -->
+          <div class="slide-content-stage" id="slide-stage">
+            <!-- Dynamically populated per slide -->
+          </div>
+
+          <!-- Slide Footer Control Bar -->
+          <div class="slide-footer-bar">
+            <div class="slide-ctrl-group">
+              <span class="slide-counter-badge" id="slide-number-pill">SLIDE 1 / 5</span>
+              <span style="font-size:12px; color:#64748b;" id="slide-topic-name">Topic Name</span>
+            </div>
+
+            <div class="slide-ctrl-group">
+              <button onclick="goToSlide(0)" class="btn-slide-nav" style="font-size:11px; padding:4px 8px;">1. Overview</button>
+              <button onclick="goToSlide(1)" class="btn-slide-nav" style="font-size:11px; padding:4px 8px;">2. Concepts</button>
+              <button onclick="goToSlide(2)" class="btn-slide-nav" style="font-size:11px; padding:4px 8px;">3. Architecture</button>
+              <button onclick="goToSlide(3)" class="btn-slide-nav" style="font-size:11px; padding:4px 8px;">4. Case Study 108</button>
+              <button onclick="goToSlide(4)" class="btn-slide-nav" style="font-size:11px; padding:4px 8px;">5. Summary</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="video-details-panel">
+        <div class="video-title-row">
+          <div>
+            <div id="current-module-tag" style="font-size:12px; color:#38bdf8; font-weight:700; text-transform:uppercase; margin-bottom:4px; letter-spacing:0.5px;">Module 1: Foundations</div>
+            <h1 id="current-lesson-title" style="font-size:22px; font-weight:800; color:#f8fafc; margin:0;">Lesson Title</h1>
+          </div>
+          <div class="video-action-bar">
+            <button id="btn-mark-complete" onclick="markCurrentLessonComplete()" class="btn btn-emerald btn-sm" style="font-weight:600; padding:8px 14px; border-radius:8px;">
+              ✓ Mark Complete
+            </button>
+            <a id="btn-goto-quiz" href="/student/quiz.html" class="btn btn-amber btn-sm" style="font-weight:600; padding:8px 14px; border-radius:8px; text-decoration:none;">
+              📝 Take 10Q Quiz
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; display:grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+          <div>
+            <h3 style="font-size:15px; margin-bottom:10px; color:#f8fafc; font-weight:700;">🎯 Module Learning Outcomes</h3>
+            <ul id="lesson-outcomes-list" style="color:#94a3b8; font-size:13.5px; line-height:1.6; padding-left:20px; margin:0 0 20px;">
+              <li>Comprehensive mastery of core architectural patterns and engineering principles.</li>
+              <li>Hands-on practical implementation with real-world industry case study standards.</li>
+              <li>Preparation for the 10-question university certification assessment (≥70% pass threshold).</li>
+            </ul>
+
+            <h3 style="font-size:15px; margin: 16px 0 8px; color:#f8fafc; font-weight:700;">📝 Student Notes & Key Concepts</h3>
+            <textarea id="student-notes" placeholder="Jot down notes, code snippets, or formulas for this video lesson..." style="width:100%; height:110px; background:#0b1120; border:1px solid #1e293b; color:#f8fafc; padding:12px; border-radius:8px; font-family:inherit; font-size:13px; box-sizing:border-box; outline:none;" oninput="saveNotes()"></textarea>
+          </div>
+
+          <div style="background:#0b1120; border:1px solid #1e293b; border-radius:12px; padding:20px;">
+            <h4 style="font-size:13.5px; font-weight:700; color:#38bdf8; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.5px;">📊 Curriculum Progress</h4>
+            <div style="font-size:32px; font-weight:800; color:#ffffff;" id="overall-progress-text">0%</div>
+            <div class="progress-container" style="background:#1e293b; border-radius:20px; height:8px; margin: 8px 0 12px; overflow:hidden;">
+              <div id="overall-progress-bar" style="background:linear-gradient(90deg, #38bdf8, #2563eb); height:100%; width:0%; border-radius:20px; transition:width 0.3s;"></div>
+            </div>
+            <div style="font-size:12px; color:#94a3b8; line-height:1.5;">
+              Complete all 12 hours across the 4 modules to unlock your official verified University Certificate.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Syllabus & Lessons Accordion Sidebar -->
+    <aside class="syllabus-sidebar">
+      <div class="syllabus-header">
+        <h3 style="font-size:15px; font-weight:700; color:#ffffff; margin:0;">Course Syllabus</h3>
+        <div style="font-size:12px; color:#94a3b8; margin-top:2px;">4 Modules • 12 Video Hours</div>
+      </div>
+
+      <div id="syllabus-container" class="syllabus-scroll">
+        <!-- Rendered dynamically -->
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="/data/coursecraft-data.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
+  <script src="/js/course-service.js"></script>
+  <script src="/js/ui-utils.js"></script>
+
+  <script>
+    let currentCourse = null;
+    let currentLesson = null;
+    let currentModule = null;
+    let completedLessonIds = [];
+    
+    // Slide Engine State
+    let currentSlideIndex = 0;
+    const TOTAL_SLIDES = 5;
+    const SLIDE_DURATION_SEC = 12;
+    let slideTimer = null;
+    let slideProgressMs = 0;
+    let isSlideAutoPlaying = true;
+    let voiceNarrationEnabled = true;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const courseId = urlParams.get('courseId') || 'cc-101';
+      
+      const user = CourseCraftAuth.getCurrentUser();
+      const allCourses = await CourseService.getAllCourses();
+      currentCourse = allCourses.find(c => c.id === courseId) || allCourses[0];
+
+      if (currentCourse) {
+        document.getElementById('header-course-title').innerText = `${currentCourse.code}: ${currentCourse.title}`;
+        document.getElementById('btn-goto-quiz').href = `/student/quiz.html?courseId=${currentCourse.id}`;
+
+        // Get student enrollment status
+        const enrollments = await CourseService.getStudentEnrollments(user.uid);
+        const enr = enrollments.find(e => e.courseId === currentCourse.id);
+        if (enr) {
+          completedLessonIds = enr.completedLessons || [];
+        }
+
+        renderSyllabus();
+        loadFirstAvailableLesson();
+        updateProgressMetrics();
+      }
+    });
+
+    function renderSyllabus() {
+      const container = document.getElementById('syllabus-container');
+      if (!currentCourse || !currentCourse.modules) return;
+
+      container.innerHTML = currentCourse.modules.map((mod, modIdx) => `
+        <div class="module-accordion">
+          <div class="module-header" onclick="toggleModuleAccordion('mod-${modIdx}')">
+            <span>${mod.title}</span>
+            <span style="font-size:11px; color:#38bdf8;">${mod.duration || '3h'}</span>
+          </div>
+          <ul id="mod-${modIdx}" class="lesson-list">
+            ${mod.lessons.map(les => {
+              const isCompleted = completedLessonIds.includes(les.id);
+              const isActive = currentLesson && currentLesson.id === les.id;
+              return `
+                <li class="lesson-item ${isActive ? 'active' : ''}" onclick="selectLesson('${les.id}')">
+                  <div class="lesson-check ${isCompleted ? 'completed' : ''}">
+                    ${isCompleted ? '✓' : ''}
+                  </div>
+                  <div style="flex-grow:1;">
+                    <div style="font-weight:${isActive ? '700' : '500'};">${les.title}</div>
+                    <div style="font-size:11px; color:#64748b; margin-top:2px;">${les.duration || '45m'} • Topic Slides</div>
+                  </div>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    function toggleModuleAccordion(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.display = el.style.display === 'none' ? 'block' : 'none';
+      }
+    }
+
+    function selectLesson(lessonId) {
+      for (const mod of currentCourse.modules) {
+        const found = mod.lessons.find(l => l.id === lessonId);
+        if (found) {
+          currentLesson = found;
+          currentModule = mod;
+          document.getElementById('current-module-tag').innerText = mod.title;
+          document.getElementById('current-lesson-title').innerText = found.title;
+          document.getElementById('slide-topic-name').innerText = found.title;
+
+          // Check mark status
+          const isDone = completedLessonIds.includes(found.id);
+          const btn = document.getElementById('btn-mark-complete');
+          if (btn) {
+            if (isDone) {
+              btn.innerText = '✓ Completed';
+              btn.style.opacity = '0.85';
+            } else {
+              btn.innerText = '✓ Mark Complete';
+              btn.style.opacity = '1';
+            }
+          }
+
+          // Load notes
+          const savedNotes = localStorage.getItem(`notes_${currentCourse.id}_${found.id}`) || '';
+          document.getElementById('student-notes').value = savedNotes;
+
+          renderSyllabus();
+          goToSlide(0);
+          break;
+        }
+      }
+    }
+
+    // ====================================================
+    // TOPIC SLIDE PRESENTATION GENERATOR & ENGINE
+    // ====================================================
+
+    function getTopicSlideContent(slideIdx) {
+      const course = currentCourse || { code: 'CSE-101', title: 'Full-Stack Architecture' };
+      const lesson = currentLesson || { title: 'Client-Server Paradigms & HTTP/3 Protocol' };
+      const mod = currentModule || { title: 'Module 1: Architecture & Web Foundations' };
+      const instructorName = (course.instructor && typeof course.instructor === 'object') ? course.instructor.name : 'Dr. Aarav Sharma';
+
+      // Slide 1: Topic Overview & Learning Goals
+      if (slideIdx === 0) {
+        return {
+          title: `Topic Overview: ${lesson.title}`,
+          label: `Slide 1 of 5: Topic Overview & Objectives`,
+          speech: `Welcome to this lecture on ${lesson.title} for ${course.code}: ${course.title}. Today we will explore core architectural principles, hands on design, and case study 108 benchmarks.`,
+          html: `
+            <div class="slide-tag-row">
+              <span class="slide-badge-pill">${course.code} • 12 Video Hours</span>
+              <span style="font-size:12px; color:#94a3b8;">${mod.title}</span>
+            </div>
+            <h2 class="slide-heading-main">${lesson.title}</h2>
+            
+            <div class="slide-grid-2col">
+              <div class="slide-card-box">
+                <div class="slide-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                  <span>Academic Scope & Learning Objectives</span>
+                </div>
+                <ul class="slide-list">
+                  <li class="slide-list-item">
+                    <span class="slide-list-bullet">1</span>
+                    <span>Examine foundational theory, mathematical bounds, and architectural protocols.</span>
+                  </li>
+                  <li class="slide-list-item">
+                    <span class="slide-list-bullet">2</span>
+                    <span>Implement end-to-end industry pipelines with clean separation of concerns.</span>
+                  </li>
+                  <li class="slide-list-item">
+                    <span class="slide-list-bullet">3</span>
+                    <span>Prepare for the 10-question university certification exam (≥70% passing threshold).</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="slide-card-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div class="slide-card-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>Course & Faculty Metadata</span>
+                  </div>
+                  <div style="font-size:13px; color:#e2e8f0; line-height:1.7;">
+                    <div><strong>Faculty Lead:</strong> ${instructorName}</div>
+                    <div><strong>Department:</strong> Continuing Education Centre</div>
+                    <div><strong>Curriculum:</strong> 4 Modules • 12 Recorded Hours (36h Editing Effort)</div>
+                    <div><strong>Assessment:</strong> 10 Questions • Instant Verified Credential</div>
+                  </div>
+                </div>
+                <div style="background:rgba(56, 189, 248, 0.1); border:1px solid rgba(56, 189, 248, 0.25); border-radius:8px; padding:8px 12px; font-size:11.5px; color:#38bdf8;">
+                  💡 <strong>Tip:</strong> Slides auto-advance with audio. Click any slide segment to navigate.
+                </div>
+              </div>
+            </div>
+          `
+        };
+      }
+
+      // Slide 2: Core Engineering Principles & Theoretical Foundation
+      if (slideIdx === 1) {
+        return {
+          title: `Core Principles: ${lesson.title}`,
+          label: `Slide 2 of 5: Core Engineering Principles`,
+          speech: `In this section, we examine the theoretical principles governing ${lesson.title}. Focus on modularity, loose coupling, idempotency, and robust error boundaries.`,
+          html: `
+            <div class="slide-tag-row">
+              <span class="slide-badge-pill">Theoretical Foundations</span>
+              <span style="font-size:12px; color:#94a3b8;">Key Concepts & Definitions</span>
+            </div>
+            <h2 class="slide-heading-main">Architectural Principles & Theoretical Grounding</h2>
+
+            <div class="slide-grid-2col">
+              <div class="slide-card-box">
+                <div class="slide-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                  <span>Key Principles for ${lesson.title}</span>
+                </div>
+                <p class="slide-card-text">
+                  Systems must adhere to <strong>high cohesion</strong> and <strong>loose coupling</strong>, ensuring isolated failure domains and independent scale.
+                </p>
+                <ul class="slide-list">
+                  <li class="slide-list-item">
+                    <span class="slide-list-bullet">✓</span>
+                    <span><strong>Stateless Contracts:</strong> Every client request carries full context without server session pinning.</span>
+                  </li>
+                  <li class="slide-list-item">
+                    <span class="slide-list-bullet">✓</span>
+                    <span><strong>Idempotency:</strong> Safe duplicate retry operations without corrupting payment state.</span>
+                  </li>
+                  <li class="slide-list-item">
+                    <span class="slide-list-bullet">✓</span>
+                    <span><strong>Boundary Verification:</strong> Input validation at gateway layer before business execution.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="slide-card-box">
+                <div class="slide-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span>Engineering Design Rules</span>
+                </div>
+                <p class="slide-card-text">
+                  Follow IEEE 830 and SEPM software standards for reliable continuing education portal execution.
+                </p>
+                <div class="slide-formula-banner">
+                  <div style="font-weight:700; color:#38bdf8; font-size:12.5px; margin-bottom:4px;">Defect Removal Efficiency (DRE) Principle:</div>
+                  <div style="font-family:monospace; font-size:13px; color:#f8fafc;">DRE = E / (E + D) = 16 / (16 + 1) = 94.12%</div>
+                  <div style="font-size:11px; color:#94a3b8; margin-top:4px;">Where E = Defects found before release, D = Defects found in production.</div>
+                </div>
+              </div>
+            </div>
+          `
+        };
+      }
+
+      // Slide 3: Implementation Architecture & Live Code Walkthrough
+      if (slideIdx === 2) {
+        return {
+          title: `Architecture & Code: ${lesson.title}`,
+          label: `Slide 3 of 5: System Architecture & Code Pipeline`,
+          speech: `Here is the reference code implementation and architecture pipeline for ${lesson.title}. Notice the asynchronous handling and strict error handling.`,
+          html: `
+            <div class="slide-tag-row">
+              <span class="slide-badge-pill">Implementation Architecture</span>
+              <span style="font-size:12px; color:#94a3b8;">Clean Code & Pipelines</span>
+            </div>
+            <h2 class="slide-heading-main">Live Reference Code & Execution Pipeline</h2>
+
+            <div class="slide-grid-2col">
+              <div class="slide-card-box">
+                <div class="slide-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  <span>Production Pipeline Architecture</span>
+                </div>
+                <div style="font-size:12.5px; color:#cbd5e1; line-height:1.6; margin-bottom:12px;">
+                  1. <strong>Client Layer:</strong> Vue/React Single Page Application communicates via REST/JSON.<br>
+                  2. <strong>Service Layer:</strong> Node.js backend processes business logic & CPM calculations.<br>
+                  3. <strong>Persistence Layer:</strong> Firebase Firestore & PostgreSQL securely persist data.<br>
+                  4. <strong>Delivery Layer:</strong> CDN streams video and delivers cryptographic certificates.
+                </div>
+                <div style="background:#040814; border-radius:8px; padding:10px 14px; font-size:11.5px; color:#10b981; font-family:monospace;">
+                  ● Pipeline Health: 100% OK • Zero Memory Leaks • Idempotent Execution
+                </div>
+              </div>
+
+              <div class="slide-code-viewer">
+                <div style="color:#64748b; font-size:11px; margin-bottom:6px; border-bottom:1px solid #1e293b; padding-bottom:4px;">
+                  // ${lesson.title} Reference Module
+                </div>
+<span style="color:#f43f5e;">async function</span> <span style="color:#38bdf8;">processTopicPipeline</span>(studentId, courseId) {
+  <span style="color:#64748b;">// 1. Verify authorization & enrollment</span>
+  <span style="color:#f43f5e;">const</span> enrollment = <span style="color:#f43f5e;">await</span> CourseService.getEnrollment(studentId, courseId);
+  <span style="color:#f43f5e;">if</span> (!enrollment) <span style="color:#f43f5e;">throw new Error</span>(<span style="color:#10b981;">'Unauthorized'</span>);
+
+  <span style="color:#64748b;">// 2. Stream video lesson and calculate progress</span>
+  <span style="color:#f43f5e;">const</span> updatedProgress = <span style="color:#38bdf8;">Math.min</span>(100, enrollment.progress + 25);
+  <span style="color:#f43f5e;">await</span> CourseService.updateProgress(courseId, updatedProgress);
+  
+  <span style="color:#f43f5e;">return</span> { status: <span style="color:#10b981;">'READY_FOR_ASSESSMENT'</span>, progress: updatedProgress };
+}
+              </div>
+            </div>
+          `
+        };
+      }
+
+      // Slide 4: Case Study 108 Engineering & Quantitative Analysis
+      if (slideIdx === 3) {
+        return {
+          title: `Case Study 108: ${lesson.title}`,
+          label: `Slide 4 of 5: Case Study 108 Quantitative Benchmarks`,
+          speech: `Case Study 108 establishes that 8 launch courses take 4.8 weeks of editing across 2 editors, allowing software readiness at week 10, with 54 lakh rupees launch revenue.`,
+          html: `
+            <div class="slide-tag-row">
+              <span class="slide-badge-pill" style="background:rgba(124, 58, 237, 0.15); color:#a78bfa; border-color:rgba(124, 58, 237, 0.3);">SEPM Case Study 108</span>
+              <span style="font-size:12px; color:#94a3b8;">University Continuing Education Analysis</span>
+            </div>
+            <h2 class="slide-heading-main">Case Study 108: Effort, Schedule & Financial Data</h2>
+
+            <div class="slide-grid-2col">
+              <div class="slide-card-box">
+                <div class="slide-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span>Production Schedule Benchmarks</span>
+                </div>
+                <div style="font-size:13px; color:#e2e8f0; line-height:1.7;">
+                  <div>• <strong>Course Duration:</strong> 12 hours recorded content per course</div>
+                  <div>• <strong>Editing Ratio:</strong> 3:1 ratio = <strong>36 effort hours</strong> per course</div>
+                  <div>• <strong>8 Launch Courses:</strong> 8 × 36 = <strong>288 effort hours</strong></div>
+                  <div>• <strong>30 Planned Courses:</strong> 30 × 36 = <strong>1,080 effort hours</strong></div>
+                  <div>• <strong>Editor Capacity:</strong> 2 editors × 30h/wk = <strong>60h/week combined</strong></div>
+                  <div>• <strong>Launch Duration:</strong> 288 / 60 = <strong>4.8 Weeks</strong> (Platform ready at W10)</div>
+                  <div>• <strong>Full 30 Courses:</strong> 1080 / 60 = <strong>18.0 Weeks</strong> (Content bottleneck)</div>
+                </div>
+              </div>
+
+              <div class="slide-card-box">
+                <div class="slide-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  <span>University Revenue Projections</span>
+                </div>
+                <div style="font-size:13px; color:#e2e8f0; line-height:1.7;">
+                  <div>• <strong>Tuition Fee:</strong> <strong>₹4,500 INR</strong> per enrolment</div>
+                  <div>• <strong>Target Annual Volume:</strong> <strong>150 enrolments</strong> per course</div>
+                  <div>• <strong>Per Course Revenue:</strong> 150 × ₹4,500 = <strong>₹6,75,000 INR</strong></div>
+                  <div>• <strong>8 Launch Revenue:</strong> 8 × ₹6,75,000 = <strong>₹54,00,000 INR</strong></div>
+                  <div>• <strong>30 Courses Revenue:</strong> 30 × ₹6,75,000 = <strong>₹2,02,50,000 INR</strong></div>
+                </div>
+                <div style="background:rgba(16, 185, 129, 0.1); border:1px solid rgba(16, 185, 129, 0.25); border-radius:8px; padding:8px 12px; font-size:11.5px; color:#10b981; margin-top:8px;">
+                  ✓ Critical Path Justified: 8 courses launch on schedule at Week 10.
+                </div>
+              </div>
+            </div>
+          `
+        };
+      }
+
+      // Slide 5: Key Takeaways & Assessment Checkpoint
+      return {
+        title: `Summary & Checkpoint: ${lesson.title}`,
+        label: `Slide 5 of 5: Key Takeaways & Exam Checkpoint`,
+        speech: `Congratulations on completing the presentation for ${lesson.title}. You are now ready to take the certification exam or proceed to the next module.`,
+        html: `
+          <div class="slide-tag-row">
+            <span class="slide-badge-pill" style="background:rgba(16, 185, 129, 0.15); color:#10b981; border-color:rgba(16, 185, 129, 0.3);">Lesson Completed</span>
+            <span style="font-size:12px; color:#94a3b8;">Review & Next Steps</span>
+          </div>
+          <h2 class="slide-heading-main">Key Takeaways & Assessment Preparation</h2>
+
+          <div class="slide-grid-2col">
+            <div class="slide-card-box">
+              <div class="slide-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>Essential Concepts Revision</span>
+              </div>
+              <ul class="slide-list">
+                <li class="slide-list-item">
+                  <span class="slide-list-bullet">✓</span>
+                  <span>Mastered the end-to-end technical foundations of <strong>${lesson.title}</strong>.</span>
+                </li>
+                <li class="slide-list-item">
+                  <span class="slide-list-bullet">✓</span>
+                  <span>Applied the Case Study 108 quantitative CPM scheduling and revenue formulas.</span>
+                </li>
+                <li class="slide-list-item">
+                  <span class="slide-list-bullet">✓</span>
+                  <span>Verified boundary value test cases and equivalence partitioning criteria.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="slide-card-box" style="display:flex; flex-direction:column; justify-content:center; text-align:center; padding:24px;">
+              <div style="font-size:36px; margin-bottom:10px;">🎓</div>
+              <h3 style="margin:0 0 6px; font-size:16px; color:#fff;">Topic Knowledge Verified!</h3>
+              <p style="font-size:13px; color:#94a3b8; margin:0 0 16px;">
+                Complete the remaining video modules or take the 10-Question Certification Assessment now.
+              </p>
+              <div style="display:flex; gap:10px; justify-content:center;">
+                <a href="/student/quiz.html?courseId=${course.id}" class="btn btn-primary btn-sm" style="font-weight:700; padding:8px 16px; text-decoration:none;">
+                  📝 Start Certification Quiz
+                </a>
+                <button onclick="goToNextLesson()" class="btn btn-secondary btn-sm" style="font-weight:600; padding:8px 14px;">
+                  Next Lesson →
+                </button>
+              </div>
+            </div>
+          </div>
+        `
+      };
+    }
+
+    function renderCurrentSlide() {
+      const slideData = getTopicSlideContent(currentSlideIndex);
+      const stage = document.getElementById('slide-stage');
+      const segmentLabel = document.getElementById('slide-segment-label');
+      const numberPill = document.getElementById('slide-number-pill');
+
+      stage.innerHTML = slideData.html;
+      segmentLabel.innerText = slideData.label;
+      numberPill.innerText = `SLIDE ${currentSlideIndex + 1} / ${TOTAL_SLIDES}`;
+
+      // Update segment bar fills
+      for (let i = 0; i < TOTAL_SLIDES; i++) {
+        const seg = document.getElementById(`seg-${i}`);
+        if (!seg) continue;
+        if (i < currentSlideIndex) {
+          seg.style.width = '100%';
+        } else if (i === currentSlideIndex) {
+          seg.style.width = '0%';
+        } else {
+          seg.style.width = '0%';
+        }
+      }
+
+      // Voice Narration (Text-to-Speech)
+      if (voiceNarrationEnabled && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(slideData.speech);
+        utterance.rate = 1.05;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
+
+      // Reset timer
+      slideProgressMs = 0;
+    }
+
+    function startSlideTimer() {
+      stopSlideTimer();
+      slideTimer = setInterval(() => {
+        if (!isSlideAutoPlaying) return;
+        
+        slideProgressMs += 100;
+        const totalDurationMs = SLIDE_DURATION_SEC * 1000;
+        const pct = Math.min(100, (slideProgressMs / totalDurationMs) * 100);
+        
+        const activeSeg = document.getElementById(`seg-${currentSlideIndex}`);
+        if (activeSeg) {
+          activeSeg.style.width = `${pct}%`;
+        }
+
+        const remainingSec = Math.max(0, Math.ceil((totalDurationMs - slideProgressMs) / 1000));
+        const timeEl = document.getElementById('slide-time-remaining');
+        if (timeEl) timeEl.innerText = `${remainingSec}s`;
+
+        if (slideProgressMs >= totalDurationMs) {
+          if (currentSlideIndex < TOTAL_SLIDES - 1) {
+            goToSlide(currentSlideIndex + 1);
+          } else {
+            // Finished topic
+            markCurrentLessonComplete(true);
+            isSlideAutoPlaying = false;
+            updatePlayPauseButton();
+          }
+        }
+      }, 100);
+    }
+
+    function stopSlideTimer() {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
+    }
+
+    function goToSlide(index) {
+      currentSlideIndex = Math.max(0, Math.min(TOTAL_SLIDES - 1, index));
+      renderCurrentSlide();
+      if (isSlideAutoPlaying) {
+        startSlideTimer();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < TOTAL_SLIDES - 1) {
+        goToSlide(currentSlideIndex + 1);
+      } else {
+        goToNextLesson();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        goToSlide(currentSlideIndex - 1);
+      }
+    }
+
+    function toggleSlideAutoPlay() {
+      isSlideAutoPlaying = !isSlideAutoPlaying;
+      updatePlayPauseButton();
+      if (isSlideAutoPlaying) {
+        startSlideTimer();
+      } else {
+        stopSlideTimer();
+      }
+    }
+
+    function updatePlayPauseButton() {
+      const btn = document.getElementById('btn-slide-playpause');
+      if (btn) {
+        btn.innerText = isSlideAutoPlaying ? '⏸ Pause' : '▶ Play';
+      }
+    }
+
+    function toggleSpeechNarration() {
+      voiceNarrationEnabled = !voiceNarrationEnabled;
+      const text = document.getElementById('voice-text');
+      const icon = document.getElementById('voice-icon');
+      if (voiceNarrationEnabled) {
+        text.innerText = 'Voice Narration: ON';
+        icon.innerText = '🔊';
+        const slideData = getTopicSlideContent(currentSlideIndex);
+        if (window.speechSynthesis) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(slideData.speech);
+          window.speechSynthesis.speak(utterance);
+        }
+      } else {
+        text.innerText = 'Voice Narration: OFF';
+        icon.innerText = '🔇';
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
+    }
+
+    function goToNextLesson() {
+      if (!currentCourse || !currentCourse.modules || !currentLesson) return;
+      const allLessons = currentCourse.modules.flatMap(m => m.lessons);
+      const currentIdx = allLessons.findIndex(l => l.id === currentLesson.id);
+      if (currentIdx !== -1 && currentIdx < allLessons.length - 1) {
+        selectLesson(allLessons[currentIdx + 1].id);
+      } else {
+        alert('🎉 You have completed all topic presentations in this course! Proceed to take the official University Certification Assessment.');
+      }
+    }
+
+    function goToPreviousLesson() {
+      if (!currentCourse || !currentCourse.modules || !currentLesson) return;
+      const allLessons = currentCourse.modules.flatMap(m => m.lessons);
+      const currentIdx = allLessons.findIndex(l => l.id === currentLesson.id);
+      if (currentIdx > 0) {
+        selectLesson(allLessons[currentIdx - 1].id);
+      }
+    }
+
+    function loadFirstAvailableLesson() {
+      if (currentCourse && currentCourse.modules && currentCourse.modules[0] && currentCourse.modules[0].lessons[0]) {
+        selectLesson(currentCourse.modules[0].lessons[0].id);
+      }
+    }
+
+    async function markCurrentLessonComplete(showToast = true) {
+      if (!currentLesson) return;
+      if (!completedLessonIds.includes(currentLesson.id)) {
+        completedLessonIds.push(currentLesson.id);
+      }
+
+      const totalLessons = currentCourse.modules.reduce((acc, m) => acc + m.lessons.length, 0);
+      const progressPercent = Math.round((completedLessonIds.length / totalLessons) * 100);
+
+      await CourseService.updateProgress(currentCourse.id, currentLesson.id, progressPercent);
+      if (showToast) {
+        UIUtils.showToast(`Lesson presentation completed! Progress: ${progressPercent}%`, 'success');
+      }
+      
+      const btn = document.getElementById('btn-mark-complete');
+      if (btn) {
+        btn.innerText = '✓ Completed';
+        btn.style.opacity = '0.85';
+      }
+
+      renderSyllabus();
+      updateProgressMetrics();
+    }
+
+    function updateProgressMetrics() {
+      if (!currentCourse || !currentCourse.modules) return;
+      const totalLessons = currentCourse.modules.reduce((acc, m) => acc + m.lessons.length, 0);
+      const progressPercent = Math.round((completedLessonIds.length / totalLessons) * 100);
+
+      document.getElementById('overall-progress-text').innerText = `${progressPercent}%`;
+      document.getElementById('overall-progress-bar').style.width = `${progressPercent}%`;
+    }
+
+    function saveNotes() {
+      if (!currentCourse || !currentLesson) return;
+      const val = document.getElementById('student-notes').value;
+      localStorage.setItem(`notes_${currentCourse.id}_${currentLesson.id}`, val);
+    }
+  </script>
+</body>
+</html>

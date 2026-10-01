@@ -1,0 +1,23 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Course Videos & Educational Assets
+    match /courses/{courseId}/{allPaths=**} {
+      allow read: if true; // Enrolled students & catalog previews
+      allow write: if request.auth != null;
+    }
+
+    // User Avatars and Uploads
+    match /users/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Generated PDF Certificates
+    match /certificates/{certificateId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

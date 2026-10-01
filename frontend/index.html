@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CourseCraft — Online Course Platform | Continuing Education Centre</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="brand-logo" style="display:flex; align-items:center; gap:10px;">
+        <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 14L82 27L50 40L18 27L50 14Z" fill="#38bdf8"/>
+          <path d="M30 33.5V42C30 46.5 39 50 50 50C61 50 70 46.5 70 42V33.5L50 41L30 33.5Z" fill="#0284c7"/>
+          <path d="M26 31V45C26 47 24 49 24 51" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M31 38C35 44 46 62 48 82C35 77 22 55 31 38Z" fill="#fb7185" fill-opacity="0.85"/>
+          <path d="M19 48L46 59C45 74 46 82 46 86C27 78 17 56 19 48Z" fill="#e11d48"/>
+          <path d="M69 38C65 44 54 62 52 82C65 77 78 55 69 38Z" fill="#38bdf8" fill-opacity="0.85"/>
+          <path d="M81 48L54 59C55 74 54 82 54 86C73 78 83 56 81 48Z" fill="#0284c7"/>
+        </svg>
+        <span>CourseCraft</span>
+        <span class="brand-badge">Case Study 108</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#courses" class="active">Browse Courses (30)</a></li>
+          <li><a href="#sepm-calculator">SEPM Bottleneck Engine</a></li>
+          <li><a href="#case-study-details">Case Study 108 Details</a></li>
+          <li><a href="/docs/SRS.md" target="_blank">SEPM Documentation</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button onclick="UIUtils.openFirebaseConfigModal()" class="btn btn-secondary btn-sm" title="Firebase Project: coursecraft-c31f9">
+          🔥 Firebase: coursecraft-c31f9
+        </button>
+        <div id="user-nav-box">
+          <a href="/login.html" class="btn btn-primary btn-sm">Sign In / Personas</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" style="padding: 80px 0 60px; background: radial-gradient(circle at top center, #182654 0%, #0b1329 70%); border-bottom: 1px solid var(--border-color);">
+    <div class="container" style="text-align: center;">
+      <div style="display:inline-flex; align-items:center; gap:8px; background: rgba(0, 210, 255, 0.1); border: 1px solid rgba(0, 210, 255, 0.3); padding: 6px 16px; border-radius: 30px; margin-bottom: 24px;">
+        <span style="color:var(--accent-cyan); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">
+          University Continuing Education Centre • B.Tech CSE 2025–29
+        </span>
+      </div>
+      <h1 style="font-size: 48px; font-weight: 800; max-width: 900px; margin: 0 auto 20px; letter-spacing: -1px;">
+        Learn. Grow. Get Certified.
+      </h1>
+      <p style="font-size: 18px; color: var(--text-muted); max-width: 750px; margin: 0 auto 36px; line-height: 1.6;">
+        University-accredited 12-hour technical certifications, interactive video learning studios, 10-question certification assessments (70% passing threshold), and verifiable digital credentials.
+      </p>
+
+      <!-- Quick Action Buttons -->
+      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom: 40px;">
+        <a href="#courses" class="btn btn-primary btn-lg">Explore 30 Planned Courses</a>
+        <a href="#sepm-calculator" class="btn btn-secondary btn-lg">View Case Study 108 Bottleneck Math</a>
+        <a href="/student/dashboard.html" class="btn btn-outline btn-lg">Student Demo Portal</a>
+      </div>
+
+      <!-- Quick Stats Banner -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 1000px; margin: 0 auto; background: rgba(17, 29, 64, 0.7); backdrop-filter: blur(10px); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+        <div>
+          <div style="font-size: 28px; font-weight: 800; color: var(--accent-cyan);">30 Courses</div>
+          <div style="font-size: 12px; color: var(--text-muted);">8 Launch Ready • 22 In Pipeline</div>
+        </div>
+        <div>
+          <div style="font-size: 28px; font-weight: 800; color: var(--accent-amber);">12h / 36h</div>
+          <div style="font-size: 12px; color: var(--text-muted);">12h Video • 3:1 Editing Ratio</div>
+        </div>
+        <div>
+          <div style="font-size: 28px; font-weight: 800; color: var(--accent-emerald);">4.8 vs 18 Wks</div>
+          <div style="font-size: 12px; color: var(--text-muted);">8 Courses (4.8w) • 30 Courses (18w)</div>
+        </div>
+        <div>
+          <div style="font-size: 28px; font-weight: 800; color: #c084fc;">₹4,500 Fee</div>
+          <div style="font-size: 12px; color: var(--text-muted);">₹2.02 Cr Target Annual Revenue</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive SEPM Bottleneck Calculator & Critical Path Engine -->
+  <section id="sepm-calculator" style="padding: 70px 0; background: #0c1530; border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Software Engineering & Project Management</span>
+        <h2 class="section-title">Case Study 108 — Interactive Critical Path & Bottleneck Engine</h2>
+        <p class="section-desc">
+          Compare the platform software development timeline (10.0 weeks) against video recording/editing capacity (2 editors @ 30h/wk = 60h/wk).
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap: 32px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px;">
+        <!-- Input Parameters Form -->
+        <div>
+          <h3 style="font-size: 18px; margin-bottom: 16px; color: var(--accent-cyan);">⚙️ Project & Capacity Parameters</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13px;">
+            <div>
+              <label style="color: var(--text-sub); font-weight: 600; display:block; margin-bottom: 4px;">Planned Courses Count</label>
+              <input id="calc-courses" type="number" value="30" min="1" max="100" class="input-calc" style="width:100%; padding:8px 12px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:6px;" oninput="runLiveCalculation()">
+            </div>
+            <div>
+              <label style="color: var(--text-sub); font-weight: 600; display:block; margin-bottom: 4px;">Initial Launch Batch Size (Courses)</label>
+              <input id="calc-launch-courses" type="number" value="8" min="1" max="30" class="input-calc" style="width:100%; padding:8px 12px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:6px;" oninput="runLiveCalculation()">
+            </div>
+            <div>
+              <label style="color: var(--text-sub); font-weight: 600; display:block; margin-bottom: 4px;">Video Content per Course (Hours)</label>
+              <input id="calc-video-hours" type="number" value="12" min="1" class="input-calc" style="width:100%; padding:8px 12px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:6px;" oninput="runLiveCalculation()">
+            </div>
+            <div>
+              <label style="color: var(--text-sub); font-weight: 600; display:block; margin-bottom: 4px;">Recording & Editing Ratio (Hours Edit / Content Hour)</label>
+              <input id="calc-ratio" type="number" value="3" min="1" class="input-calc" style="width:100%; padding:8px 12px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:6px;" oninput="runLiveCalculation()">
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div>
+                <label style="color: var(--text-sub); font-weight: 600; display:block; margin-bottom: 4px;">Video Editors Count</label>
+                <input id="calc-editors" type="number" value="2" min="1" class="input-calc" style="width:100%; padding:8px 12px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:6px;" oninput="runLiveCalculation()">
+              </div>
+              <div>
+                <label style="color: var(--text-sub); font-weight: 600; display:block; margin-bottom: 4px;">Weekly Hours / Editor</label>
+                <input id="calc-editor-hours" type="number" value="30" min="1" class="input-calc" style="width:100%; padding:8px 12px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:6px;" oninput="runLiveCalculation()">
+              </div>
+            </div>
+            <div>
+              <label style="color: var(--text-sub); font-weight: 600; display:block; margin-bottom: 4px;">Platform Software Dev Duration (Weeks)</label>
+              <input id="calc-sw-weeks" type="number" value="10.0" step="0.5" class="input-calc" style="width:100%; padding:8px 12px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:6px;" oninput="runLiveCalculation()">
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-Time Computed Outputs & Bottleneck Visualizer -->
+        <div>
+          <h3 style="font-size: 18px; margin-bottom: 16px; color: var(--accent-amber);">📊 Mathematical Evaluation & Critical Path</h3>
+          
+          <div style="background: #0f172a; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; margin-bottom: 16px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px; font-size:13px;">
+              <span style="color:var(--text-muted);">Effort per Course (12h × 3):</span>
+              <strong id="res-effort-course" style="color:#fff;">36 Effort Hours</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px; font-size:13px;">
+              <span style="color:var(--text-muted);">Total Editing Bandwidth (2 × 30h):</span>
+              <strong id="res-bandwidth" style="color:#fff;">60 Hours / Week</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px; font-size:13px;">
+              <span style="color:var(--text-muted);">8 Courses Editing Duration (288h ÷ 60):</span>
+              <strong id="res-dur-8" style="color:var(--accent-emerald);">4.8 Weeks</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px; font-size:13px;">
+              <span style="color:var(--text-muted);">30 Courses Editing Duration (1080h ÷ 60):</span>
+              <strong id="res-dur-30" style="color:var(--accent-rose);">18.0 Weeks</strong>
+            </div>
+          </div>
+
+          <!-- Bottleneck Callout -->
+          <div id="bottleneck-callout" style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-amber); padding: 14px; border-radius: 4px; font-size: 13px; line-height: 1.5; color: var(--text-sub); margin-bottom: 16px;">
+            <strong>Critical Path Insight:</strong> Content production (18.0 weeks) is the primary constraint controlling the complete catalog launch, exceeding software development by 8.0 weeks. However, the initial 8 courses finish in 4.8 weeks, enabling a prompt, fully-tested launch at Week 10.
+          </div>
+
+          <!-- Revenue Projections -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px;">
+            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 12px; border-radius: 8px;">
+              <div style="color: var(--text-muted);">8 Courses Revenue (150 @ ₹4,500)</div>
+              <div id="res-rev-8" style="font-size: 20px; font-weight: 800; color: var(--accent-emerald); margin-top: 4px;">₹54,00,000</div>
+            </div>
+            <div style="background: rgba(0, 210, 255, 0.1); border: 1px solid rgba(0, 210, 255, 0.3); padding: 12px; border-radius: 8px;">
+              <div style="color: var(--text-muted);">30 Courses Revenue (150 @ ₹4,500)</div>
+              <div id="res-rev-30" style="font-size: 20px; font-weight: 800; color: var(--accent-cyan); margin-top: 4px;">₹2,02,50,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 30 Course Catalog Section -->
+  <section id="courses" style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Academic Catalog</span>
+        <h2 class="section-title">University Short Courses Catalog (30 Courses)</h2>
+        <p class="section-desc">
+          Search, filter, and explore all 30 university courses. 8 launch-ready courses feature complete 4-module video curricula and 10-question certification assessments.
+        </p>
+      </div>
+
+      <!-- Filter Controls Bar -->
+      <div style="display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; align-items: center; justify-content: space-between; background: var(--bg-card); padding: 16px 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+        <div style="display: flex; gap: 12px; flex-grow: 1; max-width: 480px;">
+          <input id="search-input" type="text" placeholder="Search by title, course code (e.g. CSE-101), instructor..." style="width:100%; padding:10px 16px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:8px; font-size:14px;" oninput="applyCourseFilters()">
+        </div>
+        
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <select id="filter-category" style="padding:10px 14px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:8px; font-size:13px;" onchange="applyCourseFilters()">
+            <option value="all">All Categories</option>
+            <option value="Computer Science">Computer Science & SE</option>
+            <option value="Artificial Intelligence">AI & Data Science</option>
+            <option value="Cybersecurity">Cybersecurity & Networks</option>
+            <option value="Cloud">Cloud & Infrastructure</option>
+            <option value="Design">UI/UX & HCI</option>
+            <option value="Project">Project Management & ITIL</option>
+            <option value="Business">Business & FinTech</option>
+          </select>
+
+          <select id="filter-status" style="padding:10px 14px; background:#0f172a; border:1px solid var(--border-color); color:#fff; border-radius:8px; font-size:13px;" onchange="applyCourseFilters()">
+            <option value="all">All Production Statuses (30)</option>
+            <option value="ready">Launch Ready (8 Courses)</option>
+            <option value="in_production">In Production</option>
+            <option value="planned">Planned Pipeline</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Course Cards Grid -->
+      <div id="course-grid-container" class="course-grid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Details & Syllabus Modal -->
+  <div id="modal-course-details" class="modal-overlay">
+    <div class="modal-card" style="max-width: 750px;">
+      <div style="position:relative;">
+        <img id="modal-course-thumb" src="" alt="Course Thumbnail" style="width:100%; height:220px; object-fit:cover;">
+        <button onclick="UIUtils.closeModal('modal-course-details')" style="position:absolute; top:16px; right:16px; background:rgba(0,0,0,0.6); border:none; color:#fff; font-size:24px; width:36px; height:36px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;">&times;</button>
+      </div>
+      <div style="padding: 28px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+          <span id="modal-course-code" style="font-size:12px; font-weight:700; color:var(--accent-cyan); text-transform:uppercase;"></span>
+          <span id="modal-course-status" class="course-badge-status status-ready"></span>
+        </div>
+        <h2 id="modal-course-title" style="font-size: 22px; margin-bottom: 12px;"></h2>
+        <p id="modal-course-desc" style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;"></p>
+        
+        <h4 style="font-size: 14px; color: var(--text-sub); text-transform:uppercase; margin-bottom: 10px;">Curriculum & 4 Modules (12 Hours)</h4>
+        <div id="modal-course-modules" style="display:flex; flex-direction:column; gap:10px; margin-bottom: 24px; font-size:13px;">
+          <!-- Modules rendered dynamically -->
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:20px;">
+          <div>
+            <span style="font-size:12px; color:var(--text-muted); display:block;">Course Fee</span>
+            <strong id="modal-course-price" style="font-size:24px; color:var(--accent-emerald);">₹4,500 <span style="font-size:13px; color:var(--text-muted); font-weight:normal;">INR</span></strong>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <button onclick="UIUtils.closeModal('modal-course-details')" class="btn btn-secondary">Close</button>
+            <button id="modal-btn-enroll" class="btn btn-primary">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px;">⚡ CourseCraft</div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; max-width: 320px;">
+            Academic Course Platform for University Continuing Education Centre. B.Tech CSE 2025–29, Semester III, Case Study No. 108.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-title">Academic Links</h4>
+          <ul class="footer-links">
+            <li><a href="/student/dashboard.html">Student Dashboard</a></li>
+            <li><a href="/faculty/dashboard.html">Faculty Portal</a></li>
+            <li><a href="/administrator/dashboard.html">Admin Executive Portal</a></li>
+            <li><a href="/student/courses.html">All 30 Courses</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">SEPM Documentation</h4>
+          <ul class="footer-links">
+            <li><a href="/docs/SRS.md" target="_blank">IEEE 830 SRS</a></li>
+            <li><a href="/docs/Requirements.md" target="_blank">12 Functional Reqs</a></li>
+            <li><a href="/docs/CriticalPath.md" target="_blank">Critical Path Analysis</a></li>
+            <li><a href="/docs/Testing.md" target="_blank">BVA & Testing Suite</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Firebase Architecture</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="UIUtils.openFirebaseConfigModal()">Project: coursecraft-c31f9</a></li>
+            <li><a href="/firestore.rules" target="_blank">Firestore Security Rules</a></li>
+            <li><a href="/storage.rules" target="_blank">Storage Bucket Rules</a></li>
+            <li><a href="/api/health" target="_blank">API Health Status</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 CourseCraft Continuing Education Centre. Department of Computer Science & Engineering.</div>
+        <div style="color: var(--accent-cyan); font-weight: 600;">Case Study No. 108 Prototype</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/data/coursecraft-data.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/course-service.js"></script>
+  <script src="/js/sepm-calculator.js"></script>
+  <script src="/js/ui-utils.js"></script>
+  
+  <script>
+    let allCoursesData = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Load courses
+      try {
+        allCoursesData = await CourseService.getAllCourses();
+      } catch (e) {
+        console.warn('Failed to load courses from API:', e);
+      }
+      renderCoursesGrid(allCoursesData);
+      runLiveCalculation();
+      checkAuthNav();
+    });
+
+    function checkAuthNav() {
+      const user = CourseCraftAuth.getCurrentUser();
+      const navBox = document.getElementById('user-nav-box');
+      if (user && navBox) {
+        navBox.innerHTML = `
+          <a href="/${user.role}/dashboard.html" class="btn btn-primary btn-sm">
+            ${user.name} (${user.role.toUpperCase()})
+          </a>
+        `;
+      }
+    }
+
+    function renderCoursesGrid(courses) {
+      const grid = document.getElementById('course-grid-container');
+      if (!grid) return;
+
+      if (!courses || courses.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:var(--text-muted);">No courses match your filter criteria.</div>`;
+        return;
+      }
+
+      grid.innerHTML = courses.map(c => `
+        <div class="course-card">
+          <div class="course-thumb-wrapper">
+            <img src="${c.thumbnail}" alt="${c.title}" class="course-thumb" loading="lazy">
+            <span class="course-badge-status status-${c.status}">
+              ${c.status === 'ready' ? '✓ Launch Ready' : (c.status === 'in_production' ? '⚙ In Production' : '📋 Planned')}
+            </span>
+            <span class="course-category-tag">${c.category.split('&')[0]}</span>
+          </div>
+          <div class="course-body">
+            <div class="course-code">${c.code} • ${c.durationHours || 12}h Video Content</div>
+            <h3 class="course-title">${c.title}</h3>
+            <p class="course-desc">${c.description}</p>
+            
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px; display:flex; align-items:center; gap:8px;">
+              <img src="${c.instructor?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50'}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;">
+              <span>${c.instructor?.name || 'Faculty Lead'}</span>
+            </div>
+
+            <div class="course-meta">
+              <div class="course-price-box">
+                <span class="course-price">₹${(c.price || 4500).toLocaleString('en-IN')}</span>
+                <span style="font-size:11px;color:var(--text-muted);">INR</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button onclick="openCourseDetailsModal('${c.id}')" class="btn btn-secondary btn-sm">Syllabus</button>
+                <button onclick="enrollCourseDirectly('${c.id}')" class="btn btn-primary btn-sm">Enroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function applyCourseFilters() {
+      const q = (document.getElementById('search-input').value || '').toLowerCase();
+      const cat = document.getElementById('filter-category').value;
+      const stat = document.getElementById('filter-status').value;
+
+      let filtered = allCoursesData.filter(c => {
+        const matchesSearch = !q || c.title.toLowerCase().includes(q) || c.code.toLowerCase().includes(q) || (c.instructor && c.instructor.name.toLowerCase().includes(q));
+        const matchesCat = cat === 'all' || c.category.toLowerCase().includes(cat.toLowerCase());
+        const matchesStat = stat === 'all' || c.status === stat;
+        return matchesSearch && matchesCat && matchesStat;
+      });
+
+      renderCoursesGrid(filtered);
+    }
+
+    function openCourseDetailsModal(courseId) {
+      const course = allCoursesData.find(c => c.id === courseId);
+      if (!course) return;
+
+      const fee = course.price || 4500;
+      document.getElementById('modal-course-thumb').src = course.thumbnail;
+      document.getElementById('modal-course-code').innerText = `${course.code} • ${course.category}`;
+      document.getElementById('modal-course-title').innerText = course.title;
+      document.getElementById('modal-course-desc').innerText = course.description;
+      
+      const priceEl = document.getElementById('modal-course-price');
+      if (priceEl) {
+        priceEl.innerHTML = `₹${fee.toLocaleString('en-IN')} <span style="font-size:13px; color:var(--text-muted); font-weight:normal;">INR</span>`;
+      }
+      const enrollBtn = document.getElementById('modal-btn-enroll');
+      if (enrollBtn) {
+        enrollBtn.innerText = `Enroll for ₹${fee.toLocaleString('en-IN')}`;
+      }
+
+      const statusEl = document.getElementById('modal-course-status');
+      statusEl.className = `course-badge-status status-${course.status}`;
+      statusEl.innerText = course.status === 'ready' ? 'Launch Ready' : (course.status === 'in_production' ? 'In Production' : 'Planned');
+
+      const modulesContainer = document.getElementById('modal-course-modules');
+      if (course.modules && course.modules.length > 0) {
+        modulesContainer.innerHTML = course.modules.map(m => `
+          <div style="background:#0f172a; padding:10px 14px; border-radius:6px; border:1px solid var(--border-color);">
+            <strong style="color:#fff;">${m.title}</strong> (${m.duration || '3 Hours'})
+            <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+              ${m.lessons ? m.lessons.map(l => l.title).join(' • ') : 'Structured Video Content'}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        modulesContainer.innerHTML = `<div style="color:var(--text-muted); padding:10px;">Curriculum structure undergoing faculty review (4 modules / 12 hours).</div>`;
+      }
+
+      document.getElementById('modal-btn-enroll').onclick = () => {
+        UIUtils.closeModal('modal-course-details');
+        enrollCourseDirectly(course.id);
+      };
+
+      UIUtils.openModal('modal-course-details');
+    }
+
+    async function enrollCourseDirectly(courseId) {
+      const course = allCoursesData.find(c => c.id === courseId);
+      const fee = course?.price || 4500;
+      const result = await CourseService.enrollInCourse(courseId, { amount: fee });
+      UIUtils.showToast(`Enrolment Successful for ₹${fee.toLocaleString('en-IN')}! Transaction: ${result.payment?.transactionId || 'TXN-OK'}`, 'success');
+      setTimeout(() => {
+        window.location.href = `/student/learn.html?courseId=${courseId}`;
+      }, 1000);
+    }
+
+    function runLiveCalculation() {
+      const totalCourses = Number(document.getElementById('calc-courses').value) || 30;
+      const launchCourses = Number(document.getElementById('calc-launch-courses').value) || 8;
+      const hoursPerCourse = Number(document.getElementById('calc-video-hours').value) || 12;
+      const ratio = Number(document.getElementById('calc-ratio').value) || 3;
+      const editors = Number(document.getElementById('calc-editors').value) || 2;
+      const editorHoursPerWeek = Number(document.getElementById('calc-editor-hours').value) || 30;
+      const softwareDevWeeks = Number(document.getElementById('calc-sw-weeks').value) || 10.0;
+
+      const results = SEPMCalculator.compute({
+        totalCourses,
+        launchCourses,
+        hoursPerCourse,
+        ratio,
+        editors,
+        editorHoursPerWeek,
+        softwareDevWeeks
+      });
+
+      document.getElementById('res-effort-course').innerText = `${results.effortPerCourse} Effort Hours`;
+      document.getElementById('res-bandwidth').innerText = `${results.weeklyCapacity} Hours / Week`;
+      document.getElementById('res-dur-8').innerText = `${results.durationLaunchWeeks} Weeks`;
+      document.getElementById('res-dur-30').innerText = `${results.durationTotalWeeks} Weeks`;
+
+      document.getElementById('res-rev-8').innerText = SEPMCalculator.formatCurrency(results.revenueLaunch);
+      document.getElementById('res-rev-30').innerText = SEPMCalculator.formatCurrency(results.revenueTotal);
+
+      const callout = document.getElementById('bottleneck-callout');
+      if (results.isContentBottleneck) {
+        callout.innerHTML = `<strong>Critical Path Insight:</strong> Content production (${results.durationTotalWeeks} weeks) is the primary constraint controlling the complete catalog launch, exceeding software development by ${(results.durationTotalWeeks - results.softwareDevWeeks).toFixed(1)} weeks. However, the initial ${launchCourses} courses finish in ${results.durationLaunchWeeks} weeks, enabling a prompt, fully-tested launch at Week ${results.softwareDevWeeks}.`;
+      } else {
+        callout.innerHTML = `<strong>Software Critical Path:</strong> Software development (${results.softwareDevWeeks} weeks) is the primary constraint since content editing finishes faster in ${results.durationTotalWeeks} weeks.`;
+      }
+    }
+  </script>
+</body>
+</html>

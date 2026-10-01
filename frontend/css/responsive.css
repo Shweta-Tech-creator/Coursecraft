@@ -1,0 +1,60 @@
+/**
+ * CourseCraft — Responsive Stylesheet
+ */
+
+@media (max-width: 1024px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .dashboard-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px;
+  }
+  .sidebar-heading {
+    display: none;
+  }
+  .dashboard-content {
+    padding: 24px 20px;
+  }
+  .learn-layout {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .syllabus-sidebar {
+    width: 100%;
+    height: 400px;
+  }
+  .cert-container {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}

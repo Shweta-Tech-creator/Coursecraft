@@ -1,0 +1,480 @@
+{
+  "ratingSummary": {
+    "average": 4.9,
+    "totalReviews": 14,
+    "distribution": [
+      {
+        "stars": 5,
+        "count": 12
+      },
+      {
+        "stars": 4,
+        "count": 2
+      },
+      {
+        "stars": 3,
+        "count": 0
+      },
+      {
+        "stars": 2,
+        "count": 0
+      },
+      {
+        "stars": 1,
+        "count": 0
+      }
+    ]
+  },
+  "reviews": [
+    {
+      "id": "rev-mupk493a",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#dc2626",
+      "date": "2026-10-01T13:15:25.318Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-mupjpupb",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#2563eb",
+      "date": "2026-10-01T13:04:13.487Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-mupjaw2n",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#7c3aed",
+      "date": "2026-10-01T12:52:35.423Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-mupiyoz5",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#2563eb",
+      "date": "2026-10-01T12:43:06.353Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-mupituz8",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#d97706",
+      "date": "2026-10-01T12:39:20.852Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-mupiovg6",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#2563eb",
+      "date": "2026-10-01T12:35:28.182Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-mupiliou",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#dc2626",
+      "date": "2026-10-01T12:32:51.678Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-muph9g51",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#2563eb",
+      "date": "2026-10-01T11:55:28.885Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-muph8p81",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#7c3aed",
+      "date": "2026-10-01T11:54:54.001Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-muph0yrh",
+      "studentName": "Rohan Verma",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#2563eb",
+      "date": "2026-10-01T11:48:53.117Z",
+      "comment": "Excellent hands-on cloud labs and clear architectural breakdown."
+    },
+    {
+      "id": "rev-1",
+      "studentName": "Arjun Mehta",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#2563eb",
+      "date": "2026-09-28T14:32:00Z",
+      "comment": "Absolutely brilliant course. The cloud deployment section was genuinely industry-grade. Dr. Sharma explains each concept with real-world architectural context that makes it stick."
+    },
+    {
+      "id": "rev-2",
+      "studentName": "Priya Sharma",
+      "courseCode": "PM-808",
+      "courseId": "cc-108",
+      "courseTitle": "IT Project Leadership, Agile Transformation & ITIL",
+      "stars": 4,
+      "color": "#059669",
+      "date": "2026-09-29T11:15:00Z",
+      "comment": "The Agile transformation module was excellent. Would love more case studies from Indian tech startups. Overall a very comprehensive, practical course."
+    },
+    {
+      "id": "rev-3",
+      "studentName": "Rohan Desai",
+      "courseCode": "MB-110",
+      "courseId": "cc-110",
+      "courseTitle": "Cross-Platform Mobile Development with Flutter",
+      "stars": 4,
+      "color": "#7c3aed",
+      "date": "2026-09-30T16:45:00Z",
+      "comment": "Flutter coverage is thorough — from reactive state management to platform channels. Pacing in Module 3 could be a bit faster but overall very high quality."
+    },
+    {
+      "id": "rev-4",
+      "studentName": "Sneha Patil",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+      "stars": 5,
+      "color": "#dc2626",
+      "date": "2026-10-01T09:20:00Z",
+      "comment": "The full-stack module with CI/CD deployment pipelines was a game changer for me. Already applied the Kubernetes manifest lessons in my internship project. 10/10."
+    }
+  ],
+  "forumThreads": [
+    {
+      "id": "th-mupk493b",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T13:15:25.319Z",
+      "status": "open",
+      "open": true,
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupjpupc",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T13:04:13.488Z",
+      "status": "open",
+      "open": true,
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupjdc10",
+      "title": "what is ci/cd",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Riddhi",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T12:54:29.412Z",
+      "status": "open",
+      "open": true,
+      "question": "explain in brief",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupjaw2o",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T12:52:35.424Z",
+      "status": "open",
+      "open": true,
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupiyoz6",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T12:43:06.354Z",
+      "status": "open",
+      "open": true,
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupituz9",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T12:39:20.853Z",
+      "status": "open",
+      "open": true,
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupiovg6",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T12:35:28.182Z",
+      "status": "open",
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupiliou",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T12:32:51.678Z",
+      "status": "open",
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-mupihh88",
+      "title": "what is ci/cd",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Priya Sharma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T12:29:43.160Z",
+      "status": "open",
+      "question": "explain the concept properly",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-muph9g52",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T11:55:28.886Z",
+      "status": "open",
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-muph8p81",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T11:54:54.001Z",
+      "status": "open",
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-muph0yrh",
+      "title": "Clarification on horizontal pod autoscaling",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Rohan Verma",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-01T11:48:53.117Z",
+      "status": "open",
+      "question": "How do we configure metric thresholds for CPU vs custom memory metrics in Kubernetes?",
+      "replies": 0,
+      "responses": []
+    },
+    {
+      "id": "th-101",
+      "title": "Clarification on Docker vs. Kubernetes in Module 4",
+      "courseCode": "CSE-101",
+      "courseId": "cc-101",
+      "studentName": "Vikram Singh",
+      "timeAgo": "2 hours ago",
+      "createdAt": "2026-10-01T13:00:00Z",
+      "status": "resolved",
+      "question": "Hi professor, I'm confused about when to use Docker standalone vs. Kubernetes in production. The lecture mentions containerizing with Docker first, then orchestration. Could you clarify the exact team size or workload threshold where Kubernetes becomes necessary?",
+      "replies": 16,
+      "responses": [
+        {
+          "author": "Priya Sharma",
+          "role": "student",
+          "text": "From what I understood, Docker is for building/packaging the image, while K8s manages multiple replicas across nodes.",
+          "timestamp": "2026-10-01T13:30:00Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T11:14:37.829Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T11:17:08.222Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T11:17:21.733Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T11:48:53.113Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T11:54:53.997Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T11:55:28.880Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T12:32:51.674Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T12:35:28.178Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T12:39:20.844Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T12:43:06.253Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T12:52:35.389Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T13:04:12.980Z"
+        },
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "Kubernetes becomes beneficial when managing clusters of 5+ microservices across multiple availability zones.",
+          "timestamp": "2026-10-01T13:15:25.291Z"
+        }
+      ],
+      "open": false
+    },
+    {
+      "id": "th-102",
+      "title": "Sprint planning quiz question #7 seems ambiguous",
+      "courseCode": "PM-808",
+      "courseId": "cc-108",
+      "studentName": "Ananya Roy",
+      "timeAgo": "1 day ago",
+      "createdAt": "2026-09-30T14:00:00Z",
+      "status": "open",
+      "question": "Question 7 asks about measuring sprint capacity. The question bank explanation cites story points as primary, but our textbook also emphasizes available engineering hours. Aren't both valid in mixed Agile teams?",
+      "replies": 1,
+      "responses": []
+    },
+    {
+      "id": "th-103",
+      "title": "Flutter's setState vs. Riverpod — which to use?",
+      "courseCode": "MB-110",
+      "courseId": "cc-110",
+      "studentName": "Dev Patel",
+      "timeAgo": "3 days ago",
+      "createdAt": "2026-09-28T10:00:00Z",
+      "status": "resolved",
+      "question": "Should we use setState or Riverpod for a mid-size commercial app? The module covered both but didn't give a clear recommendation for enterprise Flutter apps.",
+      "replies": 2,
+      "responses": [
+        {
+          "author": "Dr. Aarav Sharma",
+          "role": "faculty",
+          "text": "For localized ephemeral widget state (like toggles or text inputs), setState is sufficient. For global application state, authentication, and dependency injection in commercial apps, Riverpod or BLoC is strongly recommended.",
+          "timestamp": "2026-09-29T09:00:00Z"
+        }
+      ]
+    }
+  ]
+}

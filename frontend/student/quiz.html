@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certification Assessment — CourseCraft</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/quiz.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a id="btn-back-link" href="/student/dashboard.html" class="btn btn-secondary btn-sm">← Exit Assessment</a>
+        <span style="font-weight:700; font-size:15px; color:#fff;">CourseCraft Certification Assessment</span>
+      </div>
+
+      <div class="nav-actions">
+        <div id="quiz-timer" style="background:#0f172a; border:1px solid var(--border-color); padding:6px 14px; border-radius:20px; font-size:13px; font-weight:700; color:var(--accent-amber);">
+          ⏱️ Time: 15:00
+        </div>
+        <div id="user-profile-badge"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Quiz Container -->
+  <main class="quiz-container">
+    
+    <!-- Assessment Header Card -->
+    <div class="quiz-header-card">
+      <span class="quiz-badge-threshold">🎯 University Certification Threshold: 70% (7/10 Correct)</span>
+      <h1 id="quiz-course-title" style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Course Certification Exam</h1>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5;">
+        This 10-question assessment evaluates your comprehensive knowledge across all 4 modules. You must score at least <strong>70%</strong> to receive an official, cryptographically verified University Certificate.
+      </p>
+    </div>
+
+    <!-- Questions Form -->
+    <form id="quiz-form" onsubmit="handleQuizSubmit(event)">
+      <div id="questions-container">
+        <!-- 10 Questions rendered dynamically -->
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; padding: 24px 0 60px;">
+        <div style="font-size: 13px; color: var(--text-muted);">
+          Answered <span id="answered-count">0</span> of 10 Questions
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="padding: 14px 36px;">
+          Submit Assessment for Certification
+        </button>
+      </div>
+    </form>
+
+  </main>
+
+  <!-- Results Modal -->
+  <div id="modal-quiz-result" class="modal-overlay">
+    <div class="modal-card" style="max-width: 580px;">
+      <div id="result-content" class="result-card">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script src="/data/coursecraft-data.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
+  <script src="/js/course-service.js"></script>
+  <script src="/js/ui-utils.js"></script>
+
+  <script>
+    let currentCourseId = 'cc-101';
+    let quizData = null;
+    let selectedAnswers = {}; // { q1: 1, q2: 0, ... }
+    let timerInterval = null;
+    let secondsLeft = 15 * 60; // 15 minutes
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      currentCourseId = urlParams.get('courseId') || 'cc-101';
+      document.getElementById('btn-back-link').href = `/student/learn.html?courseId=${currentCourseId}`;
+
+      await loadQuiz();
+      startTimer();
+    });
+
+    async function loadQuiz() {
+      const response = await CourseService.getQuiz(currentCourseId);
+      if (response && response.questions) {
+        quizData = response;
+        document.getElementById('quiz-course-title').innerText = `${response.courseTitle} — Certification Assessment`;
+        renderQuestions(response.questions);
+      } else {
+        document.getElementById('questions-container').innerHTML = `
+          <div style="padding:40px; text-align:center; color:var(--text-muted);">
+            Could not load quiz questions for course ID: ${currentCourseId}.
+          </div>
+        `;
+      }
+    }
+
+    function renderQuestions(questions) {
+      const container = document.getElementById('questions-container');
+      container.innerHTML = questions.map((q, idx) => `
+        <div class="question-card" id="q-card-${q.id}">
+          <div class="question-number">Question ${idx + 1} of ${questions.length}</div>
+          <div class="question-text">${q.question}</div>
+          
+          <div class="options-list">
+            ${q.options.map((opt, optIdx) => `
+              <div class="option-item" id="opt-${q.id}-${optIdx}" onclick="selectOption('${q.id}', ${optIdx})">
+                <div class="option-radio"></div>
+                <div class="option-label">${opt}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function selectOption(questionId, optionIndex) {
+      selectedAnswers[questionId] = optionIndex;
+
+      // Update UI selection
+      const parentCard = document.getElementById(`q-card-${questionId}`);
+      if (parentCard) {
+        parentCard.querySelectorAll('.option-item').forEach(item => item.classList.remove('selected'));
+        const targetOption = document.getElementById(`opt-${questionId}-${optionIndex}`);
+        if (targetOption) targetOption.classList.add('selected');
+      }
+
+      // Update answered count
+      const answered = Object.keys(selectedAnswers).length;
+      document.getElementById('answered-count').innerText = answered;
+    }
+
+    function startTimer() {
+      const timerEl = document.getElementById('quiz-timer');
+      timerInterval = setInterval(() => {
+        secondsLeft--;
+        const mins = Math.floor(secondsLeft / 60);
+        const secs = secondsLeft % 60;
+        timerEl.innerText = `⏱️ Time: ${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        if (secondsLeft <= 0) {
+          clearInterval(timerInterval);
+          UIUtils.showToast('Time expired! Submitting assessment automatically...', 'warning');
+          handleQuizSubmit(new Event('submit'));
+        }
+      }, 1000);
+    }
+
+    async function handleQuizSubmit(e) {
+      e.preventDefault();
+      clearInterval(timerInterval);
+
+      const answeredCount = Object.keys(selectedAnswers).length;
+      if (answeredCount < 10) {
+        if (!confirm(`You have only answered ${answeredCount} of 10 questions. Unanswered questions will be scored as incorrect. Are you sure you want to submit?`)) {
+          return;
+        }
+      }
+
+      UIUtils.showToast('Evaluating assessment against 70% passing threshold...', 'info');
+      const result = await CourseService.submitQuiz(currentCourseId, selectedAnswers);
+
+      showEvaluationModal(result);
+    }
+
+    function showEvaluationModal(result) {
+      const content = document.getElementById('result-content');
+      
+      if (result.passed) {
+        content.innerHTML = `
+          <div class="result-icon-box result-pass">🏆</div>
+          <span style="background:rgba(16,185,129,0.15); color:var(--accent-emerald); padding:4px 12px; border-radius:20px; font-weight:700; font-size:12px;">
+            PASSED (Threshold: 70%)
+          </span>
+          <div class="score-display" style="color:var(--accent-emerald);">${result.scorePercent}%</div>
+          <p style="font-size:14px; color:var(--text-muted); margin-bottom: 20px;">
+            Outstanding! You correctly answered <strong>${result.correctCount} of ${result.totalQuestions}</strong> questions, surpassing the university passing standard.
+          </p>
+
+          <div style="background:#0f172a; border:1px solid var(--border-color); border-radius:8px; padding:16px; margin-bottom: 24px; text-align:left; font-size:13px;">
+            <div style="color:var(--text-muted); margin-bottom:4px;">Issued Certificate ID:</div>
+            <div style="font-family:monospace; font-weight:700; color:var(--accent-cyan); font-size:15px;">
+              ${result.certificate?.certificateId || 'CC-CERT-2026-SE108-8842'}
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:12px;">
+            <a href="/student/dashboard.html" class="btn btn-secondary">Student Dashboard</a>
+            <a href="/student/certificate.html?certId=${result.certificate?.certificateId || 'CC-CERT-2026-SE108-8842'}" class="btn btn-primary">
+              View & Print Certificate 📜
+            </a>
+          </div>
+        `;
+      } else {
+        content.innerHTML = `
+          <div class="result-icon-box result-fail">✕</div>
+          <span style="background:rgba(244,63,94,0.15); color:var(--accent-rose); padding:4px 12px; border-radius:20px; font-weight:700; font-size:12px;">
+            DID NOT PASS (Required: 70%)
+          </span>
+          <div class="score-display" style="color:var(--accent-rose);">${result.scorePercent}%</div>
+          <p style="font-size:14px; color:var(--text-muted); margin-bottom: 20px;">
+            You correctly answered <strong>${result.correctCount} of ${result.totalQuestions}</strong> questions. You need at least 7 correct answers (70%) to qualify for certification.
+          </p>
+
+          <div style="display:flex; justify-content:center; gap:12px;">
+            <a href="/student/learn.html?courseId=${currentCourseId}" class="btn btn-secondary">Review Lessons</a>
+            <button onclick="location.reload()" class="btn btn-amber">Retake Assessment 🔄</button>
+          </div>
+        `;
+      }
+
+      UIUtils.openModal('modal-quiz-result');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+[
+  {
+    "uid": "usr_student_01",
+    "name": "Priya Sharma",
+    "email": "student@university.edu",
+    "passwordHash": "demo_hashed_password",
+    "role": "student",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+    "enrolledCourses": [
+      {
+        "courseId": "cc-101",
+        "enrolledAt": "2026-08-15T10:00:00Z",
+        "progressPercent": 100,
+        "completedLessons": [
+          "l101",
+          "l102",
+          "l103",
+          "l104",
+          "l105",
+          "l106",
+          "l107",
+          "l108",
+          "l109",
+          "l110",
+          "l111",
+          "l112",
+          "l113",
+          "l114",
+          "l115",
+          "l116"
+        ],
+        "quizScore": 90,
+        "quizPassed": true,
+        "certificateId": "CC-CERT-2026-SE108-8842",
+        "certificateIssuedAt": "2026-09-10T14:30:00Z"
+      },
+      {
+        "courseId": "cc-102",
+        "enrolledAt": "2026-09-15T09:00:00Z",
+        "progressPercent": 50,
+        "completedLessons": [
+          "l201",
+          "l202",
+          "l203",
+          "l204",
+          "l205",
+          "l206",
+          "l207",
+          "l208"
+        ],
+        "quizScore": null,
+        "quizPassed": false,
+        "certificateId": null,
+        "certificateIssuedAt": null
+      },
+      {
+        "courseId": "cc-103",
+        "enrolledAt": "2026-09-20T11:00:00Z",
+        "progressPercent": 25,
+        "completedLessons": [
+          "l301",
+          "l302",
+          "l303",
+          "l304"
+        ],
+        "quizScore": null,
+        "quizPassed": false,
+        "certificateId": null,
+        "certificateIssuedAt": null
+      },
+      {
+        "courseId": "cc-104",
+        "enrolledAt": "2026-10-01T07:30:12.550Z",
+        "progressPercent": 0,
+        "completedLessons": [],
+        "quizScore": null,
+        "quizPassed": false,
+        "certificateId": null,
+        "certificateIssuedAt": null
+      }
+    ],
+    "payments": [
+      {
+        "transactionId": "TXN-CC-2026-001",
+        "courseId": "cc-101",
+        "amount": 4500,
+        "currency": "INR",
+        "paymentMethod": "UPI / NetBanking",
+        "status": "COMPLETED",
+        "timestamp": "2026-08-15T10:00:00Z"
+      },
+      {
+        "transactionId": "TXN-CC-2026-002",
+        "courseId": "cc-102",
+        "amount": 4500,
+        "currency": "INR",
+        "paymentMethod": "Credit Card",
+        "status": "COMPLETED",
+        "timestamp": "2026-09-15T09:00:00Z"
+      },
+      {
+        "transactionId": "TXN-CC-2026-003",
+        "courseId": "cc-103",
+        "amount": 4500,
+        "currency": "INR",
+        "paymentMethod": "UPI / NetBanking",
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T11:00:00Z"
+      },
+      {
+        "transactionId": "TXN-CC-2026-904062",
+        "courseId": "cc-104",
+        "courseTitle": "Cybersecurity, Ethical Hacking & Defensive Systems",
+        "amount": 4500,
+        "currency": "INR",
+        "paymentMethod": "Credit/Debit Card",
+        "status": "COMPLETED",
+        "timestamp": "2026-10-01T07:30:12.550Z",
+        "receiptUrl": "/api/receipts/TXN-CC-2026-904062"
+      },
+      {
+        "transactionId": "TXN-CC-2026-260523",
+        "courseId": "cc-104",
+        "courseTitle": "Cybersecurity, Ethical Hacking & Defensive Systems",
+        "amount": 4500,
+        "currency": "INR",
+        "paymentMethod": "Credit/Debit Card",
+        "status": "COMPLETED",
+        "timestamp": "2026-10-01T08:35:48.438Z",
+        "receiptUrl": "/api/receipts/TXN-CC-2026-260523"
+      }
+    ],
+    "password": "universityPass123"
+  },
+  {
+    "uid": "usr_faculty_01",
+    "name": "Dr. Aarav Sharma",
+    "email": "faculty@university.edu",
+    "passwordHash": "demo_hashed_password",
+    "role": "faculty",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    "department": "Continuing Education Centre",
+    "assignedCourses": [
+      "cc-101",
+      "cc-108",
+      "cc-110",
+      "cc-117",
+      "cc-121",
+      "cc-829",
+      "cc-223",
+      "cc-733",
+      "cc-115",
+      "cc-998",
+      "cc-881",
+      "cc-675",
+      "cc-178",
+      "cc-845",
+      "cc-389",
+      "cc-495",
+      "cc-985",
+      "cc-292",
+      "cc-102"
+    ],
+    "recordingStatus": {
+      "cc-101": {
+        "recordedHours": 12,
+        "editingHours": 36,
+        "status": "completed"
+      },
+      "cc-108": {
+        "recordedHours": 12,
+        "editingHours": 36,
+        "status": "completed"
+      },
+      "cc-110": {
+        "recordedHours": 12,
+        "editingHours": 36,
+        "status": "completed"
+      },
+      "cc-117": {
+        "recordedHours": 12,
+        "editingHours": 36,
+        "status": "completed"
+      },
+      "cc-121": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-829": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-223": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-733": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-115": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-998": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-881": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-675": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-178": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-845": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-389": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-495": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-985": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-292": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      },
+      "cc-102": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "ready"
+      }
+    },
+    "password": "universityPass123"
+  },
+  {
+    "uid": "usr_faculty_02",
+    "name": "Dr. Sneha Kulkarni",
+    "email": "sneha.kulkarni@university.edu",
+    "password": "universityPass123",
+    "passwordHash": "demo_hashed_password",
+    "role": "faculty",
+    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+    "department": "Artificial Intelligence & Data Science",
+    "designation": "Professor & Head of AI Research",
+    "assignedCourses": [
+      "cc-102",
+      "cc-105",
+      "cc-111"
+    ],
+    "recordingStatus": {
+      "cc-102": {
+        "recordedHours": 12,
+        "editingHours": 36,
+        "status": "completed"
+      },
+      "cc-105": {
+        "recordedHours": 6,
+        "editingHours": 18,
+        "status": "in_production"
+      },
+      "cc-111": {
+        "recordedHours": 0,
+        "editingHours": 0,
+        "status": "planned"
+      }
+    }
+  },
+  {
+    "uid": "usr_faculty_03",
+    "name": "Prof. Vikram Malhotra",
+    "email": "vikram.malhotra@university.edu",
+    "password": "universityPass123",
+    "passwordHash": "demo_hashed_password",
+    "role": "faculty",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    "department": "Cloud Computing & Cybersecurity",
+    "designation": "Associate Professor & Lead Architect",
+    "assignedCourses": [
+      "cc-103",
+      "cc-104",
+      "cc-116"
+    ],
+    "recordingStatus": {
+      "cc-103": {
+        "recordedHours": 12,
+        "editingHours": 36,
+        "status": "completed"
+      },
+      "cc-104": {
+        "recordedHours": 12,
+        "editingHours": 36,
+        "status": "completed"
+      },
+      "cc-116": {
+        "recordedHours": 2,
+        "editingHours": 6,
+        "status": "in_production"
+      }
+    }
+  },
+  {
+    "uid": "usr_admin_01",
+    "name": "Prof. Rajesh Nair",
+    "email": "admin@university.edu",
+    "passwordHash": "demo_hashed_password",
+    "role": "admin",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    "department": "Dean - Academic & Continuing Education Centre",
+    "permissions": [
+      "all",
+      "manage_courses",
+      "view_financials",
+      "audit_logs",
+      "approve_certificates"
+    ],
+    "password": "universityPass123"
+  },
+  {
+    "uid": "usr_stu_muph0yrg",
+    "name": "Rohan Verma",
+    "email": "rohan.verma@university.edu",
+    "password": "TempPass@2026",
+    "passwordHash": "hashed_TempPass@2026",
+    "role": "student",
+    "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+    "enrolledCourses": [
+      {
+        "courseId": "cc-101",
+        "enrolledAt": "2026-10-01T11:48:53.116Z",
+        "progressPercent": 0,
+        "completedLessons": [],
+        "quizScore": null,
+        "quizPassed": false,
+        "certificateId": null
+      }
+    ],
+    "createdAt": "2026-10-01T11:48:53.116Z",
+    "passwordChangedAt": "2026-10-01T13:15:25.318Z"
+  },
+  {
+    "uid": "usr_stu_mupif5ka",
+    "name": "Riddhi",
+    "email": "kadamsweta92@gmail.com",
+    "password": "Pass@5056",
+    "passwordHash": "hashed_Pass@5056",
+    "role": "student",
+    "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+    "enrolledCourses": [],
+    "createdAt": "2026-10-01T12:27:54.730Z",
+    "passwordChangedAt": null,
+    "payments": [
+      {
+        "transactionId": "ADMIN-ENR-283727",
+        "courseId": "cc-101",
+        "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+        "amount": 4500,
+        "currency": "INR",
+        "paymentMethod": "Dean Scholarship / Academic Enrolment",
+        "status": "COMPLETED",
+        "timestamp": "2026-10-01T13:16:35.342Z"
+      }
+    ]
+  }
+]

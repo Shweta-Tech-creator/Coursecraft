@@ -1,0 +1,214 @@
+/**
+ * CourseCraft — Verified University Certificate Styling & Print Stylesheet
+ */
+
+.cert-page-wrap {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cert-container {
+  width: 900px;
+  height: 630px;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 12px;
+  position: relative;
+  padding: 36px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 12px solid #0f2b48;
+  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.cert-inner-border {
+  border: 2px solid #b45309;
+  height: 100%;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+}
+
+.cert-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #0f2b48;
+  padding-bottom: 12px;
+}
+
+.cert-uni-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.cert-uni-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f2b48;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cert-uni-centre {
+  font-size: 11px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.cert-badge-id {
+  font-size: 11px;
+  font-family: monospace;
+  font-weight: 700;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+}
+
+.cert-title-block {
+  margin: 10px 0;
+}
+
+.cert-main-heading {
+  font-family: 'Times New Roman', serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0f2b48;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.cert-sub-heading {
+  font-size: 13px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.cert-recipient-block {
+  margin: 8px 0;
+}
+
+.cert-recipient-label {
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cert-recipient-name {
+  font-family: 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f2b48;
+  border-bottom: 1.5px solid #cbd5e1;
+  display: inline-block;
+  padding: 0 40px 4px;
+  margin-top: 4px;
+}
+
+.cert-course-block {
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.cert-course-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f2b48;
+  margin: 4px 0;
+}
+
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 14px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cert-sig-block {
+  text-align: center;
+  width: 180px;
+}
+
+.cert-signature-img {
+  font-family: 'Brush Script MT', cursive, sans-serif;
+  font-size: 22px;
+  color: #1e3a8a;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-sig-line {
+  border-top: 1px solid #94a3b8;
+  margin-top: 2px;
+  padding-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.cert-sig-title {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.cert-gold-seal {
+  width: 72px;
+  height: 72px;
+  background: radial-gradient(circle, #fbbf24 0%, #d97706 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.4);
+  border: 3px dashed #78350f;
+  color: #78350f;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  padding: 4px;
+}
+
+/* Print Stylesheet for exact Certificate Export */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .navbar, .btn-print-toolbar, .dashboard-sidebar {
+    display: none !important;
+  }
+  .cert-container, .cert-container * {
+    visibility: visible;
+  }
+  .cert-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    box-shadow: none !important;
+    border-width: 8px !important;
+    page-break-inside: avoid;
+  }
+}

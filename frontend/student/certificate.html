@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official University Certificate — CourseCraft</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/certificate.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body style="background:#070d1e;">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a href="/student/dashboard.html" class="btn btn-secondary btn-sm">← Back to Dashboard</a>
+        <span style="font-weight:700; font-size:15px; color:#fff;">University Certificate of Completion</span>
+      </div>
+
+      <div class="nav-actions btn-print-toolbar">
+        <button onclick="window.print()" class="btn btn-primary btn-sm">
+          🖨️ Print / Save as PDF
+        </button>
+        <div id="user-profile-badge"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Certificate Presentation Container -->
+  <main class="cert-page-wrap">
+    
+    <!-- Printable Certificate Document -->
+    <div id="certificate-card" class="cert-container">
+      <div class="cert-inner-border">
+        
+        <!-- Header -->
+        <div class="cert-header">
+          <div class="cert-uni-logo">
+            <div style="width:40px; height:40px; background:#0f2b48; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:18px;">
+              ⚡
+            </div>
+            <div>
+              <div class="cert-uni-name">University Continuing Education Centre</div>
+              <div class="cert-uni-centre">Department of Computer Science & Engineering</div>
+            </div>
+          </div>
+          <div class="cert-badge-id" id="cert-display-id">CC-CERT-2026-SE108-8842</div>
+        </div>
+
+        <!-- Title Block -->
+        <div class="cert-title-block">
+          <div class="cert-main-heading">Certificate of Completion</div>
+          <div class="cert-sub-heading">This is to officially certify that</div>
+        </div>
+
+        <!-- Recipient Block -->
+        <div class="cert-recipient-block">
+          <div class="cert-recipient-name" id="cert-student-name">Priya Sharma</div>
+          <div style="font-size:13px; color:#64748b; margin-top:4px;">has successfully fulfilled all academic curriculum requirements and passed the certification examination with distinction for</div>
+        </div>
+
+        <!-- Course Details Block -->
+        <div class="cert-course-block">
+          <div class="cert-course-title" id="cert-course-title">Modern Full-Stack Web Architecture & Cloud Systems</div>
+          <div style="font-size:13px; color:#475569;">
+            Course Code: <strong id="cert-course-code">CSE-101</strong> • 12 Hours of Video Curriculum • Passing Score: <strong id="cert-score">90%</strong>
+          </div>
+        </div>
+
+        <!-- Footer Signatures & University Gold Seal -->
+        <div class="cert-footer">
+          <div class="cert-sig-block">
+            <div class="cert-signature-img" id="cert-instructor-name">Dr. Aarav Sharma</div>
+            <div class="cert-sig-line">Course Instructor</div>
+            <div class="cert-sig-title">Faculty Lead, CEC</div>
+          </div>
+
+          <div class="cert-gold-seal">
+            OFFICIAL<br>UNIVERSITY<br>SEAL
+          </div>
+
+          <div class="cert-sig-block">
+            <div class="cert-signature-img" id="cert-dean-name">Prof. Rajesh Nair</div>
+            <div class="cert-sig-line">Dean of Continuing Education</div>
+            <div class="cert-sig-title">Board of Academic Quality</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Verification Info Card -->
+    <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:20px 28px; max-width:900px; width:100%; display:flex; justify-content:space-between; align-items:center; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-size:24px;">🛡️</span>
+        <div>
+          <div style="font-weight:700; font-size:14px; color:#fff;">Cryptographic Verification Status: <span style="color:var(--accent-emerald);">VERIFIED & ACTIVE</span></div>
+          <div style="font-size:12px; color:var(--text-muted);">This university certificate is tamper-proof and verifiable in the University Registry.</div>
+        </div>
+      </div>
+      <button onclick="window.print()" class="btn btn-secondary btn-sm">Download Official PDF</button>
+    </div>
+
+  </main>
+
+  <script src="/data/coursecraft-data.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
+  <script src="/js/course-service.js"></script>
+  <script src="/js/ui-utils.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const certId = urlParams.get('certId') || 'CC-CERT-2026-SE108-8842';
+
+      const cert = await CourseService.getCertificate(certId);
+      if (cert) {
+        document.getElementById('cert-display-id').innerText = cert.certificateId;
+        document.getElementById('cert-student-name').innerText = cert.studentName || 'Priya Sharma';
+        document.getElementById('cert-course-title').innerText = cert.courseTitle;
+        document.getElementById('cert-course-code').innerText = cert.courseCode || 'CSE-101';
+        document.getElementById('cert-score').innerText = `${cert.scorePercent || 90}%`;
+        document.getElementById('cert-instructor-name').innerText = cert.instructorName || 'Dr. Aarav Sharma';
+        document.getElementById('cert-dean-name').innerText = cert.deanName || 'Prof. Rajesh Nair';
+      }
+    });
+  </script>
+</body>
+</html>

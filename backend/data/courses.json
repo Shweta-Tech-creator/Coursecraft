@@ -1,0 +1,3069 @@
+[
+  {
+    "id": "cc-101",
+    "code": "CSE-101",
+    "title": "Modern Full-Stack Web Architecture & Cloud Systems",
+    "category": "Computer Science & Software Engineering",
+    "level": "Intermediate",
+    "price": 4500,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Aarav Sharma",
+      "designation": "Professor & Head of Software Systems",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Master end-to-end full-stack development, RESTful APIs, cloud persistence with Firebase & PostgreSQL, loosely-coupled microservices, and modern deployment pipelines.",
+    "learningOutcomes": [
+      "Architect loosely coupled, highly cohesive full-stack web applications",
+      "Implement secure authentication & RBAC with Firebase and JWT",
+      "Design relational and document-based data models for enterprise scale",
+      "Integrate asynchronous payment gateways and streaming video delivery pipelines"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: Architecture & Modern Web Foundations",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l101",
+            "title": "Client-Server Paradigms & HTTP/3 Protocol",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l102",
+            "title": "Loosely-Coupled Software Architecture",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l103",
+            "title": "RESTful API Design & OpenAPI Contracts",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l104",
+            "title": "State Management & Responsive Layouts",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Cloud Backend, Firebase & Microservices",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l105",
+            "title": "Cloud Firestore Data Modeling & Security Rules",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l106",
+            "title": "Authentication, Tokens & Identity Federation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l107",
+            "title": "Event-Driven Functions & Webhooks",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l108",
+            "title": "Storage Buckets & Media Asset Optimization",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: Payment Gateways & Video Streaming Engines",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l109",
+            "title": "Payment Gateway Integration Patterns & Webhooks",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l110",
+            "title": "Idempotent Transaction Handling & Audit Logs",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l111",
+            "title": "Adaptive Bitrate Video Streaming & HLS Delivery",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l112",
+            "title": "Client Telemetry & Video Progress Tracking",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: Security, DevOps, Verification & Certification",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l113",
+            "title": "OWASP Top 10 Protections & CSRF/XSS Mitigation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l114",
+            "title": "Automated Testing Suites (Unit, Integration, E2E)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l115",
+            "title": "CI/CD Deployment Pipelines & Cloud Hosting",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l116",
+            "title": "Cryptographic Certificate Generation & Verification",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "In a 3-tier architecture, what ensures high cohesion and loose coupling?",
+        "options": [
+          "Direct database queries from UI controllers",
+          "A modular service layer separating business logic from persistence",
+          "Writing all routes inside one file",
+          "Storing all state in local memory"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "What is the primary function of Firebase Security Rules in Firestore?",
+        "options": [
+          "Formatting JSON output",
+          "Server-side authorization and schema validation on every request",
+          "Minifying JavaScript bundles",
+          "Compressing uploaded images"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q3",
+        "question": "For Case Study 108, how many effort hours of editing are required for a 12-hour video course given the 3:1 ratio?",
+        "options": [
+          "12 hours",
+          "24 hours",
+          "36 hours",
+          "48 hours"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q4",
+        "question": "Which HTTP status code is most appropriate for a successful idempotent resource update?",
+        "options": [
+          "200 OK or 204 No Content",
+          "301 Moved Permanently",
+          "404 Not Found",
+          "500 Internal Error"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q5",
+        "question": "What is the passing threshold percentage for certification quizzes on CourseCraft?",
+        "options": [
+          "50%",
+          "60%",
+          "70%",
+          "80%"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q6",
+        "question": "Why is video delivery separated from user authentication in CourseCraft's architecture?",
+        "options": [
+          "To avoid using video CDN bandwidth",
+          "To maintain loose coupling and allow CDN caching without auth bottlenecks",
+          "Because browsers cannot handle both",
+          "To reduce database queries to zero"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q7",
+        "question": "What is the total annual projected revenue for 8 launched courses with 150 enrolments @ ₹4,500?",
+        "options": [
+          "₹36,00,000",
+          "₹54,00,000",
+          "₹1,08,00,000",
+          "₹2,02,50,000"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q8",
+        "question": "Which principle guarantees that repeated payment submissions do not double-charge the student?",
+        "options": [
+          "Polymorphism",
+          "Idempotency",
+          "Inheritance",
+          "Serialization"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q9",
+        "question": "What is the formula for Defect Removal Efficiency (DRE)?",
+        "options": [
+          "DRE = E / (E + D)",
+          "DRE = E * D",
+          "DRE = (E - D) / E",
+          "DRE = D / (E + 1)"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q10",
+        "question": "In the Case Study 108 critical path, why does 30-course launch take 18 weeks when software takes 10 weeks?",
+        "options": [
+          "Hardware delivery takes 18 weeks",
+          "Content editing capacity (60 hrs/wk) requires 1,080 hours = 18 weeks",
+          "University vacations add 8 weeks",
+          "Testing requires 8 weeks"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q11",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q12",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q13",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q14",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q15",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q16",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q17",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q18",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q19",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q20",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q21",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q22",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q23",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q24",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q25",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      },
+      {
+        "id": "q26",
+        "question": "What is the primary benefit of containerizing a microservice with Docker?",
+        "options": [
+          "Direct kernel level hardware override",
+          "Consistent execution environment across development and production",
+          "Elimination of network latency",
+          "Automatic SQL query optimization"
+        ],
+        "correctIndex": 1,
+        "explanation": "Containers package the application and its dependencies together, guaranteeing consistency."
+      }
+    ]
+  },
+  {
+    "id": "cc-102",
+    "code": "SE-202",
+    "title": "Software Engineering & Agile Project Management (SEPM)",
+    "category": "Computer Science & Software Engineering",
+    "level": "Advanced",
+    "price": 3999,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Aarav Sharma",
+      "role": "Course Lead",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Comprehensive study of IEEE 830 SRS, Critical Path Method (CPM), PERT/CPM scheduling, Risk Management (RMMM), COCOMO II estimation, and Quality Assurance metrics.",
+    "learningOutcomes": [
+      "Formulate formal IEEE 830 SRS documents with functional & non-functional requirements",
+      "Compute CPM forward/backward passes, critical paths, and total floats",
+      "Construct detailed Work Breakdown Structures (WBS) and MoSCoW prioritization",
+      "Execute Boundary Value Analysis, Equivalence Partitioning, and Defect Density metrics"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: Requirements Engineering & SRS Standards",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l201",
+            "title": "IEEE 830 SRS Structure & Stakeholder Needs",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l202",
+            "title": "Functional vs Non-Functional Requirements (SMART)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l203",
+            "title": "MoSCoW Prioritization & Requirements Traceability (RTM)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l204",
+            "title": "Agile User Stories & Acceptance Criteria Writing",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Project Estimation & Work Breakdown Structure",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l205",
+            "title": "COCOMO II & Function Point Analysis (FPA)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l206",
+            "title": "Work Breakdown Structure (WBS) Level 1 to 4 Decomposition",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l207",
+            "title": "Effort & Resource Capacity Planning (Case Study 108)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l208",
+            "title": "Cost of Quality (CoQ) & Economic Feasibility",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: Project Scheduling, CPM & Bottleneck Analysis",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l209",
+            "title": "Network Diagrams: Precedence Diagramming Method (PDM)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l210",
+            "title": "Critical Path Method (CPM): Forward & Backward Pass Calculations",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l211",
+            "title": "Total Float, Free Float & Schedule Compression (Crashing/Fast-Tracking)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l212",
+            "title": "Resource Leveling vs Resource Smoothing in Dual-Track Projects",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: Risk Management & Quality Assurance",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l213",
+            "title": "RMMM (Risk Mitigation, Monitoring & Management) Matrices",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l214",
+            "title": "Black-Box Testing: Equivalence Partitioning & Boundary Value Analysis",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l215",
+            "title": "Decision Tables & State Transition Testing",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l216",
+            "title": "Defect Density, Defect Removal Efficiency (DRE) & Release Readiness",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "What is the primary purpose of a Critical Path Method (CPM) calculation?",
+        "options": [
+          "To calculate the total code length",
+          "To determine the longest sequence of dependent activities and shortest project duration",
+          "To format unit test outputs",
+          "To assign individual developer salaries"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "If an activity has Early Start (ES) = 4 and Late Start (LS) = 9, what is its Total Float (TF)?",
+        "options": [
+          "13 weeks",
+          "5 weeks",
+          "0 weeks",
+          "36 weeks"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q3",
+        "question": "In Case Study 108, how long does it take 2 editors (60h/week combined) to complete editing for 30 courses (1,080h)?",
+        "options": [
+          "4.8 weeks",
+          "10.0 weeks",
+          "18.0 weeks",
+          "24.0 weeks"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q4",
+        "question": "What is the MoSCoW category for 'Course Video Playback and Progress Tracking' in CourseCraft?",
+        "options": [
+          "Could Have",
+          "Won't Have",
+          "Must Have",
+          "Should Have"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q5",
+        "question": "In Boundary Value Analysis for a quiz passing score threshold of 70%, which test scores should be tested?",
+        "options": [
+          "0, 50, 100",
+          "69%, 70%, 71%",
+          "10%, 20%, 30%",
+          "75%, 85%, 95%"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q6",
+        "question": "What does Defect Removal Efficiency (DRE) measure?",
+        "options": [
+          "The total lines of code written",
+          "The percentage of defects removed prior to software release relative to total defects found",
+          "The speed of the network bandwidth",
+          "The database backup frequency"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q7",
+        "question": "Why is the 8-course launch possible at Week 10 even though the full 30 courses require 18 weeks?",
+        "options": [
+          "Because 8 courses only require 288 editing hours (4.8 weeks), finishing well within the 10-week dev cycle",
+          "Because students do not need video for the first 8 courses",
+          "Because editing was canceled",
+          "Because software development was delayed"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q8",
+        "question": "Which of the following is a proactive risk mitigation strategy for video editing bottlenecks?",
+        "options": [
+          "Ignoring video editing delays",
+          "Hiring temporary contract video editors or fast-tracking recording schedules",
+          "Deleting courses from the syllabus",
+          "Increasing course prices to ₹10,000"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q9",
+        "question": "What is the definition of Free Float?",
+        "options": [
+          "The time an activity can be delayed without delaying the early start of any immediate successor",
+          "The total cost of software licenses",
+          "The time a developer spends on breaks",
+          "The float available to the client for fee discounts"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q10",
+        "question": "In IEEE 830, what must every Non-Functional Requirement (NFR) be to ensure compliance?",
+        "options": [
+          "Vague and subjective",
+          "Measurable, verifiable, and unambiguous",
+          "At least 5 pages long",
+          "Exclusively related to user interface color"
+        ],
+        "correctIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "cc-103",
+    "code": "AI-303",
+    "title": "Artificial Intelligence & Applied Machine Learning",
+    "category": "Artificial Intelligence & Data Science",
+    "level": "Intermediate",
+    "price": 5999,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Vikram Sethi",
+      "designation": "Associate Professor of AI & ML",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Supervised learning, deep neural networks, natural language processing, LLM fine-tuning, and production AI deployment architectures.",
+    "learningOutcomes": [
+      "Train, validate, and evaluate deep learning architectures with PyTorch",
+      "Implement feature engineering, regularization, and hyperparameter tuning",
+      "Deploy scalable ML models behind low-latency REST endpoints",
+      "Evaluate model bias, drift, and interpretability using SHAP and LIME"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: Machine Learning Foundations & Supervised Learning",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l301",
+            "title": "Linear Regression, Loss Functions & Gradient Descent",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l302",
+            "title": "Logistic Regression, Decision Trees & Random Forests",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l303",
+            "title": "Support Vector Machines & Kernel Tricks",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l304",
+            "title": "Model Evaluation Metrics: Precision, Recall, F1, ROC-AUC",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Deep Neural Networks & Computer Vision",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l305",
+            "title": "Multi-Layer Perceptrons & Backpropagation Math",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l306",
+            "title": "Convolutional Neural Networks (CNNs) & ResNet",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l307",
+            "title": "Transfer Learning & Image Augmentation Strategies",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l308",
+            "title": "Object Detection with YOLO Architectures",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: Natural Language Processing & Transformers",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l309",
+            "title": "Tokenization, Word Embeddings & Recurrent Networks",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l310",
+            "title": "Self-Attention Mechanism & The Transformer Blueprint",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l311",
+            "title": "BERT, GPT & Pretrained Foundation Models",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l312",
+            "title": "Retrieval-Augmented Generation (RAG) & Vector Stores",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: MLOps, Responsible AI & Production Deployment",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l313",
+            "title": "Model Serving with FastAPI, ONNX & Docker",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l314",
+            "title": "Data Versioning, Drift Detection & Retraining Triggers",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l315",
+            "title": "Explainable AI (XAI) with SHAP and LIME",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l316",
+            "title": "AI Ethics, Bias Mitigation & Privacy Compliance",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "What is the primary advantage of the Self-Attention mechanism over RNNs?",
+        "options": [
+          "It processes tokens sequentially one by one",
+          "It enables parallel processing of all tokens in a sequence and captures long-range dependencies",
+          "It requires no GPU memory",
+          "It replaces all activation functions with zeros"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "Which metric is best suited for evaluating a highly imbalanced classification dataset?",
+        "options": [
+          "Accuracy",
+          "F1-Score and PR-AUC",
+          "Mean Squared Error",
+          "R-Squared"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q3",
+        "question": "What does RAG stand for in modern generative AI architectures?",
+        "options": [
+          "Random Array Generation",
+          "Retrieval-Augmented Generation",
+          "Recursive Algorithm Graph",
+          "Robust Audio Gateway"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q4",
+        "question": "What prevents overfitting during deep neural network training?",
+        "options": [
+          "Increasing learning rate to 10.0",
+          "Dropout, weight decay (L2 regularization), and early stopping",
+          "Removing all validation sets",
+          "Adding 100 extra layers without data"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q5",
+        "question": "What is the required minimum passing mark for CourseCraft AI certification?",
+        "options": [
+          "50%",
+          "60%",
+          "70%",
+          "90%"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q6",
+        "question": "Which framework is widely used to explain machine learning model predictions locally?",
+        "options": [
+          "SHAP / LIME",
+          "Apache Kafka",
+          "Redis Cache",
+          "Postman"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q7",
+        "question": "What is data drift in MLOps?",
+        "options": [
+          "A physical loss of hard drives",
+          "Changes in input data distribution over time that degrade model performance",
+          "Deleting test datasets",
+          "Moving files between folders"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q8",
+        "question": "In Case Study 108, what is the annual revenue generated if 150 students enroll in this course at ₹4,500?",
+        "options": [
+          "₹6,75,000",
+          "₹12,50,000",
+          "₹4,50,000",
+          "₹8,00,000"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q9",
+        "question": "What is the role of Vector Databases (e.g., Pinecone, Chroma) in LLM applications?",
+        "options": [
+          "Storing video streams",
+          "Indexing high-dimensional embeddings for fast semantic similarity search",
+          "Managing user passwords",
+          "Running CSS animations"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q10",
+        "question": "Which layer in a CNN is responsible for downsampling spatial feature dimensions?",
+        "options": [
+          "Pooling Layer (e.g., MaxPooling)",
+          "Softmax Layer",
+          "Batch Normalization",
+          "Input Layer"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "id": "cc-104",
+    "code": "CY-404",
+    "title": "Cybersecurity, Ethical Hacking & Defensive Systems",
+    "category": "Cybersecurity & Networks",
+    "level": "Advanced",
+    "price": 4850,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Meera Kulkarni",
+      "designation": "Director of Cyber Defense Lab",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Hands-on network security, penetration testing, cryptography, zero-trust architecture, incident response, and ISO/IEC 27001 compliance standards.",
+    "learningOutcomes": [
+      "Perform vulnerability assessment and penetration testing across web and network layers",
+      "Configure Zero-Trust identity perimeters and multi-factor authorization systems",
+      "Apply public-key cryptography, TLS 1.3 handshakes, and digital signatures",
+      "Execute incident response playbooks, digital forensics, and threat hunting"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: Threat Landscape & Network Security Foundations",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l401",
+            "title": "Cyber Kill Chain, MITRE ATT&CK & Threat Modeling",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l402",
+            "title": "TCP/IP Protocol Security, Packet Sniffing & Wireshark",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l403",
+            "title": "Firewalls, Next-Gen IDS/IPS & DMZ Segmentation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l404",
+            "title": "Zero-Trust Architecture & Identity Access Management",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Web Application Security & OWASP Top 10",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l405",
+            "title": "SQL Injection, NoSQL Injection & Remediation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l406",
+            "title": "Cross-Site Scripting (XSS) & CSRF Defense Mechanisms",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l407",
+            "title": "Server-Side Request Forgery (SSRF) & Broken Access Control",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l408",
+            "title": "Secure API Design, Rate Limiting & JWT Hardening",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: Applied Cryptography & PKI Infrastructure",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l409",
+            "title": "Symmetric Encryption (AES-GCM) & Key Management",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l410",
+            "title": "Asymmetric Cryptography (RSA, ECC) & Digital Signatures",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l411",
+            "title": "TLS 1.3 Protocol Handshake & Certificate Authorities",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l412",
+            "title": "Password Hashing Algorithms (Argon2, bcrypt) & Salt/Pepper",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: Penetration Testing, SIEM & Incident Response",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l413",
+            "title": "Penetration Testing Methodology & Kali Linux Toolsets",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l414",
+            "title": "SIEM Logging, Log Aggregation & Threat Detection Rules",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l415",
+            "title": "Digital Forensics & Memory Analysis (Volatility)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l416",
+            "title": "Incident Response Playbooks & ISO 27001 Auditing",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "What is the core principle behind Zero-Trust Architecture?",
+        "options": [
+          "Trust everyone on the local subnet",
+          "Never trust, always verify every request regardless of source",
+          "Disable all user passwords",
+          "Allow unencrypted HTTP traffic internally"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "Which algorithm is recommended by OWASP for password hashing?",
+        "options": [
+          "MD5",
+          "SHA-1",
+          "Argon2id / bcrypt",
+          "Base64"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q3",
+        "question": "What is the most effective prevention against SQL Injection vulnerabilities?",
+        "options": [
+          "Hiding error messages",
+          "Parameterized queries / Prepared statements",
+          "Using POST requests only",
+          "Increasing database RAM"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q4",
+        "question": "How does TLS 1.3 improve on TLS 1.2?",
+        "options": [
+          "Removes vulnerable cipher suites and reduces handshake round-trips to 1-RTT",
+          "Eliminates encryption completely",
+          "Requires 10 handshakes before data transfer",
+          "Only supports HTTP 1.0"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q5",
+        "question": "What is the score threshold to earn the CourseCraft Cybersecurity Certificate?",
+        "options": [
+          "50%",
+          "60%",
+          "70%",
+          "85%"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q6",
+        "question": "Which header helps protect web applications against Cross-Site Scripting (XSS)?",
+        "options": [
+          "Content-Security-Policy (CSP)",
+          "X-Powered-By",
+          "Server",
+          "Accept-Language"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q7",
+        "question": "What is the editing ratio parameter in Case Study 108?",
+        "options": [
+          "1:1 (1 hour edit per content hour)",
+          "3:1 (3 hours edit per content hour = 36h total per 12h course)",
+          "5:1 (5 hours edit per content hour)",
+          "10:1 (10 hours edit per content hour)"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q8",
+        "question": "What is a 'Salt' in cryptographic password storage?",
+        "options": [
+          "An encrypted file sent via email",
+          "A unique random string appended to passwords before hashing to defeat rainbow tables",
+          "A backup master password",
+          "A database index keyword"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q9",
+        "question": "Which MITRE ATT&CK tactic describes an adversary attempting to maintain access across restarts?",
+        "options": [
+          "Persistence",
+          "Reconnaissance",
+          "Exfiltration",
+          "Resource Development"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q10",
+        "question": "What is the key difference between symmetric and asymmetric cryptography?",
+        "options": [
+          "Symmetric uses one shared key; asymmetric uses a public/private key pair",
+          "Symmetric cannot encrypt files",
+          "Asymmetric is 1,000x faster than symmetric",
+          "Symmetric requires internet access"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "id": "cc-105",
+    "code": "CC-505",
+    "title": "Cloud Computing, DevOps & Kubernetes Orchestration",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "price": 5200,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Ananya Roy",
+      "designation": "Cloud Architecture Lead",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Docker containerization, Kubernetes cluster management, Infrastructure as Code (Terraform), CI/CD pipelines, and multi-region high availability.",
+    "learningOutcomes": [
+      "Containerize microservices with multi-stage Docker builds",
+      "Deploy and manage production workloads on Kubernetes (EKS/GKE)",
+      "Write declarative Infrastructure as Code using Terraform and GitOps",
+      "Implement automated blue/green and canary deployments with Prometheus monitoring"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: Containerization with Docker & OCI Standards",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l501",
+            "title": "Linux Namespaces, cgroups & Container Internals",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l502",
+            "title": "Writing Production Dockerfiles & Multi-Stage Builds",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l503",
+            "title": "Docker Compose & Multi-Container Networking",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l504",
+            "title": "Image Security Scanning & Harbor Registries",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Kubernetes Architecture & Core Primitives",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l505",
+            "title": "Control Plane, Worker Nodes & Kubelet Workflow",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l506",
+            "title": "Pods, Deployments, ReplicaSets & Rollouts",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l507",
+            "title": "Services, ClusterIP, NodePort & Ingress Controllers",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l508",
+            "title": "ConfigMaps, Secrets & Persistent Volume Claims (PVC)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: Infrastructure as Code & GitOps Delivery",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l509",
+            "title": "Terraform State Management, Providers & Modules",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l510",
+            "title": "Helm Charts & Package Management for Kubernetes",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l511",
+            "title": "GitOps Pipelines with ArgoCD & Flux",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l512",
+            "title": "Canary Deployments & Flagger Automation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: Observability, SRE & Cloud Resiliency",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l513",
+            "title": "Prometheus Metrics Scraping & Alertmanager Rules",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l514",
+            "title": "Grafana Dashboards & Distributed Tracing with Jaeger",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l515",
+            "title": "Service Level Objectives (SLOs), SLIs & Error Budgets",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l516",
+            "title": "Chaos Engineering & Disaster Recovery Runbooks",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "What is the function of a Kubernetes Ingress controller?",
+        "options": [
+          "Compiling C++ code",
+          "Routing external HTTP/HTTPS traffic to internal cluster services based on host and path rules",
+          "Formatting hard drives",
+          "Running unit tests"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "Why are multi-stage Docker builds recommended?",
+        "options": [
+          "To produce smaller, hardened production container images without build tools and cache",
+          "To slow down the deployment",
+          "To make Docker images larger",
+          "To bypass container security"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q3",
+        "question": "What is the primary benefit of declarative Infrastructure as Code (e.g., Terraform)?",
+        "options": [
+          "Manual point-and-click provisioning",
+          "Version-controlled, reproducible, and auditable cloud infrastructure definitions",
+          "Generating random server passwords",
+          "Eliminating network bandwidth"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q4",
+        "question": "What is an Error Budget in Site Reliability Engineering (SRE)?",
+        "options": [
+          "The maximum allowable amount of downtime or unreliability (100% - SLO)",
+          "The dollar budget for buying servers",
+          "The amount paid to bug bounty hunters",
+          "The salary deduction for junior engineers"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q5",
+        "question": "What is the CourseCraft certificate requirement for quiz score?",
+        "options": [
+          "50% or higher",
+          "60% or higher",
+          "70% or higher",
+          "100% strictly"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q6",
+        "question": "What does a Pod represent in Kubernetes?",
+        "options": [
+          "A physical data center",
+          "The smallest deployable computing unit that can contain one or more tightly coupled containers",
+          "A DNS record",
+          "A user database table"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q7",
+        "question": "In Case Study 108, what is the combined weekly editing bandwidth of the 2 editors?",
+        "options": [
+          "30 hours/week",
+          "60 hours/week",
+          "80 hours/week",
+          "120 hours/week"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q8",
+        "question": "What tool is used for declarative GitOps continuous delivery in Kubernetes?",
+        "options": [
+          "ArgoCD / Flux",
+          "Microsoft Excel",
+          "Subversion",
+          "Notepad"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q9",
+        "question": "Which component in Kubernetes manages the state of the cluster and stores data persistently?",
+        "options": [
+          "etcd",
+          "kube-proxy",
+          "containerd",
+          "flannel"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q10",
+        "question": "What is a Canary deployment strategy?",
+        "options": [
+          "Deploying to all servers simultaneously with 100% downtime",
+          "Rolling out changes to a small subset of users first to verify stability before broad release",
+          "Running tests only on weekends",
+          "Testing code locally without internet"
+        ],
+        "correctIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "cc-106",
+    "code": "DS-606",
+    "title": "Data Science, Big Data & Distributed Analytics",
+    "category": "Artificial Intelligence & Data Science",
+    "level": "Intermediate",
+    "price": 4999,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sanjay Verma",
+      "designation": "Head of Data Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Apache Spark, Kafka streaming, data warehousing with Snowflake, ETL pipeline construction, and advanced statistical modeling in Python.",
+    "learningOutcomes": [
+      "Construct distributed data pipelines using Apache Spark and PySpark",
+      "Stream real-time events with Apache Kafka and Spark Streaming",
+      "Design star-schema data warehouses in Snowflake and Google BigQuery",
+      "Conduct rigorous statistical hypothesis testing and A/B experimental analysis"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: Exploratory Data Analysis & Statistical Foundations",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l601",
+            "title": "Data Cleaning, Imputation & Feature Scaling in Pandas",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l602",
+            "title": "Probability Distributions, CLT & Hypothesis Testing",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l603",
+            "title": "ANOVA, Chi-Square Tests & A/B Experimentation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l604",
+            "title": "High-Dimensional Data Visualization with Seaborn & Plotly",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Distributed Computing with Apache Spark",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l605",
+            "title": "Spark Core: RDDs, Transformations, Actions & Lineage",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l606",
+            "title": "Spark SQL & DataFrames: Optimization with Catalyst Optimizer",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l607",
+            "title": "Handling Data Skew, Broadcast Joins & Partitioning",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l608",
+            "title": "PySpark MLlib for Distributed Machine Learning",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: Real-Time Event Streaming with Apache Kafka",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l609",
+            "title": "Kafka Architecture: Topics, Partitions, Brokers & Consumers",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l610",
+            "title": "Kafka Producer Semantics & Consumer Group Rebalancing",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l611",
+            "title": "Spark Structured Streaming: Windowing & Watermarking",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l612",
+            "title": "Dead Letter Queues & Exactly-Once Processing (EOS)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: Modern Data Warehousing & Data Governance",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l613",
+            "title": "Star vs Snowflake Schemas & Dimensional Modeling",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l614",
+            "title": "Snowflake Architecture: Storage vs Compute Separation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l615",
+            "title": "dbt (data build tool) for Analytics Engineering",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l616",
+            "title": "Data Lineage, Data Catalogs & GDPR Compliance",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "What is the primary optimization engine in Apache Spark SQL?",
+        "options": [
+          "Catalyst Optimizer",
+          "MapReduce Engine",
+          "B-Tree Indexer",
+          "V8 Engine"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q2",
+        "question": "In Apache Kafka, what determines message ordering within a topic?",
+        "options": [
+          "Messages are ordered per partition, not across the entire topic",
+          "Kafka does not maintain order",
+          "Messages are ordered alphabetically by payload",
+          "Order is strictly randomized"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q3",
+        "question": "What is the course fee per enrolment in the CourseCraft platform model?",
+        "options": [
+          "₹1,000",
+          "₹2,500",
+          "₹4,500",
+          "₹10,000"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q4",
+        "question": "What does a Watermark do in Spark Structured Streaming?",
+        "options": [
+          "Adds a visual copyright logo to video",
+          "Defines how late data is allowed to arrive before being dropped",
+          "Measures network throughput in gigabytes",
+          "Limits database read queries"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q5",
+        "question": "What is the passing score needed on this quiz to unlock the CourseCraft certificate?",
+        "options": [
+          "50%",
+          "60%",
+          "70%",
+          "80%"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q6",
+        "question": "What architectural feature enables Snowflake's independent instant scaling?",
+        "options": [
+          "Coupled storage and compute on hard drives",
+          "Decoupled storage and compute layers with multi-cluster warehouses",
+          "Requiring on-premise hardware only",
+          "No SQL support"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q7",
+        "question": "In Case Study 108, what is the total effort required to record & edit 8 launch courses?",
+        "options": [
+          "96 hours",
+          "288 hours",
+          "1,080 hours",
+          "480 hours"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q8",
+        "question": "What is the Central Limit Theorem (CLT)?",
+        "options": [
+          "A database clustering algorithm",
+          "As sample size grows, the distribution of sample means approaches a normal distribution regardless of population shape",
+          "A theorem proving all data is linearly separable",
+          "A protocol for cloud network load balancing"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q9",
+        "question": "Which join strategy avoids data shuffling across nodes when joining a small table with a large table in Spark?",
+        "options": [
+          "Sort-Merge Join",
+          "Broadcast Hash Join",
+          "Cartesian Product Join",
+          "Nested Loop Join"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q10",
+        "question": "What is the primary role of dbt (data build tool) in modern data stacks?",
+        "options": [
+          "Extracting raw data from web APIs",
+          "Transforming data inside the warehouse using version-controlled SQL models",
+          "Running web servers",
+          "Replacing the database engine"
+        ],
+        "correctIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "cc-107",
+    "code": "UI-707",
+    "title": "UI/UX Engineering & Design Systems",
+    "category": "Design & Human-Computer Interaction",
+    "level": "Beginner to Intermediate",
+    "price": 3499,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sneha Deshmukh",
+      "designation": "Head of Design Systems & UX",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "User research methodologies, wireframing, design tokens, Figma component systems, WCAG 2.2 accessibility compliance, and micro-interactions.",
+    "learningOutcomes": [
+      "Conduct user interviews, usability testing, and create validated personas",
+      "Construct scalable Design Systems with token architectures in Figma & CSS",
+      "Ensure WCAG 2.2 Level AA compliance for contrast, keyboard focus, and screen readers",
+      "Implement fluid CSS layouts, responsive typography, and 60fps animations"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: User Research & Information Architecture",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l701",
+            "title": "Generative User Research & Empathy Mapping",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l702",
+            "title": "Card Sorting, Tree Testing & Site Navigation Hierarchies",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l703",
+            "title": "Low-Fidelity Wireframing & Rapid Paper Prototyping",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l704",
+            "title": "User Journey Mapping & Friction Point Identification",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Figma Mastery & Atomic Design Systems",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l705",
+            "title": "Atomic Design Principles: Atoms, Molecules, Organisms",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l706",
+            "title": "Auto-Layout, Component Variants & Interactive Components",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l707",
+            "title": "Design Tokens: Color Palettes, Typography Scales & Spacing",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l708",
+            "title": "Exporting Tokens to CSS Variables & Style Dictionary",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: Accessibility (a11y) & Inclusive Design",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l709",
+            "title": "WCAG 2.2 Guidelines: Perceivable, Operable, Understandable, Robust",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l710",
+            "title": "Color Contrast Ratios (4.5:1 / 3:1) & Visual Accessibility",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l711",
+            "title": "Keyboard Navigation, Focus Traps & ARIA Attributes",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l712",
+            "title": "Screen Reader Testing (VoiceOver / NVDA) & Automated Audits",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: Motion Design & Usability Testing",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l713",
+            "title": "Principles of UI Animation & Cubic-Bezier Curves",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l714",
+            "title": "Micro-Interactions: Button States, Loaders & Toast Feedback",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l715",
+            "title": "Moderated vs Unmoderated Usability Testing Protocols",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l716",
+            "title": "System Usability Scale (SUS) Scoring & Analytics",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "What is the minimum WCAG 2.2 AA contrast ratio required for normal body text?",
+        "options": [
+          "2.0:1",
+          "3.0:1",
+          "4.5:1",
+          "7.0:1"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q2",
+        "question": "What are the four principles of accessibility in WCAG (POUR)?",
+        "options": [
+          "Practical, Open, Useful, Rapid",
+          "Perceivable, Operable, Understandable, Robust",
+          "Parallel, Object-oriented, Unified, Responsive",
+          "Primary, Optional, Universal, Reliable"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q3",
+        "question": "In Case Study 108, how many weeks does it take to develop the software platform itself?",
+        "options": [
+          "4.8 weeks",
+          "10.0 weeks",
+          "18.0 weeks",
+          "30.0 weeks"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q4",
+        "question": "What is the purpose of Design Tokens in design systems?",
+        "options": [
+          "To mine cryptocurrency",
+          "To store atomic design values (colors, spacing, typography) in a platform-agnostic format",
+          "To password-protect Figma files",
+          "To replace all CSS stylesheets with images"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q5",
+        "question": "What percentage score must a student achieve to pass the CourseCraft quiz?",
+        "options": [
+          "50%",
+          "65%",
+          "70%",
+          "85%"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q6",
+        "question": "Which accessibility attribute provides supplementary text for screen readers on iconic buttons?",
+        "options": [
+          "aria-label",
+          "data-icon",
+          "role-display",
+          "alt-color"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q7",
+        "question": "What is the System Usability Scale (SUS) benchmark score for an above-average user interface?",
+        "options": [
+          "20",
+          "40",
+          "68",
+          "99"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q8",
+        "question": "Why is content production considered the bottleneck in Case Study 108?",
+        "options": [
+          "Because editing 30 courses takes 18 weeks (1080 hours @ 60h/wk) whereas software takes only 10 weeks",
+          "Because professors refused to teach",
+          "Because video cameras were broken",
+          "Because software development was too fast"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q9",
+        "question": "What is the role of CSS variables in modern web interfaces?",
+        "options": [
+          "Dynamic theming, consistency, and easy centralized maintenance of design tokens",
+          "Running database SQL queries",
+          "Compiling WebAssembly",
+          "Sending emails"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q10",
+        "question": "Which user testing metric measures the time taken by a participant to finish a workflow?",
+        "options": [
+          "Time on Task (ToT)",
+          "Net Promoter Score",
+          "Defect Removal Efficiency",
+          "Cyclomatic Complexity"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "id": "cc-108",
+    "code": "PM-808",
+    "title": "IT Project Leadership, Agile Transformation & ITIL",
+    "category": "Project & Product Management",
+    "level": "Intermediate",
+    "price": 3800,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Aarav Sharma",
+      "designation": "Director of Technology Leadership",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Scrum & Kanban frameworks, ITIL 4 service management, stakeholder engagement, Earned Value Management (EVM), and change leadership.",
+    "learningOutcomes": [
+      "Facilitate high-performance Scrum ceremonies (Sprint Planning, Daily Standup, Retrospectives)",
+      "Calculate Earned Value Management (EVM) metrics: CV, SV, CPI, and SPI",
+      "Deploy ITIL 4 service value chains for enterprise incident and change management",
+      "Lead cross-functional engineering teams through complex technological transformations"
+    ],
+    "modules": [
+      {
+        "id": "m1",
+        "title": "Module 1: Scrum & Kanban Agile Methodologies",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l801",
+            "title": "Scrum Roles, Artifacts & Ceremony Facilitation",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l802",
+            "title": "Backlog Refinement, User Story Sizing & Planning Poker",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l803",
+            "title": "Kanban Boards, WIP Limits & Cumulative Flow Diagrams (CFD)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l804",
+            "title": "Sprint Retrospective Techniques & Continuous Improvement",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m2",
+        "title": "Module 2: Project Performance & Earned Value Management",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l805",
+            "title": "Planned Value (PV), Earned Value (EV) & Actual Cost (AC)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          },
+          {
+            "id": "l806",
+            "title": "Schedule Variance (SV), Cost Variance (CV) Calculations",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+          },
+          {
+            "id": "l807",
+            "title": "Cost Performance Index (CPI) & Schedule Performance Index (SPI)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          },
+          {
+            "id": "l808",
+            "title": "Estimate at Completion (EAC) & Forecasting Project Health",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m3",
+        "title": "Module 3: ITIL 4 Service Management & Operations",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l809",
+            "title": "ITIL 4 Service Value System & Four Dimensions of Service",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+          },
+          {
+            "id": "l810",
+            "title": "Incident Management, Major Incident Protocols & SLA Targets",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+          },
+          {
+            "id": "l811",
+            "title": "Problem Management, Root Cause Analysis (5 Whys, Ishikawa)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+          },
+          {
+            "id": "l812",
+            "title": "Change Enablement, Standard Changes & Change Advisory Board (CAB)",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+          }
+        ]
+      },
+      {
+        "id": "m4",
+        "title": "Module 4: Stakeholder Governance & Organizational Change",
+        "duration": "3 Hours",
+        "lessons": [
+          {
+            "id": "l813",
+            "title": "Stakeholder Power/Interest Grid & Communication Plans",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          },
+          {
+            "id": "l814",
+            "title": "Kotter's 8-Step Change Model & Overcoming Resistance",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          },
+          {
+            "id": "l815",
+            "title": "Conflict Resolution Strategies & Negotiation in IT Projects",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          },
+          {
+            "id": "l816",
+            "title": "Post-Project Audits, Retrospectives & Lessons Learned Logs",
+            "duration": "45m",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          }
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "id": "q1",
+        "question": "If a project has CPI = 1.2 and SPI = 0.85, what is its status?",
+        "options": [
+          "Over budget and ahead of schedule",
+          "Under budget (cost efficient) but behind schedule",
+          "Over budget and behind schedule",
+          "Under budget and ahead of schedule"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "What is the primary objective of Limiting Work in Progress (WIP) in Kanban?",
+        "options": [
+          "To force developers to work overtime",
+          "To reduce multitasking, prevent bottlenecks, and optimize cycle time",
+          "To stop code commits",
+          "To increase bug counts"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q3",
+        "question": "In Case Study 108, what is the annual projected revenue for the full 30-course catalog at 150 enrolments/course @ ₹4,500?",
+        "options": [
+          "₹54,00,000",
+          "₹1,08,00,000",
+          "₹2,02,50,000",
+          "₹3,50,00,000"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q4",
+        "question": "What is the role of the Product Owner in Scrum?",
+        "options": [
+          "Writing unit tests exclusively",
+          "Maximizing the value of the product resulting from the work of the Scrum Team and owning the Product Backlog",
+          "Managing server hardware",
+          "Approving developer vacation days"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q5",
+        "question": "What is the passing mark required on CourseCraft certification quizzes?",
+        "options": [
+          "50%",
+          "60%",
+          "70%",
+          "80%"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q6",
+        "question": "In ITIL 4, what is the purpose of Problem Management?",
+        "options": [
+          "To restore normal service operation as quickly as possible",
+          "To reduce the likelihood and impact of incidents by identifying actual and potential causes and managing workarounds/known errors",
+          "To bill clients for support",
+          "To write marketing copy"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q7",
+        "question": "What is the Work Breakdown Structure (WBS) in SEPM?",
+        "options": [
+          "A hierarchical decomposition of the total scope of work to be carried out by the project team to accomplish project objectives",
+          "A list of software bugs",
+          "A database schema diagram",
+          "A salary spreadsheet"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q8",
+        "question": "How many hours of video content are contained in each CourseCraft short course?",
+        "options": [
+          "3 hours",
+          "6 hours",
+          "12 hours",
+          "24 hours"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "id": "q9",
+        "question": "Which formula calculates Schedule Variance (SV) in Earned Value Management?",
+        "options": [
+          "SV = EV - PV",
+          "SV = EV / PV",
+          "SV = AC - EV",
+          "SV = PV + AC"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "id": "q10",
+        "question": "In Case Study 108, why can 8 courses be launched at Week 10 even before the full 30-course pipeline finishes?",
+        "options": [
+          "Because 8 courses finish editing at Week 4.8, perfectly ready when platform software completes at Week 10",
+          "Because editing was abandoned",
+          "Because students demanded half-finished courses",
+          "Because university servers failed"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "id": "cc-109",
+    "code": "DB-909",
+    "title": "Advanced Database Management & SQL Optimization",
+    "category": "Computer Science & Software Engineering",
+    "level": "Intermediate",
+    "price": 3299,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "in_production",
+    "thumbnail": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sanjay Verma",
+      "designation": "Head of Data Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Index architectures, B+ Trees, query execution planning, ACID transactions, and distributed consensus algorithms.",
+    "learningOutcomes": [
+      "Optimize complex SQL queries",
+      "Design resilient schemas",
+      "Master indexing strategies",
+      "Manage distributed transactions"
+    ]
+  },
+  {
+    "id": "cc-110",
+    "code": "MB-110",
+    "title": "Cross-Platform Mobile Development with Flutter & React Native",
+    "category": "Computer Science & Software Engineering",
+    "level": "Intermediate",
+    "price": 4200,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Aarav Sharma",
+      "designation": "Professor of Software Systems",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "State management, native device bridging, offline sync architectures, and app store deployment workflows.",
+    "learningOutcomes": [
+      "Build multi-platform mobile apps",
+      "Implement offline persistence",
+      "Integrate device cameras and sensors",
+      "Deploy to App Store & Play Store"
+    ]
+  },
+  {
+    "id": "cc-111",
+    "code": "BC-111",
+    "title": "Blockchain, Smart Contracts & Decentralized Systems",
+    "category": "Computer Science & Software Engineering",
+    "level": "Advanced",
+    "price": 6500,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "in_production",
+    "thumbnail": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Meera Kulkarni",
+      "designation": "Director of Cyber Defense Lab",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Ethereum virtual machine, Solidity smart contracts, consensus mechanisms, and Web3 integration security.",
+    "learningOutcomes": [
+      "Write secure Solidity contracts",
+      "Audit decentralized apps for vulnerabilities",
+      "Deploy on testnets and mainnets",
+      "Build Web3 interfaces"
+    ]
+  },
+  {
+    "id": "cc-112",
+    "code": "IOT-112",
+    "title": "Internet of Things (IoT) & Embedded Edge Systems",
+    "category": "Hardware & Embedded Systems",
+    "level": "Intermediate",
+    "price": 4600,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Vikram Sethi",
+      "designation": "Associate Professor of AI & ML",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "MQTT telemetry protocols, ESP32/Raspberry Pi microcontrollers, sensor interfacing, and edge AI inference.",
+    "learningOutcomes": [
+      "Interface analog and digital sensors",
+      "Publish low-overhead MQTT telemetry",
+      "Deploy TinyML models to edge devices",
+      "Build secure IoT cloud dashboards"
+    ]
+  },
+  {
+    "id": "cc-113",
+    "code": "NLP-113",
+    "title": "Natural Language Processing with Deep Learning & Transformers",
+    "category": "Artificial Intelligence & Data Science",
+    "level": "Advanced",
+    "price": 6200,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Vikram Sethi",
+      "designation": "Associate Professor of AI & ML",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Fine-tuning HuggingFace models, sentiment classification, NER, and multi-modal conversational AI.",
+    "learningOutcomes": [
+      "Fine-tune LLMs with LoRA/QLoRA",
+      "Build custom tokenizers",
+      "Deploy conversational agents",
+      "Evaluate perplexity and BLEU scores"
+    ]
+  },
+  {
+    "id": "cc-114",
+    "code": "SEC-114",
+    "title": "Secure Software Development Lifecycle (SSDLC) & DevSecOps",
+    "category": "Cybersecurity & Networks",
+    "level": "Intermediate",
+    "price": 4950,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Meera Kulkarni",
+      "designation": "Director of Cyber Defense Lab",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "SAST/DAST pipeline integration, Software Bill of Materials (SBOM), secret scanning, and compliance automation.",
+    "learningOutcomes": [
+      "Integrate SAST/DAST in GitHub Actions",
+      "Generate and verify SBOMs",
+      "Enforce branch security policies",
+      "Remediate open-source CVEs"
+    ]
+  },
+  {
+    "id": "cc-115",
+    "code": "QA-115",
+    "title": "Software Testing, Test Automation & Quality Assurance",
+    "category": "Computer Science & Software Engineering",
+    "level": "Intermediate",
+    "price": 2999,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Radhika Iyer",
+      "designation": "Chair of Software Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Playwright, Cypress, Jest, mutation testing, load testing with k6, and Defect Removal Efficiency tracking.",
+    "learningOutcomes": [
+      "Write resilient E2E web tests",
+      "Conduct API performance stress tests",
+      "Compute DRE and Defect Density metrics",
+      "Design boundary value test suites"
+    ]
+  },
+  {
+    "id": "cc-116",
+    "code": "BI-116",
+    "title": "Business Intelligence & Data Visualization with Tableau & PowerBI",
+    "category": "Business & Analytics",
+    "level": "Beginner to Intermediate",
+    "price": 3500,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sanjay Verma",
+      "designation": "Head of Data Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Interactive executive dashboards, DAX queries, data modeling, storytelling with data, and KPI tracking.",
+    "learningOutcomes": [
+      "Build multi-page executive dashboards",
+      "Formulate complex DAX measures",
+      "Connect live SQL and cloud data sources",
+      "Deliver compelling data presentations"
+    ]
+  },
+  {
+    "id": "cc-117",
+    "code": "GD-117",
+    "title": "Game Development & 3D Interactive Graphics with Unity",
+    "category": "Computer Science & Software Engineering",
+    "level": "Intermediate",
+    "price": 5499,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "ready",
+    "thumbnail": "https://images.unsplash.com/photo-1556438064-2d7646166914?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Aarav Sharma",
+      "designation": "Professor of Software Systems",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "C# scripting in Unity, rigid-body physics, shader programming, lighting, and audio spatialization.",
+    "learningOutcomes": [
+      "Program 3D gameplay systems in C#",
+      "Design modular level environments",
+      "Optimize draw calls and frame rate",
+      "Publish to WebGL and PC"
+    ]
+  },
+  {
+    "id": "cc-118",
+    "code": "GO-118",
+    "title": "High-Performance Backend Engineering with Go (Golang)",
+    "category": "Computer Science & Software Engineering",
+    "level": "Intermediate",
+    "price": 4750,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Ananya Roy",
+      "designation": "Cloud Architecture Lead",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Goroutines, channels, gRPC microservices, memory profiling, and high-concurrency network servers.",
+    "learningOutcomes": [
+      "Write concurrent Go applications safely",
+      "Build ultra-low latency gRPC services",
+      "Profile CPU and memory with pprof",
+      "Implement thread-safe data structures"
+    ]
+  },
+  {
+    "id": "cc-119",
+    "code": "RS-119",
+    "title": "Systems Programming & Memory Safety with Rust",
+    "category": "Computer Science & Software Engineering",
+    "level": "Advanced",
+    "price": 5600,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Ananya Roy",
+      "designation": "Cloud Architecture Lead",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Ownership, borrow checker, lifetimes, unsafe Rust, WebAssembly compilation, and systems-level tools.",
+    "learningOutcomes": [
+      "Master Rust ownership & borrowing",
+      "Build zero-cost abstractions",
+      "Compile Rust to high-speed WebAssembly",
+      "Write safe multi-threaded code"
+    ]
+  },
+  {
+    "id": "cc-120",
+    "code": "UX-120",
+    "title": "Design Thinking, Product Discovery & Innovation",
+    "category": "Design & Human-Computer Interaction",
+    "level": "Beginner",
+    "price": 3200,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sneha Deshmukh",
+      "designation": "Head of Design Systems & UX",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Stanford d.school 5-stage framework, customer problem validation, product-market fit metrics, and pitch prototyping.",
+    "learningOutcomes": [
+      "Facilitate design thinking workshops",
+      "Validate product assumptions with MVPs",
+      "Design user experiment scorecards",
+      "Craft compelling product vision decks"
+    ]
+  },
+  {
+    "id": "cc-121",
+    "code": "FIN-121",
+    "title": "FinTech Engineering, Payment Rails & Algorithmic Trading",
+    "category": "Business & Analytics",
+    "level": "Advanced",
+    "price": 6800,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Aarav Sharma",
+      "designation": "Professor of Software Systems",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "UPI & ISO 20022 messaging, automated clearing, double-entry ledger engines, and backtesting quantitative trading models.",
+    "learningOutcomes": [
+      "Design immutable double-entry ledgers",
+      "Process high-volume card & UPI payments",
+      "Backtest trading strategies in Python",
+      "Comply with PCI-DSS standards"
+    ]
+  },
+  {
+    "id": "cc-122",
+    "code": "ROB-122",
+    "title": "Autonomous Robotics, ROS 2 & Motion Planning",
+    "category": "Hardware & Embedded Systems",
+    "level": "Advanced",
+    "price": 7200,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Vikram Sethi",
+      "designation": "Associate Professor of AI & ML",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Robot Operating System 2 (ROS 2), SLAM algorithms, path planning (A*, RRT), and Gazebo physical simulations.",
+    "learningOutcomes": [
+      "Create ROS 2 nodes, publishers, subscribers",
+      "Map environments using 2D/3D LiDAR SLAM",
+      "Implement obstacle avoidance algorithms",
+      "Simulate differential drive robots"
+    ]
+  },
+  {
+    "id": "cc-123",
+    "code": "AR-123",
+    "title": "Spatial Computing, Augmented Reality (AR) & Virtual Reality (VR)",
+    "category": "Design & Human-Computer Interaction",
+    "level": "Intermediate",
+    "price": 6400,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sneha Deshmukh",
+      "designation": "Head of Design Systems & UX",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "WebXR, Apple Vision Pro spatial UI, ARKit/ARCore surface detection, and 6-DOF immersion interactions.",
+    "learningOutcomes": [
+      "Build immersive WebXR applications",
+      "Design spatial gestures and 3D UI",
+      "Implement surface anchoring with ARCore",
+      "Optimize graphics for VR headsets"
+    ]
+  },
+  {
+    "id": "cc-124",
+    "code": "BIO-124",
+    "title": "Bioinformatics, Computational Genomics & Biostatistics",
+    "category": "Artificial Intelligence & Data Science",
+    "level": "Advanced",
+    "price": 5100,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sanjay Verma",
+      "designation": "Head of Data Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "DNA sequence alignment (BLAST), protein folding algorithms (AlphaFold concepts), Next-Gen Sequencing (NGS) pipelines.",
+    "learningOutcomes": [
+      "Process FASTQ and BAM sequencing data",
+      "Implement sequence alignment algorithms",
+      "Analyze differential gene expression in R",
+      "Explore protein structure predictions"
+    ]
+  },
+  {
+    "id": "cc-125",
+    "code": "HLT-125",
+    "title": "Health Informatics, HL7 FHIR & Digital Healthcare Systems",
+    "category": "Computer Science & Software Engineering",
+    "level": "Intermediate",
+    "price": 4400,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Radhika Iyer",
+      "designation": "Chair of Software Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "HL7 FHIR RESTful resources, electronic health records (EHR) interoperability, HIPAA compliance, and clinical analytics.",
+    "learningOutcomes": [
+      "Construct FHIR Patient and Observation resources",
+      "Ensure HIPAA/GDPR health data privacy",
+      "Integrate hospital EMR webhooks",
+      "Analyze clinical trial cohorts"
+    ]
+  },
+  {
+    "id": "cc-126",
+    "code": "QL-126",
+    "title": "Quantum Computing Fundamentals & Qiskit Programming",
+    "category": "Computer Science & Software Engineering",
+    "level": "Advanced",
+    "price": 7999,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Vikram Sethi",
+      "designation": "Associate Professor of AI & ML",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Qubits, quantum superposition, entanglement, Grover's search, Shor's factoring, and IBM Qiskit circuit execution.",
+    "learningOutcomes": [
+      "Construct quantum circuits with IBM Qiskit",
+      "Simulate quantum noise and decoherence",
+      "Implement Grover's quantum search",
+      "Analyze post-quantum cryptography"
+    ]
+  },
+  {
+    "id": "cc-127",
+    "code": "NR-127",
+    "title": "5G Network Architecture, SDN & Network Slicing",
+    "category": "Cybersecurity & Networks",
+    "level": "Advanced",
+    "price": 5800,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Dr. Ananya Roy",
+      "designation": "Cloud Architecture Lead",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "OpenFlow protocols, Software-Defined Networking (SDN), 5G standalone core, and ultra-reliable low latency communications (URLLC).",
+    "learningOutcomes": [
+      "Program SDN controllers with Ryu/ONOS",
+      "Configure 5G network slices for IoT",
+      "Analyze packet latency and jitter",
+      "Implement network function virtualization (NFV)"
+    ]
+  },
+  {
+    "id": "cc-128",
+    "code": "EM-128",
+    "title": "Energy Informatics, Smart Grids & Sustainable Computing",
+    "category": "Hardware & Embedded Systems",
+    "level": "Intermediate",
+    "price": 3950,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sanjay Verma",
+      "designation": "Head of Data Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Green software engineering, PUE data center efficiency, carbon-aware cloud scheduling, and smart meter data analytics.",
+    "learningOutcomes": [
+      "Measure software carbon intensity (SCI)",
+      "Optimize cloud workload power draw",
+      "Analyze renewable power grid balance",
+      "Implement green coding principles"
+    ]
+  },
+  {
+    "id": "cc-129",
+    "code": "LE-129",
+    "title": "Digital Law, Intellectual Property & Tech Policy",
+    "category": "Business & Analytics",
+    "level": "Beginner to Intermediate",
+    "price": 3600,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Radhika Iyer",
+      "designation": "Chair of Software Engineering",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Open source licensing (GPL, MIT, Apache), software patents, copyright in AI training data, and IT Act compliance.",
+    "learningOutcomes": [
+      "Audit open-source license compliance",
+      "Draft software service level agreements (SLA)",
+      "Navigate digital copyright laws",
+      "Ensure data protection compliance"
+    ]
+  },
+  {
+    "id": "cc-130",
+    "code": "ET-130",
+    "title": "Engineering Ethics, AI Governance & Autonomous Decision Systems",
+    "category": "Business & Analytics",
+    "level": "Beginner",
+    "price": 3400,
+    "currency": "INR",
+    "durationHours": 12,
+    "editingHoursRequired": 36,
+    "status": "planned",
+    "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
+    "instructor": {
+      "name": "Prof. Sneha Deshmukh",
+      "designation": "Head of Design Systems & UX",
+      "department": "Continuing Education Centre",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    "description": "Ethical frameworks in autonomous engineering, algorithmic transparency, IEEE code of ethics, and AI risk governance.",
+    "learningOutcomes": [
+      "Conduct ethical impact assessments (EIA)",
+      "Identify algorithmic bias in automated decisions",
+      "Implement transparent audit trails",
+      "Align engineering teams with IEEE ethics codes"
+    ]
+  },
+  {
+    "id": "cc-829",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-223",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-733",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-115",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-998",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-881",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-937",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-874",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-675",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-178",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-845",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-254",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-389",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-495",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-985",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  },
+  {
+    "id": "cc-292",
+    "code": "DEV-125",
+    "title": "DevOps Infrastructure as Code with Terraform & Ansible",
+    "category": "Cloud & Infrastructure",
+    "level": "Intermediate",
+    "description": "Course proposed by faculty member awaiting editorial curriculum production.",
+    "price": 4999,
+    "duration": "12 Hours",
+    "status": "planned",
+    "modules": []
+  }
+]

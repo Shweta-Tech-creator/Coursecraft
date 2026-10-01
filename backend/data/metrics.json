@@ -1,0 +1,42 @@
+{
+  "caseStudy": {
+    "id": 108,
+    "title": "CourseCraft — Online Course Platform for University Continuing Education Centre",
+    "program": "B.Tech CSE 2025–29, Semester III",
+    "subject": "Software Engineering & Project Management",
+    "tagline": "Learn. Grow. Get Certified."
+  },
+  "contentParameters": {
+    "totalPlannedCourses": 30,
+    "initialLaunchCourses": 8,
+    "remainingPlannedCourses": 22,
+    "videoHoursPerCourse": 12,
+    "recordingEditingRatio": 3,
+    "effortHoursPerCourse": 36,
+    "effortHours8Courses": 288,
+    "effortHours30Courses": 1080
+  },
+  "resourceCapacity": {
+    "editorsCount": 2,
+    "weeklyHoursPerEditor": 30,
+    "totalWeeklyEditingBandwidthHours": 60,
+    "softwareDevWeeks": 10.0,
+    "duration8CoursesWeeks": 4.8,
+    "duration30CoursesWeeks": 18.0,
+    "criticalPathConstraint": "Content Production (18.0 Weeks vs Software Dev 10.0 Weeks)"
+  },
+  "financialProjections": {
+    "courseFeeINR": 4500,
+    "projectedEnrolmentsPerCourseYear": 150,
+    "annualRevenuePerCourseINR": 675000,
+    "annualRevenue8CoursesINR": 5400000,
+    "annualRevenue30CoursesINR": 20250000
+  },
+  "qualityAssurance": {
+    "quizPassThresholdPercent": 70,
+    "questionsPerQuiz": 10,
+    "passingScoreMinimum": 7,
+    "testedDREPercent": 94.2,
+    "defectDensityPerKLOC": 1.2
+  }
+}

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Back — CourseCraft</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body class="login-body">
+
+  <div class="login-wrapper">
+    
+    <!-- LEFT COLUMN: Clean White Form -->
+    <div class="login-form-side">
+      <div>
+        
+        <!-- Brand Logo Header -->
+        <div class="brand-header">
+          <div class="brand-logo-login">
+            <svg width="54" height="54" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+              <!-- Graduation Mortarboard Cap -->
+              <g class="mortarboard">
+                <!-- Diamond Top -->
+                <path d="M50 14L82 27L50 40L18 27L50 14Z" fill="#1e1b4b"/>
+                <!-- Skull Cap Underside -->
+                <path d="M30 33.5V42C30 46.5 39 50 50 50C61 50 70 46.5 70 42V33.5L50 41L30 33.5Z" fill="#0f172a"/>
+                <!-- Tassel -->
+                <path d="M26 31V45C26 47 24 49 24 51" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="26" cy="30" r="2.5" fill="#f43f5e"/>
+                <rect x="22.5" y="49" width="3" height="6" rx="1.5" fill="#f43f5e"/>
+              </g>
+
+              <!-- Left Open Pages (Pink/Magenta Spectrum) -->
+              <g class="left-pages">
+                <!-- Back Translucent Pink Page -->
+                <path d="M31 38C35 44 46 62 48 82C35 77 22 55 31 38Z" fill="#fb7185" fill-opacity="0.75"/>
+                <!-- Front Solid Magenta Page -->
+                <path d="M19 48L46 59C45 74 46 82 46 86C27 78 17 56 19 48Z" fill="#e11d48"/>
+              </g>
+
+              <!-- Right Open Pages (Cyan/Teal Spectrum) -->
+              <g class="right-pages">
+                <!-- Back Translucent Sky Blue Page -->
+                <path d="M69 38C65 44 54 62 52 82C65 77 78 55 69 38Z" fill="#38bdf8" fill-opacity="0.75"/>
+                <!-- Front Solid Deep Cyan/Teal Page -->
+                <path d="M81 48L54 59C55 74 54 82 54 86C73 78 83 56 81 48Z" fill="#0284c7"/>
+              </g>
+            </svg>
+            <span class="brand-name">CourseCraft</span>
+          </div>
+        </div>
+
+        <h1 class="welcome-title">Welcome back !</h1>
+        <p class="welcome-subtitle">
+          Enter to get unlimited access to university courses & certifications.
+        </p>
+
+        <!-- 1-Click Persona Pre-Fill Selector Pills -->
+        <div class="persona-pills-container">
+          <div class="persona-pills-grid">
+            <button type="button" id="pill-student" onclick="prefillPersona('student')" class="persona-pill-btn active">
+              <span>🎓</span> Student
+            </button>
+            <button type="button" id="pill-faculty" onclick="prefillPersona('faculty')" class="persona-pill-btn">
+              <span>👨‍🏫</span> Faculty
+            </button>
+            <button type="button" id="pill-admin" onclick="prefillPersona('admin')" class="persona-pill-btn">
+              <span>🛡️</span> Admin
+            </button>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <form id="main-login-form" onsubmit="handleLoginSubmit(event)">
+          
+          <!-- Email Input -->
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email *</label>
+            <div class="input-with-icon">
+              <input 
+                type="email" 
+                id="login-email" 
+                class="form-input" 
+                placeholder="Enter your mail address" 
+                value="student@university.edu" 
+                required 
+                autocomplete="email"
+              >
+            </div>
+          </div>
+
+          <!-- Password Input with Show/Hide Toggle -->
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password *</label>
+            <div class="input-with-icon">
+              <input 
+                type="password" 
+                id="login-password" 
+                class="form-input" 
+                placeholder="Enter password" 
+                value="universityPass123" 
+                required 
+                autocomplete="current-password"
+              >
+              <button type="button" id="btn-toggle-pass" class="password-toggle-btn" onclick="togglePasswordVisibility()" title="Show/Hide Password">
+                👁️
+              </button>
+            </div>
+          </div>
+
+          <!-- Hidden Role tracker -->
+          <input type="hidden" id="login-role" value="student">
+
+          <!-- Options Row: Remember Me & Forgot Password -->
+          <div class="form-options-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="remember-me" checked>
+              <span>Remember me</span>
+            </label>
+            <a href="javascript:void(0)" onclick="alert('Password reset instructions sent to registered university email.')" class="forgot-link">
+              Forgot your password ?
+            </a>
+          </div>
+
+          <!-- Primary Submit Button -->
+          <button type="submit" id="btn-submit-login" class="btn-login-main">
+            Log In
+          </button>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: 3D Academic Illustration with Sky-Blue Wavy Background -->
+    <div class="login-art-side">
+      
+      <!-- Wavy Contour Liquid Lines Background SVG -->
+      <svg class="art-bg-wavy-svg" viewBox="0 0 500 650" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="pastel-blue-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#eff6ff"/>
+            <stop offset="50%" stop-color="#dbeafe"/>
+            <stop offset="100%" stop-color="#bfdbfe"/>
+          </linearGradient>
+        </defs>
+        <rect width="500" height="650" fill="url(#pastel-blue-bg)"/>
+        
+        <!-- Subtle Topographic Fluid Wavy Contours matching Image 2 -->
+        <path d="M-50,80 C120,40 200,160 350,110 C450,80 520,140 550,120" stroke="#93c5fd" stroke-width="28" stroke-linecap="round" opacity="0.3" fill="none"/>
+        <path d="M-30,220 C100,180 180,310 320,250 C440,200 500,280 550,260" stroke="#60a5fa" stroke-width="24" stroke-linecap="round" opacity="0.25" fill="none"/>
+        <path d="M-60,380 C80,320 220,460 360,400 C460,350 520,420 560,400" stroke="#93c5fd" stroke-width="32" stroke-linecap="round" opacity="0.35" fill="none"/>
+        <path d="M-40,540 C140,490 260,600 400,530 C480,490 530,560 560,540" stroke="#60a5fa" stroke-width="28" stroke-linecap="round" opacity="0.2" fill="none"/>
+        
+        <!-- Top Left Water Ripple Arc -->
+        <circle cx="60" cy="80" r="140" stroke="#bfdbfe" stroke-width="2" opacity="0.6" fill="none"/>
+        <circle cx="60" cy="80" r="200" stroke="#bfdbfe" stroke-width="1.5" opacity="0.4" fill="none"/>
+      </svg>
+
+      <!-- Content Layer: Branding & Circled Headline -->
+      <div class="art-content-layer">
+        
+        <div>
+          <!-- Headline with Orange Hand-Drawn Circled Marker (Matching Image 2) -->
+          <h2 class="art-headline">
+            Simplify Online Learning<br>
+            And Course <span class="highlight-circle-wrap">Certification</span>
+          </h2>
+          
+          <div style="font-size: 13px; color: #3b82f6; font-weight: 600; margin-top: 4px;">
+            University Continuing Education Centre • Case Study 108
+          </div>
+        </div>
+
+        <!-- 3D University Student Characters Visual (Matching Image 2) -->
+        <div class="art-students-visual">
+          <svg class="art-characters-svg" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- 3D Shading Gradients -->
+              <linearGradient id="dungaree-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f59e0b"/>
+                <stop offset="50%" stop-color="#d97706"/>
+                <stop offset="100%" stop-color="#b45309"/>
+              </linearGradient>
+              <linearGradient id="girl-skin" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a8715a"/>
+                <stop offset="100%" stop-color="#7c4a35"/>
+              </linearGradient>
+              <linearGradient id="boy-skin" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8d5b4c"/>
+                <stop offset="100%" stop-color="#5c382e"/>
+              </linearGradient>
+              <linearGradient id="dark-tshirt" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#334155"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+              <linearGradient id="khaki-pants" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fef3c7"/>
+                <stop offset="50%" stop-color="#fde68a"/>
+                <stop offset="100%" stop-color="#d97706"/>
+              </linearGradient>
+              <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#1e3a8a" flood-opacity="0.25"/>
+              </filter>
+            </defs>
+
+            <!-- ============================================== -->
+            <!-- CHARACTER 1 (LEFT): Girl in Yellow Dungarees   -->
+            <!-- ============================================== -->
+            <g id="student-girl" filter="url(#soft-shadow)">
+              <!-- Body Torso / White T-Shirt Underneath -->
+              <path d="M85 200 C80 180 95 160 120 160 C145 160 160 180 155 200 Z" fill="#ffffff"/>
+              <!-- Yellow Dungarees / Overalls Body -->
+              <path d="M85 200 C85 200 80 280 80 380 L160 380 C160 280 155 200 155 200 Z" fill="url(#dungaree-yellow)"/>
+              
+              <!-- Overalls Bib Front -->
+              <path d="M92 195 L148 195 L152 245 C145 250 95 250 88 245 Z" fill="#d97706"/>
+              <!-- Overalls Straps -->
+              <rect x="94" y="160" width="12" height="38" rx="3" fill="#b45309"/>
+              <rect x="134" y="160" width="12" height="38" rx="3" fill="#b45309"/>
+              <!-- Metallic Buckle Buttons -->
+              <circle cx="100" cy="195" r="4.5" fill="#fef08a"/>
+              <circle cx="140" cy="195" r="4.5" fill="#fef08a"/>
+              
+              <!-- Dungarees Center Pocket -->
+              <rect x="105" y="210" width="30" height="22" rx="4" fill="#b45309" opacity="0.8"/>
+              <line x1="108" y1="216" x2="132" y2="216" stroke="#fef3c7" stroke-width="1.5" stroke-dasharray="2,2"/>
+
+              <!-- Left Arm with Peace Sign ✌️ -->
+              <!-- Upper Arm -->
+              <path d="M80 180 C60 190 55 230 65 245 C70 250 85 235 85 220 Z" fill="#ffffff"/>
+              <!-- Forearm Raised Upwards -->
+              <path d="M60 240 C55 230 50 170 60 150 C65 145 75 155 70 175 Z" fill="url(#girl-skin)"/>
+              <!-- Peace Sign Hand -->
+              <g transform="translate(56, 125)">
+                <!-- Palm Base -->
+                <circle cx="10" cy="22" r="8" fill="url(#girl-skin)"/>
+                <!-- Index & Middle Fingers (V Sign) -->
+                <rect x="4" y="4" width="5" height="18" rx="2.5" fill="url(#girl-skin)"/>
+                <rect x="11" y="4" width="5" height="18" rx="2.5" fill="url(#girl-skin)"/>
+                <!-- Folded Thumb & Fingers -->
+                <circle cx="14" cy="20" r="4.5" fill="#6d3a2b"/>
+              </g>
+
+              <!-- Right Arm Resting on Hip -->
+              <path d="M150 180 C165 190 175 220 165 240 C155 250 148 230 148 215 Z" fill="#ffffff"/>
+              <path d="M165 240 C168 250 155 285 148 290" stroke="url(#girl-skin)" stroke-width="16" stroke-linecap="round"/>
+
+              <!-- Neck -->
+              <rect x="112" y="142" width="16" height="20" rx="6" fill="url(#girl-skin)"/>
+              
+              <!-- Head & Face (3D Pixar Style) -->
+              <ellipse cx="120" cy="115" rx="24" ry="28" fill="url(#girl-skin)"/>
+              <!-- Cute Ears -->
+              <circle cx="96" cy="116" r="6.5" fill="url(#girl-skin)"/>
+              <circle cx="144" cy="116" r="6.5" fill="url(#girl-skin)"/>
+              
+              <!-- Modern Cropped Hair Cut -->
+              <path d="M96 110 C92 75 148 75 144 110 C140 85 100 85 96 110 Z" fill="#1e1b4b"/>
+              <ellipse cx="120" cy="92" rx="24" ry="14" fill="#0f172a"/>
+              <!-- Face Features -->
+              <!-- Eyes with 3D Catchlight -->
+              <ellipse cx="112" cy="112" rx="3.5" ry="4.5" fill="#0f172a"/>
+              <circle cx="113" cy="110" r="1.5" fill="#ffffff"/>
+              <ellipse cx="128" cy="112" rx="3.5" ry="4.5" fill="#0f172a"/>
+              <circle cx="129" cy="110" r="1.5" fill="#ffffff"/>
+              <!-- Friendly Smile -->
+              <path d="M114 126 Q120 134 126 126" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M114 126 Q120 134 126 126" stroke="#4a1d12" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </g>
+
+            <!-- ============================================== -->
+            <!-- CHARACTER 2 (RIGHT): Guy in Glasses & Dark Tee -->
+            <!-- ============================================== -->
+            <g id="student-boy" filter="url(#soft-shadow)">
+              <!-- Torso / Dark Fitted T-Shirt -->
+              <path d="M175 190 C170 160 270 160 265 190 L265 300 C240 305 200 305 175 300 Z" fill="url(#dark-tshirt)"/>
+              <!-- T-Shirt Crew Neck -->
+              <path d="M205 160 C205 170 235 170 235 160 Z" fill="#475569"/>
+
+              <!-- Khaki Cargo Pants -->
+              <path d="M175 295 L175 380 L265 380 L265 295 C240 300 200 300 175 295 Z" fill="#f5f5f4"/>
+              <path d="M220 310 L220 380" stroke="#d6d3d1" stroke-width="2"/>
+              <!-- Belt Line -->
+              <rect x="175" y="293" width="90" height="8" rx="2" fill="#1e293b"/>
+
+              <!-- Left Arm (Near Girl) Hanging Casual -->
+              <path d="M175 180 C165 200 165 250 175 270" stroke="#1e293b" stroke-width="20" stroke-linecap="round"/>
+              <path d="M172 260 C170 280 170 300 172 320" stroke="url(#boy-skin)" stroke-width="15" stroke-linecap="round"/>
+
+              <!-- Right Arm with Hand in Pocket & Smart Watch -->
+              <path d="M260 180 C278 200 285 240 275 265" stroke="#1e293b" stroke-width="20" stroke-linecap="round"/>
+              <path d="M275 260 C270 275 258 285 252 295" stroke="url(#boy-skin)" stroke-width="15" stroke-linecap="round"/>
+              <!-- Black Smart Watch -->
+              <rect x="264" y="268" width="10" height="12" rx="3" fill="#0f172a"/>
+              <circle cx="269" cy="274" r="3" fill="#38bdf8"/>
+
+              <!-- Neck -->
+              <rect x="210" y="138" width="20" height="24" rx="8" fill="url(#boy-skin)"/>
+
+              <!-- Head & Face -->
+              <ellipse cx="220" cy="110" rx="26" ry="30" fill="url(#boy-skin)"/>
+              <!-- Ears -->
+              <circle cx="194" cy="112" r="7" fill="url(#boy-skin)"/>
+              <circle cx="246" cy="112" r="7" fill="url(#boy-skin)"/>
+
+              <!-- Stylish Textured Fade Haircut -->
+              <path d="M194 105 C190 68 250 68 246 105 C240 80 200 80 194 105 Z" fill="#09090b"/>
+              <ellipse cx="220" cy="85" rx="26" ry="16" fill="#18181b"/>
+
+              <!-- Black Modern Glasses (Matching Image 2) -->
+              <rect x="200" y="102" width="18" height="14" rx="4" fill="none" stroke="#09090b" stroke-width="3"/>
+              <rect x="222" y="102" width="18" height="14" rx="4" fill="none" stroke="#09090b" stroke-width="3"/>
+              <line x1="218" y1="108" x2="222" y2="108" stroke="#09090b" stroke-width="3"/>
+              <!-- Glasses Ear Frame -->
+              <line x1="194" y1="108" x2="200" y2="108" stroke="#09090b" stroke-width="2.5"/>
+              <line x1="240" y1="108" x2="246" y2="108" stroke="#09090b" stroke-width="2.5"/>
+
+              <!-- Eyes Behind Glasses -->
+              <ellipse cx="209" cy="109" rx="3.5" ry="4.5" fill="#0f172a"/>
+              <circle cx="210" cy="107" r="1.5" fill="#ffffff"/>
+              <ellipse cx="231" cy="109" rx="3.5" ry="4.5" fill="#0f172a"/>
+              <circle cx="232" cy="107" r="1.5" fill="#ffffff"/>
+
+              <!-- Confident Wide Smile with White Teeth -->
+              <path d="M211 126 C211 135 229 135 229 126 Z" fill="#ffffff"/>
+              <path d="M209 125 C211 137 229 137 231 125" stroke="#3e1b10" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="/data/coursecraft-data.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/ui-utils.js"></script>
+  
+  <script>
+    // Persona predefined credentials
+    const PERSONA_DATA = {
+      student: {
+        email: "student@university.edu",
+        password: "universityPass123",
+        role: "student",
+        name: "Priya Sharma"
+      },
+      faculty: {
+        email: "faculty@university.edu",
+        password: "universityPass123",
+        role: "faculty",
+        name: "Dr. Aarav Sharma"
+      },
+      admin: {
+        email: "admin@university.edu",
+        password: "universityPass123",
+        role: "admin",
+        name: "Prof. Rajesh Nair"
+      }
+    };
+
+    // 1-Click Persona Pre-Fill Function
+    function prefillPersona(roleKey) {
+      const data = PERSONA_DATA[roleKey] || PERSONA_DATA.student;
+      
+      // Pre-fill input fields
+      const emailInput = document.getElementById('login-email');
+      const passInput = document.getElementById('login-password');
+      const roleInput = document.getElementById('login-role');
+      
+      emailInput.value = data.email;
+      passInput.value = data.password;
+      roleInput.value = data.role;
+
+      // Update Pill UI active states
+      document.querySelectorAll('.persona-pill-btn').forEach(btn => btn.classList.remove('active'));
+      const activePill = document.getElementById(`pill-${roleKey}`);
+      if (activePill) activePill.classList.add('active');
+
+      // Visual focus pulse animation
+      emailInput.style.backgroundColor = '#ffffff';
+      emailInput.style.borderColor = '#5542f6';
+      setTimeout(() => {
+        emailInput.style.backgroundColor = '';
+        emailInput.style.borderColor = '';
+      }, 400);
+
+      // Toast feedback
+      UIUtils.showToast(`Prefilled ${data.name} (${data.role.toUpperCase()}) credentials`, 'info', 1800);
+    }
+
+    // Toggle Password Visibility (Eye icon)
+    function togglePasswordVisibility() {
+      const passInput = document.getElementById('login-password');
+      const btn = document.getElementById('btn-toggle-pass');
+      
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        btn.innerText = '🔒';
+      } else {
+        passInput.type = 'password';
+        btn.innerText = '👁️';
+      }
+    }
+
+    // Main Login Submission Handler
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const pass = document.getElementById('login-password').value;
+      const role = document.getElementById('login-role').value;
+      const submitBtn = document.getElementById('btn-submit-login');
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Signing In...';
+
+      try {
+        const user = await CourseCraftAuth.login(email, pass, role);
+        UIUtils.showToast(`Welcome, ${user.name}! Accessing ${user.role.toUpperCase()} portal...`, 'success');
+        
+        const targetRedirect = user.role === 'admin' 
+          ? '/administrator/dashboard.html' 
+          : (user.role === 'faculty' ? '/faculty/dashboard.html' : '/student/dashboard.html');
+        
+        setTimeout(() => {
+          window.location.href = targetRedirect;
+        }, 400);
+      } catch (err) {
+        UIUtils.showToast('Authentication error: ' + err.message, 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Log In';
+      }
+    }
+  </script>
+</body>
+</html>

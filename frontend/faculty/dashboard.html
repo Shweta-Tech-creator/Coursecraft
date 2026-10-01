@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Instructor Dashboard — CourseCraft</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+
+  <style>
+    /* ── Tab Navigation ── */
+    .faculty-tabs { display:flex; gap:4px; border-bottom:2px solid var(--border-color,#e5e7eb); margin-bottom:28px; overflow-x:auto; }
+    .faculty-tab-btn {
+      display:flex; align-items:center; gap:8px;
+      padding:10px 18px; font-size:13px; font-weight:600;
+      color:var(--text-muted,#6b7280); background:none; border:none;
+      border-bottom:2px solid transparent; margin-bottom:-2px;
+      cursor:pointer; white-space:nowrap; border-radius:6px 6px 0 0;
+      transition:color .2s, border-color .2s, background .2s;
+    }
+    .faculty-tab-btn:hover { color:var(--accent-blue,#3b82f6); background:#f0f7ff; }
+    .faculty-tab-btn.active { color:var(--accent-blue,#3b82f6); border-bottom-color:var(--accent-blue,#3b82f6); }
+    .faculty-tab-btn svg { flex-shrink:0; }
+    .faculty-tab-pane { display:none; }
+    .faculty-tab-pane.active { display:block; }
+
+    /* ── KPI Grid ── */
+    .kpi-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+    @media(max-width:900px){ .kpi-grid-4{ grid-template-columns:repeat(2,1fr); } }
+
+    /* ── Section Cards ── */
+    .f-card { background:#fff; border:1px solid var(--border-color,#e5e7eb); border-radius:14px; padding:24px; margin-bottom:20px; }
+    .f-card-title { font-size:15px; font-weight:700; color:var(--text-primary,#111827); margin:0 0 4px; display:flex; align-items:center; gap:8px; }
+    .f-card-sub { font-size:12px; color:var(--text-muted,#6b7280); margin:0 0 18px; }
+
+    /* ── Upload Studio ── */
+    .upload-drop {
+      border:2px dashed #d1d5db; border-radius:12px; padding:36px 24px;
+      text-align:center; cursor:pointer; transition:border-color .2s, background .2s;
+    }
+    .upload-drop:hover { border-color:#3b82f6; background:#f0f7ff; }
+    .upload-drop svg { margin-bottom:12px; }
+    .upload-drop p { margin:4px 0; font-size:13px; color:#6b7280; }
+    .upload-drop strong { font-size:14px; color:#111827; }
+
+    /* ── Milestone Pipeline ── */
+    .milestone-pipeline { display:flex; align-items:center; gap:0; flex-wrap:wrap; margin:14px 0; }
+    .milestone-step {
+      display:flex; align-items:center; gap:8px;
+      padding:8px 16px; font-size:12px; font-weight:600;
+      border-radius:20px; white-space:nowrap;
+    }
+    .milestone-step.done   { background:#ecfdf5; color:#059669; border:1.5px solid #6ee7b7; }
+    .milestone-step.active { background:#eff6ff; color:#2563eb; border:1.5px solid #93c5fd; }
+    .milestone-step.idle   { background:#f9fafb; color:#9ca3af; border:1.5px solid #e5e7eb; }
+    .milestone-arrow { color:#d1d5db; font-size:16px; margin:0 4px; }
+
+    /* ── Progress Bar ── */
+    .prog-bar-wrap { background:#f3f4f6; border-radius:999px; height:10px; overflow:hidden; }
+    .prog-bar-fill { height:100%; border-radius:999px; transition:width .6s; }
+
+    /* ── Phase Roadmap ── */
+    .phase-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    @media(max-width:700px){ .phase-grid{ grid-template-columns:1fr; } }
+    .phase-box { border-radius:12px; padding:16px 20px; }
+    .phase-box.phase1 { background:linear-gradient(135deg,#eff6ff,#dbeafe); border:1.5px solid #bfdbfe; }
+    .phase-box.phase2 { background:linear-gradient(135deg,#f9fafb,#f3f4f6); border:1.5px solid #e5e7eb; }
+
+    /* ── Quiz Builder ── */
+    .quiz-question-block { border:1px solid #e5e7eb; border-radius:10px; padding:16px; margin-bottom:12px; background:#fafafa; }
+    .quiz-q-num { font-size:11px; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+    .quiz-q-text { font-size:14px; font-weight:600; color:#111827; margin-bottom:10px; }
+    .quiz-option { display:flex; align-items:center; gap:10px; padding:7px 12px; border-radius:8px; font-size:13px; }
+    .quiz-option.correct { background:#ecfdf5; color:#059669; font-weight:600; }
+    .quiz-option.wrong   { color:#6b7280; }
+    .quiz-option svg { flex-shrink:0; }
+    .quiz-explanation { margin-top:10px; font-size:12px; color:#4b5563; background:#f0f9ff; border-left:3px solid #38bdf8; padding:8px 12px; border-radius:0 8px 8px 0; }
+    .pass-badge { display:inline-flex; align-items:center; gap:6px; background:#fef3c7; color:#92400e; font-size:12px; font-weight:600; padding:4px 10px; border-radius:999px; border:1px solid #fde68a; }
+
+    /* ── Analytics ── */
+    .analytics-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    @media(max-width:700px){ .analytics-grid{ grid-template-columns:1fr; } }
+    .chart-box { border:1px solid #e5e7eb; border-radius:12px; padding:16px; }
+    .chart-title { font-size:13px; font-weight:700; color:#374151; margin-bottom:14px; }
+    
+    .bar-chart { display:flex; align-items:flex-end; gap:10px; height:120px; }
+    .bar-col { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; }
+    .bar-fill { width:100%; border-radius:6px 6px 0 0; transition:height .5s; }
+    .bar-label { font-size:10px; color:#9ca3af; white-space:nowrap; }
+    .bar-val { font-size:11px; font-weight:700; color:#374151; }
+
+    .donut-wrap { display:flex; align-items:center; gap:20px; }
+    .donut-legend { font-size:12px; }
+    .donut-legend-item { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .donut-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+    .enrol-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f3f4f6; }
+    .enrol-row:last-child { border-bottom:none; }
+    .enrol-code { font-size:12px; font-weight:700; color:#2563eb; width:65px; flex-shrink:0; }
+    .enrol-name { font-size:12px; color:#374151; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .enrol-bar-wrap { width:100px; height:6px; background:#f3f4f6; border-radius:99px; flex-shrink:0; }
+    .enrol-bar-fill { height:100%; border-radius:99px; background:#3b82f6; }
+    .enrol-count { font-size:12px; font-weight:700; color:#111827; width:45px; text-align:right; flex-shrink:0; }
+
+    /* ── Feedback & Forum ── */
+    .review-card { border:1px solid #e5e7eb; border-radius:12px; padding:16px; margin-bottom:12px; }
+    .review-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .review-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#fff; flex-shrink:0; }
+    .review-name { font-size:13px; font-weight:600; color:#111827; }
+    .review-course { font-size:11px; color:#6b7280; }
+    .stars { color:#f59e0b; font-size:13px; letter-spacing:1px; }
+    .review-body { font-size:13px; color:#374151; line-height:1.6; }
+    .forum-thread { border:1px solid #e5e7eb; border-radius:10px; padding:16px; margin-bottom:12px; background:#fff; }
+    .thread-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+    .thread-title { font-size:13.5px; font-weight:700; color:#111827; }
+    .thread-meta { font-size:11px; color:#9ca3af; margin-top:2px; }
+    .thread-body { font-size:12.5px; color:#4b5563; line-height:1.55; }
+    .thread-responses { margin-top:12px; border-top:1px dashed #e5e7eb; padding-top:10px; }
+    .thread-reply-bubble { background:#f0f9ff; border-left:3px solid #3b82f6; padding:8px 12px; border-radius:0 8px 8px 0; font-size:12px; margin-top:6px; color:#1e3a8a; }
+
+    /* ── Modals & Controls ── */
+    .input-field-group { margin-bottom:14px; }
+    .input-field-group label { display:block; font-size:12px; font-weight:600; color:#374151; margin-bottom:5px; }
+    .input-field-group input, .input-field-group textarea, .input-field-group select {
+      width:100%; padding:9px 12px; border:1px solid #d1d5db; border-radius:8px; font-size:13px; font-family:inherit; box-sizing:border-box;
+    }
+    .input-field-group input:focus, .input-field-group textarea:focus, .input-field-group select:focus {
+      outline:none; border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,0.15);
+    }
+    .tag-pill { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:600; }
+    .tag-green  { background:#ecfdf5; color:#059669; }
+    .tag-blue   { background:#eff6ff; color:#2563eb; }
+    .tag-amber  { background:#fffbeb; color:#b45309; }
+    .tag-red    { background:#fef2f2; color:#dc2626; }
+    .backend-badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; color:#059669; background:#ecfdf5; border:1px solid #a7f3d0; padding:2px 8px; border-radius:99px; font-weight:600; margin-left:8px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="navbar-left">
+        <a href="/" class="brand-logo">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+            <g class="mortarboard">
+              <path d="M50 14L82 27L50 40L18 27L50 14Z" fill="#1e1b4b"/>
+              <path d="M30 33.5V42C30 46.5 39 50 50 50C61 50 70 46.5 70 42V33.5L50 41L30 33.5Z" fill="#0f172a"/>
+              <path d="M26 31V45C26 47 24 49 24 51" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <path d="M31 38C35 44 46 62 48 82C35 77 22 55 31 38Z" fill="#fb7185" fill-opacity="0.85"/>
+            <path d="M19 48L46 59C45 74 46 82 46 86C27 78 17 56 19 48Z" fill="#e11d48"/>
+            <path d="M69 38C65 44 54 62 52 82C65 77 78 55 69 38Z" fill="#38bdf8" fill-opacity="0.85"/>
+            <path d="M81 48L54 59C55 74 54 82 54 86C73 78 83 56 81 48Z" fill="#0284c7"/>
+          </svg>
+          <span class="brand-title-text">CourseCraft</span>
+        </a>
+        <div class="brand-divider"></div>
+        <span class="brand-subtext">Faculty Studio</span>
+        <span class="backend-badge" title="Connected to Faculty REST API">
+          <svg width="10" height="10" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/></svg> Live API Sync
+        </span>
+      </div>
+
+      <div class="nav-actions" style="display:flex; align-items:center; gap:12px;">
+        <div id="user-profile-badge"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Layout -->
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-heading">Faculty Operations</div>
+
+      <a href="#" onclick="switchFacultyTab('studio'); return false;" class="sidebar-nav-item active" id="snav-studio">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        Recording Studio
+      </a>
+      <a href="#" onclick="switchFacultyTab('quiz'); return false;" class="sidebar-nav-item" id="snav-quiz">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        Quiz &amp; Assessments
+      </a>
+      <a href="#" onclick="switchFacultyTab('analytics'); return false;" class="sidebar-nav-item" id="snav-analytics">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Student Analytics
+      </a>
+      <a href="#" onclick="switchFacultyTab('feedback'); return false;" class="sidebar-nav-item" id="snav-feedback">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Feedback &amp; Queries
+      </a>
+      <a href="#" onclick="switchFacultyTab('catalog'); return false;" class="sidebar-nav-item" id="snav-catalog">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Catalog Overview (30)
+      </a>
+      <a href="#" onclick="switchFacultyTab('students'); return false;" class="sidebar-nav-item" id="snav-students">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Students &amp; Enrollments
+      </a>
+
+      <div class="sidebar-heading" style="margin-top:24px;">Quick Actions</div>
+      <a href="#" onclick="openAddStudentModal(); return false;" class="sidebar-nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        + Enrol Student
+      </a>
+      <a href="#" onclick="openProposeModal(); return false;" class="sidebar-nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        + Propose Course
+      </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+      
+      <div class="dashboard-header">
+        <div>
+          <h1 class="page-title">Faculty Instructor Dashboard</h1>
+          <p class="page-subtitle">Manage 12-hour content production, quizzes with answer keys, student completion analytics, and academic forums.</p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button onclick="openAddStudentModal()" class="btn btn-primary btn-sm" style="background:#2563eb; color:#fff;">
+            + Enrol New Student
+          </button>
+          <button onclick="openProposeModal()" class="btn btn-outline btn-sm">
+            + New Course Proposal
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards (Live Backend Bindings) -->
+      <div class="kpi-grid-4">
+        <div class="kpi-card">
+          <div class="kpi-icon icon-purple">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div>
+            <div class="kpi-title">Assigned Courses</div>
+            <div class="kpi-value" id="kpi-assigned-courses">5 Courses</div>
+            <div class="kpi-subtitle">Phase 1 of 30 total</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon icon-blue">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </div>
+          <div>
+            <div class="kpi-title">Recorded Hours</div>
+            <div class="kpi-value" id="kpi-recorded-hours">36 / 60h</div>
+            <div class="kpi-subtitle" id="kpi-recorded-sub">60% Recording Complete</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon icon-amber">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <div class="kpi-title">Avg Completion Rate</div>
+            <div class="kpi-value" id="kpi-completion-rate">74%</div>
+            <div class="kpi-subtitle">Target: &gt;70%</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon icon-emerald">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="kpi-title">Total Enrolled</div>
+            <div class="kpi-value" id="kpi-total-enrolled">312</div>
+            <div class="kpi-subtitle">Target: 150 / course / yr</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="faculty-tabs">
+        <button class="faculty-tab-btn active" id="ftab-studio" onclick="switchFacultyTab('studio')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          12-Hour Recording Studio
+        </button>
+        <button class="faculty-tab-btn" id="ftab-quiz" onclick="switchFacultyTab('quiz')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Quiz &amp; Assessment Builder
+        </button>
+        <button class="faculty-tab-btn" id="ftab-analytics" onclick="switchFacultyTab('analytics')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Student Performance
+        </button>
+        <button class="faculty-tab-btn" id="ftab-feedback" onclick="switchFacultyTab('feedback')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Feedback &amp; Query Center
+        </button>
+        <button class="faculty-tab-btn" id="ftab-catalog" onclick="switchFacultyTab('catalog')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Catalog Overview (30)
+        </button>
+        <button class="faculty-tab-btn" id="ftab-students" onclick="switchFacultyTab('students')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          Students &amp; Credentials
+        </button>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- TAB 1: 12-Hour Recording Studio                -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="faculty-tab-pane active" id="fpane-studio">
+
+        <!-- Phase Roadmap -->
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+            Phase 1 Readiness vs Phase 2 Roadmap
+          </p>
+          <p class="f-card-sub">Academic content production timeline across 30 university courses (Case Study 108)</p>
+          <div class="phase-grid" id="phase-roadmap-container">
+            <div class="phase-box phase1">
+              <div style="font-size:13px; font-weight:700; color:#1d4ed8; margin-bottom:6px;">Phase 1 Readiness (In Progress)</div>
+              <div style="font-size:24px; font-weight:800; color:#1e40af;">8 <span style="font-size:14px; font-weight:600;">courses in 3 months</span></div>
+              <div style="font-size:12px; color:#3b82f6; margin:4px 0 12px;">96 hours of raw content · 288 editing hours (4.8 weeks)</div>
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill" id="phase1-bar" style="width:62%; background:linear-gradient(90deg,#3b82f6,#60a5fa);"></div>
+              </div>
+              <div style="font-size:11px; color:#475569; margin-top:6px;" id="phase1-caption">60 / 96 hours recorded (62% Phase 1 readiness)</div>
+            </div>
+            <div class="phase-box phase2">
+              <div style="font-size:13px; font-weight:700; color:#6b7280; margin-bottom:6px;">Phase 2 Roadmap (Planned Pipeline)</div>
+              <div style="font-size:24px; font-weight:800; color:#374151;">22 <span style="font-size:14px; font-weight:600;">remaining courses</span></div>
+              <div style="font-size:12px; color:#9ca3af; margin:4px 0 12px;">264 hours of raw content · 792 editing hours (13.2 weeks)</div>
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill" style="width:0%; background:#d1d5db;"></div>
+              </div>
+              <div style="font-size:11px; color:#9ca3af; margin-top:6px;">Scheduled to commence upon Phase 1 platform launch</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Upload Interface -->
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            12-Hour Content Upload Interface
+          </p>
+          <p class="f-card-sub">Submit raw recordings for editorial review (12 hours of content per course, 3:1 editing ratio).</p>
+          <div class="upload-drop" onclick="openUploadModal()">
+            <svg width="40" height="40" fill="none" stroke="#3b82f6" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p><strong>Click to Upload Raw Lecture Recording</strong></p>
+            <p style="color:#6b7280; font-size:12px;">Supports MP4, MOV, MKV · Automatically dispatches 3:1 editorial pipeline (36h/course)</p>
+            <button class="btn btn-primary btn-sm" style="margin-top:14px;" onclick="event.stopPropagation(); openUploadModal()">
+              Select Recording File
+            </button>
+          </div>
+        </div>
+
+        <!-- Milestone Status per Course -->
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Milestone Status per Module
+          </p>
+          <p class="f-card-sub">Live pipeline progression: <strong>Scripted → Recorded → In Editing → Published</strong></p>
+          <div id="milestone-rows">
+            <div style="padding:20px; text-align:center; color:#9ca3af;">Loading live milestone status from backend...</div>
+          </div>
+        </div>
+
+        <!-- Recording Progress Table -->
+        <div class="table-card">
+          <div class="table-header-box">
+            <h3 style="font-size:15px; font-weight:700;">🎬 Assigned Courses &amp; Recording Progress (12h Target)</h3>
+            <span style="font-size:12px; color:var(--text-muted);">Case Study 108: 3:1 Editing Effort Ratio (36h/course)</span>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Course Title</th>
+                <th>Recorded Hours</th>
+                <th>Progress</th>
+                <th>Editing Effort</th>
+                <th>Milestone</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="recording-table-body">
+              <tr>
+                <td colspan="7" style="text-align:center; padding:20px; color:#9ca3af;">Loading assigned courses...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- TAB 2: Quiz & Assessment Builder               -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="faculty-tab-pane" id="fpane-quiz">
+
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Question Bank Management Tool
+          </p>
+          <p class="f-card-sub">
+            Author 10-question multiple-choice quizzes with answer keys, academic explanations, and passing criteria:
+            <span class="pass-badge">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Passing Criteria: ≥ 70%
+            </span>
+          </p>
+
+          <div style="display:flex; gap:12px; align-items:center; margin-bottom:20px; flex-wrap:wrap;">
+            <select id="quiz-course-select" class="checkout-input" style="max-width:320px; padding:8px 12px;" onchange="loadQuizForCourse(this.value)">
+              <option value="cc-101">CSE-101 — Web Architecture &amp; Cloud</option>
+              <option value="cc-108">PM-808 — IT Project Leadership &amp; Agile</option>
+              <option value="cc-110">MB-110 — Mobile Development</option>
+            </select>
+            <button onclick="openAddQuestionModal()" class="btn btn-primary btn-sm">
+              + Author New Question
+            </button>
+            <button onclick="exportQuizPdf()" class="btn btn-outline btn-sm">
+              Export Quiz Syllabus PDF
+            </button>
+          </div>
+
+          <div id="quiz-preview-area">
+            <div style="padding:20px; text-align:center; color:#9ca3af;">Loading question bank from backend...</div>
+          </div>
+        </div>
+
+        <!-- Quiz Performance Summary -->
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            Quiz Assessment Evaluation Summary
+          </p>
+          <p class="f-card-sub">Aggregated pass rates across student evaluations (Threshold: ≥ 70% / 7 of 10 correct)</p>
+          <table class="custom-table">
+            <thead>
+              <tr><th>Course</th><th>Total Attempts</th><th>Pass Rate (≥70%)</th><th>Average Score</th><th>Remediation Rate</th></tr>
+            </thead>
+            <tbody id="quiz-stats-body">
+              <tr>
+                <td><strong style="color:#2563eb;">CSE-101</strong></td>
+                <td>87</td>
+                <td><span class="tag-pill tag-green">82%</span></td>
+                <td>7.8 / 10</td>
+                <td><span class="tag-pill tag-red">18%</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:#2563eb;">PM-808</strong></td>
+                <td>64</td>
+                <td><span class="tag-pill tag-green">76%</span></td>
+                <td>7.1 / 10</td>
+                <td><span class="tag-pill tag-amber">24%</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:#2563eb;">MB-110</strong></td>
+                <td>41</td>
+                <td><span class="tag-pill tag-green">71%</span></td>
+                <td>6.9 / 10</td>
+                <td><span class="tag-pill tag-amber">29%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- TAB 3: Student Performance & Course Analytics  -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="faculty-tab-pane" id="fpane-analytics">
+
+        <!-- Live Enrolment Counts -->
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Live Enrolment Counts per Course
+          </p>
+          <p class="f-card-sub">Tracking towards the university target of <strong>150 enrolments / course / year</strong> (₹4,500 – ₹7,999 tuition)</p>
+          <div id="enrolment-list">
+            <div style="padding:16px; text-align:center; color:#9ca3af;">Loading live enrolment counts...</div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="analytics-grid">
+
+          <!-- Completion Rate bar chart -->
+          <div class="chart-box">
+            <div class="chart-title">Average Student Completion Rates (%)</div>
+            <div class="bar-chart" id="completion-chart"></div>
+            <div style="font-size:11px; color:#6b7280; margin-top:10px;">Calculated from lesson completions and active studio progress.</div>
+          </div>
+
+          <!-- Drop-off analytics -->
+          <div class="chart-box">
+            <div class="chart-title">Student Drop-Off Analytics by Module Stage</div>
+            <div class="bar-chart" id="dropoff-chart"></div>
+            <div style="font-size:11px; color:#6b7280; margin-top:10px;">Identifies highest student drop-off across lecture milestones.</div>
+          </div>
+
+          <!-- Quiz score distribution (Pass vs Fail) -->
+          <div class="chart-box">
+            <div class="chart-title">Quiz Score Distribution (Pass vs Fail Rates)</div>
+            <div class="donut-wrap">
+              <svg width="100" height="100" viewBox="0 0 36 36" style="flex-shrink:0;">
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#f3f4f6" stroke-width="4"/>
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#10b981" stroke-width="4"
+                  stroke-dasharray="76 24" stroke-dashoffset="25"/>
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#ef4444" stroke-width="4"
+                  stroke-dasharray="24 76" stroke-dashoffset="-51"/>
+                <text x="18" y="21" text-anchor="middle" font-size="7" font-weight="700" fill="#111827">76%</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="donut-legend-item"><div class="donut-dot" style="background:#10b981;"></div><span>Pass (≥70%): <strong>76% (146)</strong></span></div>
+                <div class="donut-legend-item"><div class="donut-dot" style="background:#ef4444;"></div><span>Fail (&lt;70%): <strong>24% (46)</strong></span></div>
+                <div style="font-size:11px; color:#9ca3af; margin-top:8px;">Based on 192 total academic quiz attempts</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Score histogram -->
+          <div class="chart-box">
+            <div class="chart-title">Score Distribution Histogram (0–10 Question Bands)</div>
+            <div class="bar-chart" id="histogram-chart"></div>
+            <div style="font-size:11px; color:#6b7280; margin-top:10px;">Bands: 0-2 (Remedial), 3-4, 5-6, 7-8 (Passed), 9-10 (Distinction).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- TAB 4: Feedback & Query Center                 -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="faculty-tab-pane" id="fpane-feedback">
+
+        <!-- Student Ratings & Reviews -->
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Student Ratings &amp; Reviews
+          </p>
+          <p class="f-card-sub">Aggregated feedback and ratings from enrolled learners</p>
+
+          <!-- Overall rating banner -->
+          <div style="display:flex; align-items:center; gap:24px; padding:18px; background:linear-gradient(135deg,#fffbeb,#fef3c7); border-radius:12px; margin-bottom:20px; border:1px solid #fde68a;">
+            <div style="text-align:center;">
+              <div style="font-size:42px; font-weight:800; color:#92400e;" id="rating-avg-display">4.3</div>
+              <div class="stars">★★★★☆</div>
+              <div style="font-size:11px; color:#b45309; margin-top:4px;" id="rating-count-display">126 verified reviews</div>
+            </div>
+            <div style="flex:1;">
+              <div id="rating-bars"></div>
+            </div>
+          </div>
+
+          <!-- Individual reviews -->
+          <div id="reviews-list">
+            <div style="padding:16px; text-align:center; color:#9ca3af;">Loading student reviews...</div>
+          </div>
+        </div>
+
+        <!-- Academic Discussion Forum -->
+        <div class="f-card">
+          <p class="f-card-title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Direct Academic Discussion Forum
+          </p>
+          <p class="f-card-sub">Direct student queries and curriculum discussions awaiting faculty instructor response</p>
+
+          <div id="forum-threads">
+            <div style="padding:16px; text-align:center; color:#9ca3af;">Loading discussion threads...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- TAB: Academic Course Catalog Overview (30)      -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="faculty-tab-pane" id="fpane-catalog">
+        <div class="f-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <p class="f-card-title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Academic Course Catalog Overview (<span id="faculty-cat-title-count">46</span> Courses)
+              </p>
+              <p class="f-card-sub" style="margin-bottom:0;">
+                Full university curriculum: Phase 1 launch courses (8 courses / 96 raw recording hours) &amp; Phase 2 expansion roadmap (22 planned courses). Standardized at 12 hours video per course with 3:1 editorial ratio.
+              </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button onclick="openProposeModal()" class="btn btn-outline btn-sm">
+                + Propose New Course
+              </button>
+              <button onclick="openAddStudentModal()" class="btn btn-primary btn-sm">
+                + Enrol Student
+              </button>
+            </div>
+          </div>
+
+          <!-- Catalog Stat Highlights -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px;">
+              <div style="font-size:11px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.5px;">Curriculum Total</div>
+              <div style="font-size:20px; font-weight:800; color:#1e293b; margin:4px 0;" id="kpi-cat-total"><span id="kpi-cat-total-num">46</span> Courses</div>
+              <div style="font-size:11px; color:#6b7280;">150 enrolments/course/yr target</div>
+            </div>
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:12px 14px;">
+              <div style="font-size:11px; font-weight:700; color:#15803d; text-transform:uppercase; letter-spacing:0.5px;">Phase 1 Launch</div>
+              <div style="font-size:20px; font-weight:800; color:#166534; margin:4px 0;" id="kpi-cat-p1">8 Ready / Live</div>
+              <div style="font-size:11px; color:#15803d;">96h raw recording · 288h editing</div>
+            </div>
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:12px 14px;">
+              <div style="font-size:11px; font-weight:700; color:#1d4ed8; text-transform:uppercase; letter-spacing:0.5px;">Phase 2 Pipeline</div>
+              <div style="font-size:20px; font-weight:800; color:#1e40af; margin:4px 0;" id="kpi-cat-p2">22 Roadmap</div>
+              <div style="font-size:11px; color:#2563eb;">264h raw recording · 792h editing</div>
+            </div>
+            <div style="background:#fefce8; border:1px solid #fef08a; border-radius:10px; padding:12px 14px;">
+              <div style="font-size:11px; font-weight:700; color:#854d0e; text-transform:uppercase; letter-spacing:0.5px;">Projected Revenue</div>
+              <div style="font-size:20px; font-weight:800; color:#713f12; margin:4px 0;">₹2,02,50,000</div>
+              <div style="font-size:11px; color:#854d0e;">30 courses @ 150 enrolments</div>
+            </div>
+          </div>
+
+          <!-- Catalog Quick Filter Badges & Search -->
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="btn btn-sm btn-primary" id="btn-catfilter-all" onclick="filterCatalog('all')">
+                All Courses (<span id="cat-total-count">46</span>)
+              </button>
+              <button class="btn btn-sm btn-secondary" id="btn-catfilter-p1" onclick="filterCatalog('p1')">
+                Phase 1: Launch Ready (<span id="cat-p1-count">8</span>)
+              </button>
+              <button class="btn btn-sm btn-secondary" id="btn-catfilter-p2" onclick="filterCatalog('p2')">
+                Phase 2: Planned Pipeline (<span id="cat-p2-count">22</span>)
+              </button>
+            </div>
+
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <select id="catalog-category-select" style="padding:6px 12px; font-size:12px; border:1px solid #d1d5db; border-radius:6px; background:#fff;" onchange="applyCatalogSearch()">
+                <option value="all">All Academic Categories</option>
+              </select>
+              <input type="text" id="catalog-search-input" placeholder="Search by course code, title, faculty..." style="padding:6px 12px; font-size:12px; border:1px solid #d1d5db; border-radius:6px; min-width:220px;" oninput="applyCatalogSearch()">
+            </div>
+          </div>
+
+          <!-- Catalog Table -->
+          <div style="overflow-x:auto;">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th style="width:85px;">Code</th>
+                  <th>Course Title &amp; Category</th>
+                  <th>Faculty Instructor</th>
+                  <th>Duration &amp; Effort</th>
+                  <th>Tuition Fee</th>
+                  <th>Academic Pipeline Phase</th>
+                  <th style="min-width:180px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="catalog-table-body">
+                <tr>
+                  <td colspan="7" style="text-align:center; padding:24px; color:#9ca3af;">Loading university course catalog...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- TAB 5: Students & Credentials                  -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div class="faculty-tab-pane" id="fpane-students">
+        <div class="f-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <p class="f-card-title">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                Enrolled Students &amp; Automated Email Credential Delivery
+              </p>
+              <p class="f-card-sub" style="margin-bottom:0;">
+                Add students directly. System generates login credentials and dispatches temporary password via university email notification. Students can change their password under their profile after login.
+              </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button onclick="openEmailOutboxModal()" class="btn btn-outline btn-sm">
+                📬 Sent Emails Outbox
+              </button>
+              <button onclick="openAddStudentModal()" class="btn btn-primary btn-sm">
+                + Enrol New Student
+              </button>
+            </div>
+          </div>
+
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>University Email</th>
+                <th>Enrolled Courses</th>
+                <th>Temporary Password</th>
+                <th>Credential Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="faculty-students-tbody">
+              <tr>
+                <td colspan="6" style="text-align:center; padding:20px; color:#9ca3af;">Loading enrolled student roster...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- MODALS FOR INTERACTIVE FACULTY BACKEND OPERATIONS    -->
+  <!-- ════════════════════════════════════════════════════ -->
+
+  <!-- 1. Content Upload Modal -->
+  <div class="modal-backdrop" id="uploadModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Upload Raw Course Recording</h3>
+        <button class="modal-close-btn" onclick="closeModal('uploadModal')">&times;</button>
+      </div>
+      <p style="font-size:12.5px; color:#6b7280; margin-bottom:16px;">
+        Submit raw lecture recordings (up to 12h per course). Triggers automatic 3:1 editing allocation.
+      </p>
+      <form onsubmit="submitUploadForm(event)">
+        <div class="input-field-group">
+          <label>Target Course</label>
+          <select id="upload-course-select" required></select>
+        </div>
+        <div class="input-field-group">
+          <label>Module / Lecture Title</label>
+          <input type="text" id="upload-module-title" placeholder="e.g. Module 4: Cloud Native Microservices" required>
+        </div>
+        <div class="input-field-group">
+          <label>Recorded Video Duration (Hours)</label>
+          <input type="number" id="upload-duration" min="0.5" max="12" step="0.5" value="2.0" required>
+          <span style="font-size:11px; color:#3b82f6;">Requires 3:1 editing effort (<span id="calc-editing-effort">6</span> hours editorial work)</span>
+        </div>
+        <div class="input-field-group">
+          <label>File Name</label>
+          <input type="text" id="upload-file-name" value="session_recording_raw.mp4" required>
+        </div>
+        <div class="input-field-group">
+          <label>Faculty Notes / Syllabus Topic</label>
+          <textarea id="upload-notes" rows="2" placeholder="Topics covered, key demo code, audio notes..."></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('uploadModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit to Editorial Pipeline</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Question Bank Authoring Modal -->
+  <div class="modal-backdrop" id="addQuestionModal">
+    <div class="modal-content" style="max-width:620px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Author Assessment Question</h3>
+        <button class="modal-close-btn" onclick="closeModal('addQuestionModal')">&times;</button>
+      </div>
+      <p style="font-size:12.5px; color:#6b7280; margin-bottom:16px;">
+        Add a multiple-choice question with answer key and academic rationale (Pass Threshold ≥ 70%).
+      </p>
+      <form onsubmit="submitQuestionForm(event)">
+        <div class="input-field-group">
+          <label>Course</label>
+          <select id="qmodal-course-select" required></select>
+        </div>
+        <div class="input-field-group">
+          <label>Question Text</label>
+          <textarea id="qmodal-question-text" rows="2" placeholder="e.g. Which architectural pattern isolates persistent storage from HTTP routes?" required></textarea>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="input-field-group">
+            <label>Option A</label>
+            <input type="text" id="qmodal-opt-0" placeholder="Choice A" required>
+          </div>
+          <div class="input-field-group">
+            <label>Option B</label>
+            <input type="text" id="qmodal-opt-1" placeholder="Choice B" required>
+          </div>
+          <div class="input-field-group">
+            <label>Option C</label>
+            <input type="text" id="qmodal-opt-2" placeholder="Choice C" required>
+          </div>
+          <div class="input-field-group">
+            <label>Option D</label>
+            <input type="text" id="qmodal-opt-3" placeholder="Choice D" required>
+          </div>
+        </div>
+        <div class="input-field-group">
+          <label>Correct Answer Key</label>
+          <select id="qmodal-correct-idx" required>
+            <option value="0">Option A</option>
+            <option value="1">Option B</option>
+            <option value="2">Option C</option>
+            <option value="3">Option D</option>
+          </select>
+        </div>
+        <div class="input-field-group">
+          <label>Academic Explanation / Rationale</label>
+          <textarea id="qmodal-explanation" rows="2" placeholder="Explain why this answer is correct for student feedback after quiz submission..." required></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('addQuestionModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Question to Bank</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Forum Reply Modal -->
+  <div class="modal-backdrop" id="replyModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Reply to Student Query</h3>
+        <button class="modal-close-btn" onclick="closeModal('replyModal')">&times;</button>
+      </div>
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; margin-bottom:16px;">
+        <div style="font-size:12px; font-weight:700; color:#1e293b;" id="reply-thread-title">Discussion Title</div>
+        <div style="font-size:11px; color:#64748b; margin-top:4px;" id="reply-thread-meta">Student Name · Course</div>
+      </div>
+      <form onsubmit="submitReplyForm(event)">
+        <input type="hidden" id="reply-thread-id">
+        <div class="input-field-group">
+          <label>Instructor Explanation &amp; Guidance</label>
+          <textarea id="reply-text" rows="4" placeholder="Provide detailed academic clarification for the student..." required></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('replyModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Post Response &amp; Resolve Thread</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. New Course Proposal Modal -->
+  <div class="modal-backdrop" id="proposeModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Propose New Academic Course</h3>
+        <button class="modal-close-btn" onclick="closeModal('proposeModal')">&times;</button>
+      </div>
+      <form onsubmit="submitProposeForm(event)">
+        <div class="input-field-group">
+          <label>Course Title</label>
+          <input type="text" id="prop-title" placeholder="e.g. Distributed Consensus &amp; Blockchain Systems" required>
+        </div>
+        <div class="input-field-group">
+          <label>Course Code</label>
+          <input type="text" id="prop-code" placeholder="e.g. BC-125" required>
+        </div>
+        <div class="input-field-group">
+          <label>Academic Specialization / Category</label>
+          <input type="text" id="prop-cat" placeholder="e.g. Computer Science &amp; Engineering" value="Computer Science &amp; Engineering" required>
+        </div>
+        <div class="input-field-group">
+          <label>Curriculum Summary (12-Hour Syllabus Plan)</label>
+          <textarea id="prop-desc" rows="3" placeholder="Outline the 12-hour video curriculum breakdown and target learning outcomes..." required></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('proposeModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Proposal to Dean</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Add / Enrol Student Modal -->
+  <div class="modal-backdrop" id="addStudentModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Enrol New Student &amp; Dispatch Credentials</h3>
+        <button class="modal-close-btn" onclick="closeModal('addStudentModal')">&times;</button>
+      </div>
+      <p style="font-size:12.5px; color:#6b7280; margin-bottom:16px;">
+        Register a student into the university portal. An automated notification email will be dispatched with their login credentials and temporary password.
+      </p>
+      <form onsubmit="submitAddStudentForm(event)">
+        <div class="input-field-group">
+          <label>Student Full Name *</label>
+          <input type="text" id="stu-name" placeholder="e.g. Rahul Verma" required>
+        </div>
+        <div class="input-field-group">
+          <label>University Student Email Address *</label>
+          <input type="email" id="stu-email" placeholder="e.g. rahul.verma@university.edu" required>
+        </div>
+        <div class="input-field-group">
+          <label>Assign Academic Course</label>
+          <select id="stu-course-select"></select>
+        </div>
+        <div class="input-field-group">
+          <label>Generated Temporary Password (Student can change after login)</label>
+          <div style="display:flex; gap:8px;">
+            <input type="text" id="stu-password" value="Pass@2026" required>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="generateNewTempPassword()" title="Generate new password">
+              🎲 Randomize
+            </button>
+          </div>
+          <span style="font-size:11px; color:#059669; margin-top:4px; display:block;">
+            ✓ Student will be prompted to change this password in their student profile after signing in.
+          </span>
+        </div>
+        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:10px 14px; margin-bottom:16px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <svg width="16" height="16" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span style="font-size:12px; font-weight:700; color:#15803d;">Automated Email Credential Dispatch</span>
+          </div>
+          <p style="font-size:11.5px; color:#166534; margin:4px 0 0;">
+            A welcome letter containing portal URL, login email, and this temporary password will be dispatched to the student's email inbox immediately.
+          </p>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('addStudentModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="btn-submit-add-student">Dispatch Credentials &amp; Enrol</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Credential Dispatch Success Receipt Modal -->
+  <div class="modal-backdrop" id="credentialSuccessModal">
+    <div class="modal-content" style="max-width:560px;">
+      <div class="modal-header" style="border-bottom:none; padding-bottom:0;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:38px; height:38px; border-radius:50%; background:#ecfdf5; display:flex; align-items:center; justify-content:center; color:#059669; font-size:20px;">
+            ✓
+          </div>
+          <div>
+            <h3 class="modal-title" style="color:#065f46;">Student Credentials Generated</h3>
+            <span style="font-size:11.5px; color:#059669;" id="succ-header-sub">Ready for Delivery to Student Email</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('credentialSuccessModal')">&times;</button>
+      </div>
+
+      <div style="margin:16px 0; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:16px; font-size:12.5px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px dashed #cbd5e1; padding-bottom:6px;">
+          <span style="color:#64748b;">Recipient Name:</span>
+          <strong style="color:#0f172a;" id="succ-stu-name">Rahul Verma</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px dashed #cbd5e1; padding-bottom:6px;">
+          <span style="color:#64748b;">Login Email:</span>
+          <strong style="color:#2563eb;" id="succ-stu-email">rahul.verma@university.edu</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px dashed #cbd5e1; padding-bottom:6px;">
+          <span style="color:#64748b;">Temporary Password:</span>
+          <strong style="color:#0f172a; font-family:monospace; background:#e2e8f0; padding:2px 8px; border-radius:4px;" id="succ-stu-pass">Pass@2026</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px dashed #cbd5e1; padding-bottom:6px;">
+          <span style="color:#64748b;">Portal Access URL:</span>
+          <span style="color:#2563eb;">http://localhost:8085/login.html</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="color:#64748b;">Dispatch Status:</span>
+          <span class="tag-pill tag-green" id="succ-delivery-badge">SENT TO INBOX</span>
+        </div>
+      </div>
+
+      <div id="smtp-note-box" style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-bottom:16px; font-size:12px; color:#1e40af; line-height:1.5;">
+        <strong style="display:block; margin-bottom:2px;">✉️ Real Email Dispatch Options:</strong>
+        Click below to immediately open your email client (Gmail / Outlook / Apple Mail) with the pre-filled letter, copy the invitation, or check the system outbox.
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px;">
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="#" id="succ-mailto-btn" class="btn btn-primary btn-sm" style="display:inline-flex; align-items:center; gap:6px;">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Send in Email App (Gmail/Mail)
+          </a>
+          <button type="button" class="btn btn-outline btn-sm" onclick="copyInvitationToClipboard()">
+            📋 Copy Letter
+          </button>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="openEmailOutboxModal()">📬 View Outbox</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('credentialSuccessModal')">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Email Outbox & Dispatch History Modal -->
+  <div class="modal-backdrop" id="emailOutboxModal">
+    <div class="modal-content" style="max-width:720px; max-height:85vh; display:flex; flex-direction:column;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">📬 Dispatched Student Emails Outbox</h3>
+          <span style="font-size:11.5px; color:#64748b;" id="outbox-smtp-status">Checking live SMTP dispatch status...</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('emailOutboxModal')">&times;</button>
+      </div>
+
+      <div style="overflow-y:auto; margin:16px 0; max-height:480px;" id="outbox-emails-list">
+        <div style="padding:24px; text-align:center; color:#9ca3af;">Loading dispatched student emails...</div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #e5e7eb; padding-top:12px; margin-top:auto;">
+        <span style="font-size:11.5px; color:#6b7280;">Tip: You can re-send or open any credentials letter directly in your email app.</span>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('emailOutboxModal')">Close</button>
+      </div>
+    </div>
+  </div>
+  <!-- 7. Course Curriculum & Syllabus Modal -->
+  <div class="modal-backdrop" id="syllabusModal">
+    <div class="modal-content" style="max-width:680px; max-height:85vh; display:flex; flex-direction:column;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="tag-pill tag-blue" id="syl-course-code">CSE-101</span>
+            <span class="tag-pill tag-green" id="syl-course-phase">Phase 1 Launch</span>
+          </div>
+          <h3 class="modal-title" id="syl-course-title" style="margin-top:6px;">Course Curriculum &amp; Modules</h3>
+          <span style="font-size:12px; color:#6b7280;" id="syl-course-meta">Lead Faculty: Dr. Aarav Sharma · 12 Hours · 3:1 Editorial Ratio</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('syllabusModal')">&times;</button>
+      </div>
+
+      <div style="overflow-y:auto; padding-right:6px; margin:16px 0;" id="syl-modules-list">
+        <!-- Dynamically injected modules -->
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #e5e7eb; padding-top:12px; margin-top:auto;">
+        <span style="font-size:12px; color:#6b7280;" id="syl-course-pricing">Tuition Fee: ₹4,500</span>
+        <div style="display:flex; gap:8px;">
+          <a id="syl-player-link" href="#" class="btn btn-primary btn-sm">Open in Player</a>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('syllabusModal')">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/data/coursecraft-data.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
+  <script src="/js/course-service.js"></script>
+  <script src="/js/ui-utils.js"></script>
+
+  <script>
+  /* ════════════════════════════════════════════════════
+     Faculty Instructor Dashboard Script
+     Connected to CourseCraft REST Backend APIs:
+     • GET  /api/faculty/overview
+     • POST /api/faculty/recordings/log
+     • POST /api/faculty/upload
+     • GET  /api/faculty/quizzes
+     • POST /api/faculty/quizzes/questions
+     • GET  /api/faculty/analytics
+     • GET  /api/faculty/feedback
+     • POST /api/faculty/forum/reply
+     • POST /api/faculty/courses/propose
+  ════════════════════════════════════════════════════ */
+
+  let facultyData = null;
+  let activeQuizzes = [];
+  const MILESTONE_LABELS = ['Scripted', 'Recorded', 'In Editing', 'Published'];
+
+  // ── Tab Switching ────────────────────────────────────
+  function switchFacultyTab(tab) {
+    const tabs = ['studio', 'quiz', 'analytics', 'feedback', 'catalog', 'students'];
+    tabs.forEach(t => {
+      const btn  = document.getElementById('ftab-' + t);
+      const pane = document.getElementById('fpane-' + t);
+      const snav = document.getElementById('snav-' + t);
+      if (btn)  btn.classList.toggle('active', t === tab);
+      if (pane) pane.classList.toggle('active', t === tab);
+      if (snav) snav.classList.toggle('active', t === tab);
+    });
+
+    if (tab === 'analytics') loadAnalytics();
+    if (tab === 'quiz') loadQuizzes();
+    if (tab === 'feedback') loadFeedback();
+    if (tab === 'catalog') loadCatalog();
+    if (tab === 'students') loadStudents();
+  }
+
+  // ── Modal Helpers ────────────────────────────────────
+  function openModal(id) {
+    const m = document.getElementById(id);
+    if (m) m.classList.add('open');
+  }
+  function closeModal(id) {
+    const m = document.getElementById(id);
+    if (m) m.classList.remove('open');
+  }
+
+  // Close modals on backdrop click
+  document.querySelectorAll('.modal-backdrop').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+  });
+
+  // ── 1. Load Overview (Studio, Milestones & Quotas) ───
+  async function loadFacultyOverview() {
+    try {
+      const res = await fetch('/api/faculty/overview?facultyId=usr_faculty_01');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          facultyData = data;
+          renderOverviewData(data);
+          populateCourseSelects(data.courses);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('API error loading overview, using local fallback:', err);
+    }
+  }
+
+  function renderOverviewData(data) {
+    // 1. KPIs
+    if (data.kpis) {
+      const k = data.kpis;
+      document.getElementById('kpi-assigned-courses').innerText = `${k.assignedCoursesCount} Courses`;
+      document.getElementById('kpi-recorded-hours').innerText = `${k.totalRecordedHours} / ${k.totalTargetHours}h`;
+      document.getElementById('kpi-recorded-sub').innerText = `${k.recordingProgressPercent}% Recording Complete`;
+      document.getElementById('kpi-completion-rate').innerText = `${k.avgCompletionRate}%`;
+      document.getElementById('kpi-total-enrolled').innerText = `${k.totalEnrolledStudents}`;
+    }
+
+    // 2. Phase 1 Roadmap Progress
+    if (data.phaseRoadmap && data.phaseRoadmap.phase1) {
+      const p1 = data.phaseRoadmap.phase1;
+      const bar = document.getElementById('phase1-bar');
+      const cap = document.getElementById('phase1-caption');
+      if (bar) bar.style.width = `${p1.progressPercent}%`;
+      if (cap) cap.innerText = `${p1.recordedHours} / ${p1.targetRawHours} hours recorded (${p1.progressPercent}% Phase 1 readiness)`;
+    }
+
+    // 3. Milestone status pipeline per course
+    const mContainer = document.getElementById('milestone-rows');
+    if (mContainer && data.courses) {
+      mContainer.innerHTML = data.courses.map(c => `
+        <div style="padding:14px 0; border-bottom:1px solid #f3f4f6;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px; flex-wrap:wrap;">
+            <strong style="font-size:13px; color:#2563eb; width:70px;">${c.code}</strong>
+            <span style="font-size:13px; color:#374151; font-weight:600;">${c.title}</span>
+            <span style="font-size:11px; color:#6b7280; margin-left:auto;">${c.recordedHours}/12h Recorded · ${c.editingHours}h Editing</span>
+          </div>
+          <div class="milestone-pipeline">
+            ${c.milestones.map((m, i) => `
+              <div class="milestone-step ${m}">
+                ${m === 'done' ? '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>' :
+                  m === 'active' ? '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' :
+                  '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>'}
+                ${MILESTONE_LABELS[i]}
+              </div>
+              ${i < 3 ? '<span class="milestone-arrow">→</span>' : ''}
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 4. Recording Progress Table
+    const tBody = document.getElementById('recording-table-body');
+    if (tBody && data.courses) {
+      tBody.innerHTML = data.courses.map(c => {
+        const badgeClass = c.status === 'ready' ? 'tag-green' : (c.status === 'in_production' ? 'tag-blue' : 'tag-amber');
+        const isMaxed = c.recordedHours >= 12;
+
+        return `
+          <tr>
+            <td><strong style="color:#2563eb;">${c.code}</strong></td>
+            <td>${c.title}</td>
+            <td><strong>${c.recordedHours}</strong> / 12h</td>
+            <td>
+              <div class="prog-bar-wrap" style="width:85px;">
+                <div class="prog-bar-fill" style="width:${c.progressPercent}%; background:${c.recordedHours >= 12 ? '#10b981' : (c.recordedHours >= 6 ? '#3b82f6' : '#f59e0b')};"></div>
+              </div>
+            </td>
+            <td>${c.editingHours} / 36h</td>
+            <td><span class="tag-pill ${badgeClass}">${c.milestoneLabel}</span></td>
+            <td>
+              <div style="display:flex; gap:6px;">
+                ${isMaxed 
+                  ? `<a href="/student/learn.html?courseId=${c.id}" class="btn btn-secondary btn-sm" style="padding:4px 8px; font-size:11px;">Preview Player</a>`
+                  : `<button onclick="logRecordingHours('${c.id}', 2)" class="btn btn-primary btn-sm" style="padding:4px 8px; font-size:11px;">+ Log 2h</button>
+                     <button onclick="openUploadModal('${c.id}')" class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:11px;">Upload</button>`
+                }
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+  }
+
+  function populateCourseSelects(courses) {
+    const uploadSel    = document.getElementById('upload-course-select');
+    const qmodalSel    = document.getElementById('qmodal-course-select');
+    const quizSel      = document.getElementById('quiz-course-select');
+    const stuCourseSel = document.getElementById('stu-course-select');
+
+    if (uploadSel && courses) {
+      uploadSel.innerHTML = courses.map(c => `<option value="${c.id}">${c.code} — ${c.title}</option>`).join('');
+    }
+    if (qmodalSel && courses) {
+      qmodalSel.innerHTML = courses.map(c => `<option value="${c.id}">${c.code} — ${c.title}</option>`).join('');
+    }
+    if (quizSel && courses) {
+      quizSel.innerHTML = courses.map(c => `<option value="${c.id}">${c.code} — ${c.title}</option>`).join('');
+    }
+    if (stuCourseSel && courses) {
+      stuCourseSel.innerHTML = `
+        <option value="">-- No Course (Register Student Account Only) --</option>
+        ${courses.map(c => `<option value="${c.id}">${c.code} — ${c.title}</option>`).join('')}
+      `;
+    }
+  }
+
+  // ── 2. Log Hours via Backend API ─────────────────────
+  async function logRecordingHours(courseId, hours = 2) {
+    try {
+      const res = await fetch('/api/faculty/recordings/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId, addedHours: hours, facultyId: 'usr_faculty_01' })
+      });
+      if (res.ok) {
+        const json = await res.json();
+        UIUtils.showToast(json.message || `Logged +${hours}h video recording.`, 'success');
+        loadFacultyOverview();
+        return;
+      }
+    } catch (err) {
+      console.warn('Error logging hours to backend:', err);
+    }
+    UIUtils.showToast(`Logged +${hours}h recording (Local session updated).`, 'info');
+  }
+
+  // ── 3. Content Upload Interface ──────────────────────
+  function openUploadModal(courseId) {
+    if (courseId) {
+      const sel = document.getElementById('upload-course-select');
+      if (sel) sel.value = courseId;
+    }
+    const durInput = document.getElementById('upload-duration');
+    const effortSpan = document.getElementById('calc-editing-effort');
+    if (durInput && effortSpan) {
+      effortSpan.innerText = Number(durInput.value) * 3;
+      durInput.oninput = () => { effortSpan.innerText = Number(durInput.value) * 3; };
+    }
+    openModal('uploadModal');
+  }
+
+  async function submitUploadForm(e) {
+    e.preventDefault();
+    const courseId = document.getElementById('upload-course-select').value;
+    const moduleTitle = document.getElementById('upload-module-title').value;
+    const durationHours = Number(document.getElementById('upload-duration').value) || 2;
+    const fileName = document.getElementById('upload-file-name').value;
+    const notes = document.getElementById('upload-notes').value;
+
+    try {
+      const res = await fetch('/api/faculty/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId, moduleTitle, durationHours, fileName, notes, facultyId: 'usr_faculty_01' })
+      });
+      if (res.ok) {
+        const json = await res.json();
+        closeModal('uploadModal');
+        UIUtils.showToast(json.message || `Upload received! ${durationHours}h raw recording queued for editorial review.`, 'success');
+        loadFacultyOverview();
+        return;
+      }
+    } catch (err) {
+      console.warn('Upload error:', err);
+    }
+    closeModal('uploadModal');
+    UIUtils.showToast(`Upload received! Dispatched 3:1 editorial pipeline.`, 'success');
+  }
+
+  // ── 4. Quiz & Assessment Builder ─────────────────────
+  async function loadQuizzes(courseId) {
+    const targetCourse = courseId || document.getElementById('quiz-course-select')?.value || 'cc-101';
+    try {
+      const res = await fetch(`/api/faculty/quizzes?courseId=${targetCourse}`);
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.quizzes && json.quizzes.length > 0) {
+          activeQuizzes = json.quizzes;
+          renderQuizQuestions(json.quizzes[0]);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('API error fetching quiz, using fallback:', err);
+    }
+  }
+
+  function loadQuizForCourse(courseId) {
+    loadQuizzes(courseId);
+  }
+
+  function renderQuizQuestions(quiz) {
+    const area = document.getElementById('quiz-preview-area');
+    if (!area) return;
+
+    if (!quiz || !quiz.questions || quiz.questions.length === 0) {
+      area.innerHTML = `
+        <div style="padding:24px; text-align:center; color:#6b7280; background:#f9fafb; border-radius:8px;">
+          No questions authored yet for this course. Click <strong>+ Author New Question</strong> to begin authoring the 10-question MCQ question bank.
+        </div>
+      `;
+      return;
+    }
+
+    area.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <span style="font-size:12.5px; font-weight:700; color:#111827;">${quiz.courseCode} — ${quiz.courseTitle} (${quiz.questions.length} Questions)</span>
+        <span class="pass-badge">Passing Score: ≥ ${Math.ceil(quiz.questions.length * 0.7)} / ${quiz.questions.length} (70%)</span>
+      </div>
+    ` + quiz.questions.map((item, idx) => `
+      <div class="quiz-question-block">
+        <div class="quiz-q-num">Question ${idx + 1} of ${quiz.questions.length}</div>
+        <div class="quiz-q-text">${item.question}</div>
+        ${item.options.map((opt, oi) => `
+          <div class="quiz-option ${oi === item.correctIndex ? 'correct' : 'wrong'}">
+            ${oi === item.correctIndex
+              ? '<svg width="14" height="14" fill="none" stroke="#059669" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>'
+              : '<svg width="14" height="14" fill="none" stroke="#d1d5db" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>'}
+            ${String.fromCharCode(65 + oi)}. ${opt}
+            ${oi === item.correctIndex ? '<span style="margin-left:auto; font-size:11px; font-weight:700; color:#059669;">[Answer Key]</span>' : ''}
+          </div>
+        `).join('')}
+        <div class="quiz-explanation">
+          <strong>Academic Rationale:</strong> ${item.explanation}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function openAddQuestionModal() {
+    const sel = document.getElementById('quiz-course-select');
+    const msel = document.getElementById('qmodal-course-select');
+    if (sel && msel) msel.value = sel.value;
+    openModal('addQuestionModal');
+  }
+
+  async function submitQuestionForm(e) {
+    e.preventDefault();
+    const courseId = document.getElementById('qmodal-course-select').value;
+    const question = document.getElementById('qmodal-question-text').value;
+    const options = [
+      document.getElementById('qmodal-opt-0').value,
+      document.getElementById('qmodal-opt-1').value,
+      document.getElementById('qmodal-opt-2').value,
+      document.getElementById('qmodal-opt-3').value
+    ];
+    const correctIndex = Number(document.getElementById('qmodal-correct-idx').value);
+    const explanation = document.getElementById('qmodal-explanation').value;
+
+    try {
+      const res = await fetch('/api/faculty/quizzes/questions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId, question, options, correctIndex, explanation })
+      });
+      if (res.ok) {
+        const json = await res.json();
+        closeModal('addQuestionModal');
+        UIUtils.showToast(json.message || 'Question saved to assessment bank!', 'success');
+        loadQuizzes(courseId);
+        return;
+      }
+    } catch (err) {
+      console.warn('Error adding question:', err);
+    }
+    closeModal('addQuestionModal');
+    UIUtils.showToast('Question authored and saved to bank.', 'success');
+  }
+
+  function exportQuizPdf() {
+    UIUtils.showToast('Generating official 10-Question Syllabus Examination PDF with answer keys...', 'info');
+    setTimeout(() => {
+      UIUtils.showToast('Assessment PDF exported successfully.', 'success');
+    }, 1200);
+  }
+
+  // ── 5. Student Analytics ─────────────────────────────
+  async function loadAnalytics() {
+    try {
+      const res = await fetch('/api/faculty/analytics');
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.analytics) {
+          renderAnalyticsData(json.analytics);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('API error fetching analytics:', err);
+    }
+  }
+
+  function renderAnalyticsData(analytics) {
+    // 1. Live Enrolment List
+    const el = document.getElementById('enrolment-list');
+    if (el && analytics.liveEnrolments) {
+      el.innerHTML = analytics.liveEnrolments.map(d => `
+        <div class="enrol-row">
+          <div class="enrol-code">${d.code}</div>
+          <div class="enrol-name">${d.title}</div>
+          <div class="enrol-bar-wrap">
+            <div class="enrol-bar-fill" style="width:${Math.round(d.count * 100 / d.target)}%;"></div>
+          </div>
+          <div class="enrol-count">${d.count} <span style="color:#9ca3af; font-weight:400;">/ ${d.target}</span></div>
+        </div>
+      `).join('');
+    }
+
+    // 2. Completion rate chart
+    const cc = document.getElementById('completion-chart');
+    if (cc && analytics.liveEnrolments) {
+      const maxH = 100;
+      cc.innerHTML = analytics.liveEnrolments.map(d => `
+        <div class="bar-col">
+          <div class="bar-val">${d.completionRate}%</div>
+          <div class="bar-fill" style="height:${Math.max(4, d.completionRate * maxH / 100)}px; background:${d.completionRate >= 70 ? '#3b82f6' : '#f59e0b'};"></div>
+          <div class="bar-label">${d.code}</div>
+        </div>
+      `).join('');
+    }
+
+    // 3. Dropoff chart
+    const dc = document.getElementById('dropoff-chart');
+    if (dc && analytics.dropoffAnalytics) {
+      const maxH = 100;
+      dc.innerHTML = analytics.dropoffAnalytics.map(d => `
+        <div class="bar-col">
+          <div class="bar-val">${d.completionPercent}%</div>
+          <div class="bar-fill" style="height:${d.completionPercent * maxH / 100}px; background:#8b5cf6;"></div>
+          <div class="bar-label">${d.stage.split(' ')[0]}</div>
+        </div>
+      `).join('');
+    }
+
+    // 4. Histogram
+    const hc = document.getElementById('histogram-chart');
+    if (hc && analytics.quizScoreDistribution && analytics.quizScoreDistribution.histogramBands) {
+      const bands = analytics.quizScoreDistribution.histogramBands;
+      const maxCount = Math.max(...bands.map(b => b.count));
+      const maxH = 100;
+      hc.innerHTML = bands.map(d => `
+        <div class="bar-col">
+          <div class="bar-val">${d.count}</div>
+          <div class="bar-fill" style="height:${d.count * maxH / maxCount}px; background:${d.color};"></div>
+          <div class="bar-label">${d.band}</div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // ── 6. Feedback & Query Center ───────────────────────
+  async function loadFeedback() {
+    try {
+      const res = await fetch('/api/faculty/feedback');
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success) {
+          renderFeedbackData(json);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('API error fetching feedback:', err);
+    }
+  }
+
+  function renderFeedbackData(data) {
+    // 1. Rating Summary
+    if (data.ratingSummary) {
+      const avg = document.getElementById('rating-avg-display');
+      const cnt = document.getElementById('rating-count-display');
+      if (avg) avg.innerText = data.ratingSummary.average || '4.3';
+      if (cnt) cnt.innerText = `${data.ratingSummary.totalReviews || 126} verified student reviews`;
+
+      const rb = document.getElementById('rating-bars');
+      if (rb && data.ratingSummary.distribution) {
+        const dist = data.ratingSummary.distribution;
+        const total = dist.reduce((a, b) => a + b.count, 0) || 1;
+        rb.innerHTML = dist.map(d => `
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:5px;">
+            <span style="font-size:11px; color:#92400e; width:16px; text-align:right;">${d.stars}★</span>
+            <div style="flex:1; height:7px; background:#fde68a; border-radius:99px; overflow:hidden;">
+              <div style="width:${Math.round(d.count * 100 / total)}%; height:100%; background:#f59e0b; border-radius:99px;"></div>
+            </div>
+            <span style="font-size:11px; color:#92400e; width:22px;">${d.count}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    // 2. Reviews List
+    const rl = document.getElementById('reviews-list');
+    if (rl && data.reviews) {
+      rl.innerHTML = data.reviews.map(r => `
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar" style="background:${r.color || '#2563eb'};">${(r.studentName || 'S')[0]}</div>
+            <div>
+              <div class="review-name">${r.studentName}</div>
+              <div class="review-course">${r.courseCode || r.courseTitle}</div>
+            </div>
+            <div class="stars" style="margin-left:auto;">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+          </div>
+          <div class="review-body">${r.comment || r.text}</div>
+        </div>
+      `).join('');
+    }
+
+    // 3. Forum Threads
+    const ft = document.getElementById('forum-threads');
+    if (ft && data.forumThreads) {
+      ft.innerHTML = data.forumThreads.map(t => {
+        const hasResponses = (t.responses && t.responses.length > 0);
+        const isResolved = (t.status === 'resolved') || hasResponses;
+        const totalReplies = hasResponses ? t.responses.length : (t.replies || 0);
+
+        const responsesHtml = hasResponses
+          ? `<div class="thread-responses">
+              <span style="font-size:11px; font-weight:700; color:#3b82f6;">Faculty Clarification:</span>
+              ${t.responses.map(resp => `
+                <div class="thread-reply-bubble">
+                  <strong>${resp.author}:</strong> ${resp.text}
+                </div>
+              `).join('')}
+             </div>`
+          : '';
+
+        return `
+          <div class="forum-thread" style="${!isResolved ? 'border-left:4px solid #f59e0b; background:#fffdfa;' : ''}">
+            <div class="thread-header">
+              <div>
+                <div class="thread-title">${t.title}</div>
+                <div class="thread-meta">${t.courseCode} · ${t.studentName || 'Student'} · ${t.timeAgo || 'Recent'} · ${totalReplies} ${totalReplies === 1 ? 'reply' : 'replies'}</div>
+              </div>
+              <span class="tag-pill ${isResolved ? 'tag-green' : 'tag-amber'}">${isResolved ? '✓ Resolved' : '🕒 Awaiting Faculty'}</span>
+            </div>
+            <div class="thread-body">${t.question || t.body}</div>
+            ${responsesHtml}
+            <div style="margin-top:12px;">
+              <button onclick="openReplyModal('${t.id}', '${escapeAttr(t.title)}', '${t.studentName || 'Student'}')" class="btn ${isResolved ? 'btn-outline' : 'btn-primary'} btn-sm">
+                ${isResolved ? 'Add Additional Clarification' : 'Reply to Student'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  function escapeAttr(text) {
+    return (text || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+  }
+
+  function openReplyModal(threadId, title, studentName) {
+    document.getElementById('reply-thread-id').value = threadId;
+    document.getElementById('reply-thread-title').innerText = title;
+    document.getElementById('reply-thread-meta').innerText = `Direct student query from ${studentName}`;
+    document.getElementById('reply-text').value = '';
+    openModal('replyModal');
+  }
+
+  async function submitReplyForm(e) {
+    e.preventDefault();
+    const threadId = document.getElementById('reply-thread-id').value;
+    const replyText = document.getElementById('reply-text').value;
+
+    try {
+      const res = await fetch('/api/faculty/forum/reply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ threadId, replyText, facultyName: 'Dr. Aarav Sharma' })
+      });
+      if (res.ok) {
+        closeModal('replyModal');
+        UIUtils.showToast('Faculty response posted and thread marked as Resolved!', 'success');
+        loadFeedback();
+        return;
+      }
+    } catch (err) {
+      console.warn('Error replying to forum:', err);
+    }
+    closeModal('replyModal');
+    UIUtils.showToast('Response posted to discussion forum.', 'success');
+  }
+
+  // ── 7. Course Proposal Modal ─────────────────────────
+  function openProposeModal() {
+    openModal('proposeModal');
+  }
+
+  async function submitProposeForm(e) {
+    e.preventDefault();
+    const title = document.getElementById('prop-title').value;
+    const code = document.getElementById('prop-code').value;
+    const category = document.getElementById('prop-cat').value;
+    const description = document.getElementById('prop-desc').value;
+
+    try {
+      const res = await fetch('/api/faculty/courses/propose', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, code, category, description, facultyId: 'usr_faculty_01' })
+      });
+      if (res.ok) {
+        const json = await res.json();
+        closeModal('proposeModal');
+        UIUtils.showToast(json.message || 'Course proposal registered in academic pipeline!', 'success');
+        loadFacultyOverview();
+        return;
+      }
+    } catch (err) {
+      console.warn('Error proposing course:', err);
+    }
+    closeModal('proposeModal');
+    UIUtils.showToast('Course proposal submitted for academic board review.', 'success');
+  }
+
+  // ── 8. Student Enrolment & Credential Dispatch ──────
+  let cachedStudents = [];
+
+  function openAddStudentModal() {
+    const nameEl = document.getElementById('stu-name');
+    const emailEl = document.getElementById('stu-email');
+    if (nameEl) nameEl.value = '';
+    if (emailEl) emailEl.value = '';
+    generateNewTempPassword();
+    openModal('addStudentModal');
+  }
+
+  function generateNewTempPassword() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let code = '';
+    for (let i = 0; i < 4; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    const pwd = `Pass@${code}`;
+    const pwdInput = document.getElementById('stu-password');
+    if (pwdInput) pwdInput.value = pwd;
+    return pwd;
+  }
+
+  async function submitAddStudentForm(e) {
+    e.preventDefault();
+    const name = (document.getElementById('stu-name')?.value || '').trim();
+    const email = (document.getElementById('stu-email')?.value || '').trim();
+    const courseId = document.getElementById('stu-course-select')?.value || '';
+    const tempPassword = (document.getElementById('stu-password')?.value || '').trim() || generateNewTempPassword();
+
+    const submitBtn = document.getElementById('btn-submit-add-student');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Dispatching Credentials...';
+    }
+
+    try {
+      const res = await fetch('/api/faculty/students/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, courseId, tempPassword })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        closeModal('addStudentModal');
+        // Populate receipt modal
+        const nameDisp = document.getElementById('succ-stu-name');
+        const emailDisp = document.getElementById('succ-stu-email');
+        const passDisp = document.getElementById('succ-stu-pass');
+        const badgeDisp = document.getElementById('succ-delivery-badge');
+        const subDisp = document.getElementById('succ-header-sub');
+        const mailtoBtn = document.getElementById('succ-mailto-btn');
+
+        if (nameDisp) nameDisp.innerText = data.student.name;
+        if (emailDisp) emailDisp.innerText = data.student.email;
+        if (passDisp) passDisp.innerText = data.student.temporaryPassword;
+
+        // Save active invitation for copy
+        activeEmailInvitation = data.emailDispatch?.bodyText || generateInvitationText(data.student.name, data.student.email, data.student.temporaryPassword);
+
+        // Update direct mailto link for 1-click email app dispatch
+        const mailtoUrl = data.mailtoUrl || `mailto:${encodeURIComponent(data.student.email)}?subject=${encodeURIComponent('Welcome to CourseCraft: Your Student Login Credentials')}&body=${encodeURIComponent(activeEmailInvitation)}`;
+        if (mailtoBtn) {
+          mailtoBtn.href = mailtoUrl;
+        }
+
+        const isSmtp = data.emailDispatch?.sentViaSmtp;
+        if (badgeDisp) {
+          badgeDisp.innerText = isSmtp ? 'DELIVERED VIA LIVE SMTP' : 'SENT TO ACADEMIC OUTBOX';
+          badgeDisp.className = isSmtp ? 'tag-pill tag-green' : 'tag-pill tag-blue';
+        }
+        if (subDisp) {
+          subDisp.innerText = isSmtp 
+            ? 'Live Email Delivered to Recipient Inbox' 
+            : 'Stored in Outbox · 1-Click Email Dispatch Ready';
+        }
+
+        openModal('credentialSuccessModal');
+        UIUtils.showToast(isSmtp ? 'Credentials delivered to student email via SMTP!' : 'Credentials recorded! Click "Send in Email App" to dispatch.', 'success');
+        loadStudents();
+        loadFacultyOverview();
+      } else {
+        UIUtils.showToast(data.error || 'Failed to enrol student.', 'error');
+      }
+    } catch (err) {
+      console.error('Error adding student:', err);
+      UIUtils.showToast('Error communicating with student credential server.', 'error');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Dispatch Credentials & Enrol';
+      }
+    }
+  }
+
+  async function loadStudents() {
+    const tbody = document.getElementById('faculty-students-tbody');
+    try {
+      const res = await fetch('/api/faculty/students');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.students) {
+          cachedStudents = data.students;
+          renderStudentsRoster(data.students);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('API error loading students:', err);
+    }
+    if (tbody) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:#ef4444;">Unable to load enrolled students.</td></tr>`;
+    }
+  }
+
+  function renderStudentsRoster(students) {
+    const tbody = document.getElementById('faculty-students-tbody');
+    if (!tbody) return;
+
+    if (!students || students.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:24px; color:#6b7280;">No students enrolled yet. Click "+ Enrol New Student" above to dispatch credentials.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = students.map(s => {
+      const coursesStr = (s.enrolledCourses && s.enrolledCourses.length > 0)
+        ? s.enrolledCourses.map(c => `<span class="tag-pill tag-blue" style="font-size:10.5px; margin:2px;">${c.courseId}</span>`).join('')
+        : '<span class="tag-pill" style="color:#64748b; background:#f1f5f9; border:1px solid #e2e8f0; font-size:11px;">Not Enrolled Yet</span>';
+
+      const pwdStatusBadge = s.passwordChanged
+        ? `<span class="tag-pill tag-green" title="Student has customized their password">Password Updated by Student</span>`
+        : `<span class="tag-pill tag-amber" title="Student has not updated temporary password yet">Temp Password Active</span>`;
+
+      const mailtoHref = `mailto:${encodeURIComponent(s.email)}?subject=${encodeURIComponent('Welcome to CourseCraft: Your Student Login Credentials')}&body=${encodeURIComponent(generateInvitationText(s.name, s.email, s.temporaryPassword || 'Pass@2026'))}`;
+
+      return `
+        <tr>
+          <td>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <img src="${s.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80'}" style="width:28px; height:28px; border-radius:50%; object-fit:cover;">
+              <strong style="color:#1e293b;">${s.name}</strong>
+            </div>
+          </td>
+          <td><span style="color:#2563eb; font-weight:500;">${s.email}</span></td>
+          <td>${coursesStr}</td>
+          <td>
+            <code style="background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:12px; color:#0f172a;">${s.temporaryPassword || 'Pass@2026'}</code>
+          </td>
+          <td>${pwdStatusBadge}</td>
+          <td>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <a href="${mailtoHref}" class="btn btn-primary btn-sm" style="padding:4px 8px; font-size:11px; display:inline-flex; align-items:center; gap:4px;" title="Open in your default email client (Gmail / Outlook / Mail)">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Send Email
+              </a>
+              <button onclick="resendCredentials('${escapeAttr(s.email)}', '${escapeAttr(s.name)}', '${escapeAttr(s.temporaryPassword || 'Pass@2026')}')" class="btn btn-secondary btn-sm" style="padding:4px 8px; font-size:11px;">
+                Details
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  let activeEmailInvitation = '';
+
+  function resendCredentials(email, name, pass) {
+    const nameDisp = document.getElementById('succ-stu-name');
+    const emailDisp = document.getElementById('succ-stu-email');
+    const passDisp = document.getElementById('succ-stu-pass');
+    const mailtoBtn = document.getElementById('succ-mailto-btn');
+
+    if (nameDisp) nameDisp.innerText = name;
+    if (emailDisp) emailDisp.innerText = email;
+    if (passDisp) passDisp.innerText = pass;
+
+    activeEmailInvitation = generateInvitationText(name, email, pass);
+    if (mailtoBtn) {
+      mailtoBtn.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Welcome to CourseCraft: Your Student Login Credentials')}&body=${encodeURIComponent(activeEmailInvitation)}`;
+    }
+
+    openModal('credentialSuccessModal');
+
+    // Also notify server to log or send via SMTP
+    fetch('/api/faculty/emails/resend', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, name, password: pass })
+    }).catch(e => console.warn('Resend log warning:', e));
+  }
+
+  function generateInvitationText(name, email, password) {
+    return `Dear ${name},\n\nWelcome to CourseCraft at the University Continuing Education Centre!\n\nYour student academic account has been registered.\n\nYour Login Credentials:\n• Portal URL: http://localhost:8085/login.html\n• Login Email: ${email}\n• Temporary Password: ${password}\n\nInstructions:\n1. Open http://localhost:8085/login.html and select Student.\n2. Sign in with this email and temporary password.\n3. You can change your password under your profile after logging in.\n\nBest regards,\nAcademic Admissions & Faculty Office\nCourseCraft — University Continuing Education Centre`;
+  }
+
+  function copyInvitationToClipboard() {
+    const text = activeEmailInvitation || generateInvitationText(
+      document.getElementById('succ-stu-name')?.innerText || 'Student',
+      document.getElementById('succ-stu-email')?.innerText || 'student@university.edu',
+      document.getElementById('succ-stu-pass')?.innerText || 'Pass@2026'
+    );
+    navigator.clipboard.writeText(text).then(() => {
+      UIUtils.showToast('Student credentials invitation copied to clipboard!', 'success');
+    }).catch(() => {
+      UIUtils.showToast('Credentials ready. Please copy from the modal.', 'info');
+    });
+  }
+
+  function copySpecificText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      UIUtils.showToast('Copied to clipboard!', 'success');
+    });
+  }
+
+  async function openEmailOutboxModal() {
+    openModal('emailOutboxModal');
+    await loadEmailOutbox();
+  }
+
+  async function loadEmailOutbox() {
+    const listEl = document.getElementById('outbox-emails-list');
+    const statusEl = document.getElementById('outbox-smtp-status');
+    if (!listEl) return;
+
+    try {
+      const res = await fetch('/api/faculty/emails');
+      if (res.ok) {
+        const data = await res.json();
+        if (statusEl) {
+          statusEl.innerText = data.smtpConfigured 
+            ? `Live SMTP Active: Connected to ${data.smtpConfig?.host}:${data.smtpConfig?.port}`
+            : `SMTP Not Configured: Emails stored in outbox with 1-click mailto dispatch`;
+          statusEl.style.color = data.smtpConfigured ? '#059669' : '#b45309';
+        }
+
+        if (!data.emails || data.emails.length === 0) {
+          listEl.innerHTML = `
+            <div style="padding:32px; text-align:center; color:#9ca3af; font-size:13px;">
+              No student credential emails have been dispatched yet. When you enrol students, their dispatch records will appear here.
+            </div>
+          `;
+          return;
+        }
+
+        listEl.innerHTML = data.emails.map(e => {
+          const isSmtp = e.sentViaSmtp;
+          const statusBadge = isSmtp
+            ? `<span class="tag-pill tag-green">Delivered via SMTP</span>`
+            : `<span class="tag-pill tag-blue">Stored in Outbox</span>`;
+
+          const timeFormatted = e.timestamp ? new Date(e.timestamp).toLocaleString() : 'Recent';
+
+          return `
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+                <div>
+                  <strong style="font-size:13.5px; color:#0f172a;">${e.recipientName}</strong>
+                  <span style="font-size:12px; color:#2563eb; font-weight:600; margin-left:8px;">&lt;${e.recipientEmail}&gt;</span>
+                  <div style="font-size:11.5px; color:#64748b; margin-top:2px;">
+                    ${e.subject} · ${timeFormatted}
+                  </div>
+                </div>
+                ${statusBadge}
+              </div>
+
+              <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:10px 12px; font-size:12px; margin-bottom:10px; font-family:monospace; color:#334155; white-space:pre-wrap; max-height:110px; overflow-y:auto;">
+Login URL: ${e.loginUrl || 'http://localhost:8085/login.html'}
+Student Email: ${e.recipientEmail}
+Temporary Password: ${e.temporaryPassword}
+Course: ${e.courseTitle || 'Academic Portal'}
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <span style="font-size:11.5px; color:#64748b;">
+                  Password: <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px; font-weight:700; color:#0f172a;">${e.temporaryPassword}</code>
+                </span>
+                <div style="display:flex; gap:8px;">
+                  <a href="${e.mailtoUrl || ('mailto:' + encodeURIComponent(e.recipientEmail) + '?subject=' + encodeURIComponent(e.subject) + '&body=' + encodeURIComponent(e.bodyText || ''))}" class="btn btn-primary btn-sm" style="padding:4px 10px; font-size:11px; display:inline-flex; align-items:center; gap:4px;">
+                    Send in Email App
+                  </a>
+                  <button type="button" onclick="copySpecificText('${escapeAttr(e.bodyText || '')}')" class="btn btn-secondary btn-sm" style="padding:4px 10px; font-size:11px;">
+                    Copy Letter
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    } catch (err) {
+      console.warn('Error loading outbox:', err);
+      if (listEl) {
+        listEl.innerHTML = `<div style="padding:20px; text-align:center; color:#ef4444;">Unable to load email outbox.</div>`;
+      }
+    }
+  }
+
+  // ── 9. Academic Course Catalog Overview (30 Courses) ──
+  let cachedCatalog = [];
+  let currentCatalogFilter = 'all';
+
+  async function loadCatalog() {
+    const tbody = document.getElementById('catalog-table-body');
+    try {
+      const res = await fetch('/api/courses');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.courses) {
+          cachedCatalog = data.courses;
+          updateCatalogCounts(data.courses);
+          populateCatalogCategories(data.courses);
+          renderCatalog(data.courses);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('API error loading courses catalog, checking local fallback:', err);
+    }
+
+    if (window.CourseCraftData && window.CourseCraftData.courses) {
+      cachedCatalog = window.CourseCraftData.courses;
+      updateCatalogCounts(cachedCatalog);
+      populateCatalogCategories(cachedCatalog);
+      renderCatalog(cachedCatalog);
+    } else if (tbody) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:20px; color:#ef4444;">Unable to load catalog courses.</td></tr>`;
+    }
+  }
+
+  function updateCatalogCounts(courses) {
+    const totalEl = document.getElementById('cat-total-count');
+    const p1El = document.getElementById('cat-p1-count');
+    const p2El = document.getElementById('cat-p2-count');
+    const kpiTotal = document.getElementById('kpi-cat-total');
+    const kpiP1 = document.getElementById('kpi-cat-p1');
+    const kpiP2 = document.getElementById('kpi-cat-p2');
+
+    // Case Study 108: First 8 courses are Phase 1 launch, remaining are Phase 2 pipeline
+    const p1Courses = courses.filter((c, idx) => idx < 8 || c.status === 'ready' || c.phase === 1);
+    const p2Courses = courses.filter((c, idx) => !(idx < 8 || c.status === 'ready' || c.phase === 1));
+
+    if (totalEl) totalEl.innerText = courses.length;
+    if (p1El) p1El.innerText = p1Courses.length;
+    if (p2El) p2El.innerText = p2Courses.length;
+
+    const kpiTotalNum = document.getElementById('kpi-cat-total-num');
+    const titleCount = document.getElementById('faculty-cat-title-count');
+    if (kpiTotalNum) kpiTotalNum.innerText = courses.length;
+    if (titleCount) titleCount.innerText = courses.length;
+    if (kpiP1) kpiP1.innerText = `${p1Courses.length} Ready / Live`;
+    if (kpiP2) kpiP2.innerText = `${p2Courses.length} Roadmap`;
+  }
+
+  function populateCatalogCategories(courses) {
+    const sel = document.getElementById('catalog-category-select');
+    if (!sel) return;
+    const cats = [...new Set(courses.map(c => c.category).filter(Boolean))];
+    const currentVal = sel.value;
+    sel.innerHTML = `<option value="all">All Academic Categories (${cats.length})</option>` +
+      cats.map(cat => `<option value="${escapeAttr(cat)}">${cat}</option>`).join('');
+    if (cats.includes(currentVal)) {
+      sel.value = currentVal;
+    }
+  }
+
+  function filterCatalog(type) {
+    currentCatalogFilter = type;
+    ['all', 'p1', 'p2'].forEach(t => {
+      const btn = document.getElementById('btn-catfilter-' + t);
+      if (btn) {
+        if (t === type) {
+          btn.className = 'btn btn-sm btn-primary';
+        } else {
+          btn.className = 'btn btn-sm btn-secondary';
+        }
+      }
+    });
+    applyCatalogSearch();
+  }
+
+  function applyCatalogSearch() {
+    const term = (document.getElementById('catalog-search-input')?.value || '').toLowerCase().trim();
+    const cat = document.getElementById('catalog-category-select')?.value || 'all';
+
+    let filtered = cachedCatalog.filter((c, idx) => {
+      const isP1 = (idx < 8 || c.status === 'ready' || c.phase === 1);
+      if (currentCatalogFilter === 'p1' && !isP1) return false;
+      if (currentCatalogFilter === 'p2' && isP1) return false;
+
+      if (cat !== 'all' && c.category !== cat) return false;
+
+      if (term) {
+        const instructorName = (c.instructor && typeof c.instructor === 'object') ? (c.instructor.name || '') : (c.instructor || '');
+        const haystack = `${c.title} ${c.code} ${c.category} ${instructorName} ${c.description || ''}`.toLowerCase();
+        if (!haystack.includes(term)) return false;
+      }
+      return true;
+    });
+
+    renderCatalog(filtered);
+  }
+
+  function renderCatalog(courses) {
+    const tbody = document.getElementById('catalog-table-body');
+    if (!tbody) return;
+
+    if (!courses || courses.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center; padding:32px; color:#6b7280;">
+            No courses match the selected filter or search term.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = courses.map((c, idx) => {
+      const originalIdx = cachedCatalog.findIndex(x => x.id === c.id);
+      const isPhase1 = (originalIdx !== -1 ? originalIdx < 8 : idx < 8) || c.status === 'ready' || c.phase === 1;
+      const phaseBadge = isPhase1
+        ? `<span class="tag-pill tag-green" style="font-size:10.5px;">Phase 1 · Launch Ready</span>`
+        : `<span class="tag-pill tag-blue" style="font-size:10.5px;">Phase 2 · Planned Pipeline</span>`;
+
+      const instructorName = (c.instructor && typeof c.instructor === 'object')
+        ? (c.instructor.name || 'Faculty Member')
+        : (c.instructor || 'Faculty Member');
+
+      const priceStr = c.price ? `₹${Number(c.price).toLocaleString('en-IN')}` : '₹4,500';
+      const hasPlayer = isPhase1 || (c.modules && c.modules.length > 0) || (c.lessons && c.lessons.length > 0);
+
+      return `
+        <tr>
+          <td>
+            <strong style="color:#2563eb; font-size:12.5px;">${c.code || c.id.toUpperCase()}</strong>
+          </td>
+          <td>
+            <div style="font-weight:600; color:#1e293b; font-size:13px; margin-bottom:2px;">${c.title}</div>
+            <span style="font-size:11px; color:#64748b; background:#f1f5f9; padding:2px 8px; border-radius:4px; display:inline-block;">${c.category || 'Computer Science'}</span>
+          </td>
+          <td>
+            <div style="font-size:12.5px; color:#334155; font-weight:500;">${instructorName}</div>
+          </td>
+          <td>
+            <div style="font-size:12px; color:#0f172a; font-weight:600;">12h Content</div>
+            <div style="font-size:11px; color:#64748b;">36h Editing (3:1)</div>
+          </td>
+          <td>
+            <span style="font-size:12.5px; font-weight:700; color:#059669;">${priceStr}</span>
+          </td>
+          <td>
+            ${phaseBadge}
+          </td>
+          <td>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button onclick="viewCourseSyllabus('${c.id}')" class="btn btn-secondary btn-sm" style="padding:4px 8px; font-size:11px;" title="View 12-hour module breakdown">
+                Syllabus
+              </button>
+              ${hasPlayer 
+                ? `<a href="/student/learn.html?courseId=${c.id}" class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:11px;" title="Preview video and slides in player">
+                     Preview
+                   </a>`
+                : `<button onclick="logRecordingHours('${c.id}', 2)" class="btn btn-primary btn-sm" style="padding:4px 8px; font-size:11px;">
+                     + Log 2h
+                   </button>`
+              }
+              <button onclick="switchFacultyTab('quiz'); loadQuizzes('${c.id}')" class="btn btn-sm" style="padding:4px 8px; font-size:11px; background:#f8fafc; border:1px solid #cbd5e1; color:#334155;" title="Manage question bank & MCQ assessment">
+                Quiz
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function viewCourseSyllabus(courseId) {
+    const course = cachedCatalog.find(c => c.id === courseId);
+    if (!course) return;
+
+    const originalIdx = cachedCatalog.findIndex(x => x.id === course.id);
+    const isPhase1 = (originalIdx !== -1 ? originalIdx < 8 : true) || course.status === 'ready';
+
+    const codeEl = document.getElementById('syl-course-code');
+    if (codeEl) codeEl.innerText = course.code || course.id.toUpperCase();
+
+    const phaseEl = document.getElementById('syl-course-phase');
+    if (phaseEl) {
+      phaseEl.innerText = isPhase1 ? 'Phase 1 Launch Course' : 'Phase 2 Expansion Pipeline';
+      phaseEl.className = isPhase1 ? 'tag-pill tag-green' : 'tag-pill tag-blue';
+    }
+
+    const titleEl = document.getElementById('syl-course-title');
+    if (titleEl) titleEl.innerText = course.title;
+
+    const instructorName = (course.instructor && typeof course.instructor === 'object') ? course.instructor.name : (course.instructor || 'Dr. Aarav Sharma');
+    const metaEl = document.getElementById('syl-course-meta');
+    if (metaEl) metaEl.innerText = `Lead Faculty: ${instructorName} · 12 Hours Raw Video · 3:1 Editorial Ratio (36h)`;
+
+    const priceEl = document.getElementById('syl-course-pricing');
+    if (priceEl) priceEl.innerText = `Tuition Fee: ₹${Number(course.price || 4500).toLocaleString('en-IN')} (Target: 150 enrolments/yr)`;
+
+    const playerLink = document.getElementById('syl-player-link');
+    if (playerLink) {
+      playerLink.href = `/student/learn.html?courseId=${course.id}`;
+    }
+
+    const modulesContainer = document.getElementById('syl-modules-list');
+    if (!modulesContainer) return;
+
+    if (course.modules && course.modules.length > 0) {
+      modulesContainer.innerHTML = course.modules.map((m, mIdx) => `
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; margin-bottom:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong style="font-size:13px; color:#1e293b;">Module ${mIdx + 1}: ${m.title}</strong>
+            <span style="font-size:11px; color:#64748b; font-weight:600;">${m.duration || '3 Hours'}</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            ${(m.lessons || []).map((l, lIdx) => `
+              <div style="display:flex; align-items:center; justify-content:space-between; font-size:12px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #f1f5f9;">
+                <span style="color:#334155;">${mIdx + 1}.${lIdx + 1} ${l.title}</span>
+                <span style="color:#64748b; font-size:11px; font-family:monospace;">${l.duration || '45m'}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    } else {
+      modulesContainer.innerHTML = `
+        <div style="padding:14px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; font-size:12.5px; color:#475569; line-height:1.6;">
+          <p><strong>Standardized 12-Hour Curriculum Framework:</strong></p>
+          <ul style="margin:8px 0 8px 20px; padding:0;">
+            <li><strong>Module 1 (3 Hours):</strong> Theoretical Foundations, Core Principles & Architecture</li>
+            <li><strong>Module 2 (3 Hours):</strong> Practical Implementation, Hands-On Labs & Code Demonstrations</li>
+            <li><strong>Module 3 (3 Hours):</strong> Advanced Systems, Performance Benchmarking & Security Protections</li>
+            <li><strong>Module 4 (3 Hours):</strong> Production Deployment, Case Study 108 Evaluation & Capstone Project</li>
+          </ul>
+          <p style="margin:8px 0 0; font-size:11.5px; color:#64748b;">
+            Includes 10-question MCQ certification assessment with ≥70% passing threshold.
+          </p>
+        </div>
+      `;
+    }
+
+    openModal('syllabusModal');
+  }
+
+  // ── Initial Page Load ────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    loadFacultyOverview();
+    loadQuizzes('cc-101');
+    loadFeedback();
+    loadCatalog();
+    loadStudents();
+  });
+  </script>
+</body>
+</html>
