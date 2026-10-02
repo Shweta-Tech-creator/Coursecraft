@@ -183,6 +183,23 @@
   ],
   "forumThreads": [
     {
+      "id": "th-muqiwnay",
+      "title": "Question on Neural Architecture Search",
+      "courseCode": "SE-202",
+      "courseId": "cc-102",
+      "studentName": "Priya Sharma",
+      "assignedFacultyId": "usr_faculty_02",
+      "assignedFacultyName": "Dr. Sneha Kulkarni",
+      "assignedFacultyEmail": "sneha.kulkarni@university.edu",
+      "timeAgo": "Just now",
+      "createdAt": "2026-10-02T05:29:17.050Z",
+      "status": "open",
+      "open": true,
+      "question": "Could you explain how NAS evaluates candidate architectures in lesson 3?",
+      "replies": 0,
+      "responses": []
+    },
+    {
       "id": "th-mupk493b",
       "title": "Clarification on horizontal pod autoscaling",
       "courseCode": "CSE-101",

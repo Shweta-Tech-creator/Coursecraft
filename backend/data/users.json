@@ -3,7 +3,7 @@
     "uid": "usr_student_01",
     "name": "Priya Sharma",
     "email": "student@university.edu",
-    "passwordHash": "demo_hashed_password",
+    "passwordHash": "hashed_universityPass123",
     "role": "student",
     "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
     "enrolledCourses": [
@@ -130,7 +130,8 @@
         "receiptUrl": "/api/receipts/TXN-CC-2026-260523"
       }
     ],
-    "password": "universityPass123"
+    "password": "universityPass123",
+    "passwordChangedAt": "2026-10-02T05:29:51.933Z"
   },
   {
     "uid": "usr_faculty_01",

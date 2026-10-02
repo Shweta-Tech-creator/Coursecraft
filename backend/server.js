@@ -645,6 +645,57 @@ const server = http.createServer(async (req, res) => {
   // 7. FACULTY & INSTRUCTOR DASHBOARD APIS
   // ==========================================
 
+  // 7.0 Faculty Directory & Available Instructors (for Doubt Clearance & Feedback)
+  if (pathname === '/api/faculty/list' && method === 'GET') {
+    const courseId = parsedUrl.query.courseId;
+    
+    // Base faculty accounts from users.json
+    const facultyUsers = users.filter(u => u.role === 'faculty').map(u => ({
+      id: u.uid,
+      name: u.name,
+      email: u.email,
+      department: u.department || 'Continuing Education Centre',
+      designation: u.designation || 'Professor & Course Faculty',
+      avatar: u.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      assignedCourses: u.assignedCourses || []
+    }));
+
+    // Integrate all course instructors so every curriculum lead is available
+    courses.forEach(c => {
+      if (c.instructor && c.instructor.name) {
+        const existing = facultyUsers.find(f => f.name.toLowerCase() === c.instructor.name.toLowerCase());
+        if (existing) {
+          if (!existing.assignedCourses.includes(c.id)) {
+            existing.assignedCourses.push(c.id);
+          }
+        } else {
+          facultyUsers.push({
+            id: `inst_${c.instructor.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}`,
+            name: c.instructor.name,
+            email: `${c.instructor.name.toLowerCase().replace(/[^a-z0-9]/g, '.')}@university.edu`,
+            department: c.instructor.department || c.category || 'Continuing Education Centre',
+            designation: c.instructor.designation || 'Academic Faculty & Curriculum Lead',
+            avatar: c.instructor.avatar || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+            assignedCourses: [c.id]
+          });
+        }
+      }
+    });
+
+    let result = facultyUsers;
+    if (courseId) {
+      result = [...facultyUsers].sort((a, b) => {
+        const aHas = a.assignedCourses && a.assignedCourses.includes(courseId);
+        const bHas = b.assignedCourses && b.assignedCourses.includes(courseId);
+        if (aHas && !bHas) return -1;
+        if (!aHas && bHas) return 1;
+        return 0;
+      });
+    }
+
+    return sendJson(res, 200, { success: true, count: result.length, faculty: result });
+  }
+
   // 7.1 Faculty Overview: Assigned Courses, 12h Quotas, Milestones & Phase Roadmap
   if (pathname === '/api/faculty/overview' && method === 'GET') {
     const facultyId = parsedUrl.query.facultyId || 'usr_faculty_01';
@@ -986,12 +1037,25 @@ const server = http.createServer(async (req, res) => {
   // 7.7 Feedback & Query Center: Ratings, Reviews & Academic Forum
   if (pathname === '/api/faculty/feedback' && method === 'GET') {
     const courseId = parsedUrl.query.courseId;
+    const facultyId = parsedUrl.query.facultyId;
     let reviews = facultyFeedback.reviews || [];
     let threads = facultyFeedback.forumThreads || [];
 
     if (courseId && courseId !== 'all') {
       reviews = reviews.filter(r => r.courseId === courseId || r.courseCode === courseId);
       threads = threads.filter(t => t.courseId === courseId || t.courseCode === courseId);
+    }
+
+    if (facultyId && facultyId !== 'all') {
+      const target = facultyId.toLowerCase();
+      threads = threads.filter(t => 
+        (t.assignedFacultyId && t.assignedFacultyId.toLowerCase() === target) ||
+        (t.assignedFacultyName && t.assignedFacultyName.toLowerCase().includes(target))
+      );
+      reviews = reviews.filter(r => 
+        (r.facultyId && r.facultyId.toLowerCase() === target) ||
+        (r.facultyName && r.facultyName.toLowerCase().includes(target))
+      );
     }
 
     return sendJson(res, 200, {
@@ -1006,7 +1070,7 @@ const server = http.createServer(async (req, res) => {
   if (pathname === '/api/faculty/forum/reply' && method === 'POST') {
     try {
       const body = await parseRequestBody(req);
-      const { threadId, replyText, facultyName = 'Dr. Aarav Sharma' } = body;
+      const { threadId, replyText, facultyName = 'Dr. Aarav Sharma', facultyId } = body;
 
       if (!threadId || !replyText) {
         return sendJson(res, 400, { success: false, error: 'threadId and replyText are required' });
@@ -1021,6 +1085,7 @@ const server = http.createServer(async (req, res) => {
       if (!thread.responses) thread.responses = [];
       thread.responses.push({
         author: facultyName,
+        facultyId: facultyId || thread.assignedFacultyId || 'usr_faculty_01',
         role: 'faculty',
         text: replyText,
         timestamp: new Date().toISOString()
@@ -1259,7 +1324,7 @@ const server = http.createServer(async (req, res) => {
   if (pathname === '/api/student/feedback' && method === 'POST') {
     try {
       const body = await parseRequestBody(req);
-      const { studentId, studentName = 'Priya Sharma', courseId, courseCode, courseTitle, stars, comment } = body;
+      const { studentId, studentName = 'Priya Sharma', courseId, courseCode, courseTitle, stars, comment, facultyId, facultyName } = body;
 
       if (!comment || !stars) {
         return sendJson(res, 400, { success: false, error: 'Star rating and review feedback are required' });
@@ -1272,6 +1337,8 @@ const server = http.createServer(async (req, res) => {
         courseCode: matchedCourse ? matchedCourse.code : (courseCode || 'CSE-101'),
         courseId: matchedCourse ? matchedCourse.id : (courseId || 'cc-101'),
         courseTitle: matchedCourse ? matchedCourse.title : (courseTitle || 'University Curriculum'),
+        facultyId: facultyId || null,
+        facultyName: facultyName || (matchedCourse && matchedCourse.instructor ? matchedCourse.instructor.name : 'Dr. Aarav Sharma'),
         stars: Math.max(1, Math.min(5, Number(stars))),
         color: ['#2563eb', '#7c3aed', '#059669', '#dc2626', '#d97706'][Math.floor(Math.random() * 5)],
         date: new Date().toISOString(),
@@ -1310,19 +1377,51 @@ const server = http.createServer(async (req, res) => {
   if (pathname === '/api/student/queries' && method === 'POST') {
     try {
       const body = await parseRequestBody(req);
-      const { studentId, studentName = 'Priya Sharma', courseId, courseCode, title, question } = body;
+      const { 
+        studentId, 
+        studentName = 'Priya Sharma', 
+        courseId, 
+        courseCode, 
+        title, 
+        question,
+        facultyId,
+        assignedFacultyId,
+        facultyName,
+        assignedFacultyName,
+        facultyEmail,
+        assignedFacultyEmail
+      } = body;
 
       if (!title || !question) {
         return sendJson(res, 400, { success: false, error: 'Query title and detailed question are required' });
       }
 
       const matchedCourse = courses.find(c => c.id === courseId || c.code === courseCode);
+      
+      let finalFacultyId = facultyId || assignedFacultyId;
+      let finalFacultyName = facultyName || assignedFacultyName;
+      let finalFacultyEmail = facultyEmail || assignedFacultyEmail;
+
+      if (!finalFacultyName && matchedCourse && matchedCourse.instructor) {
+        finalFacultyName = matchedCourse.instructor.name;
+        finalFacultyId = `inst_${matchedCourse.instructor.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}`;
+        finalFacultyEmail = `${matchedCourse.instructor.name.toLowerCase().replace(/[^a-z0-9]/g, '.')}@university.edu`;
+      }
+      if (!finalFacultyName) {
+        finalFacultyName = 'Dr. Aarav Sharma';
+        finalFacultyId = 'usr_faculty_01';
+        finalFacultyEmail = 'faculty@university.edu';
+      }
+
       const newThread = {
         id: `th-${Date.now().toString(36)}`,
         title: title.trim(),
         courseCode: matchedCourse ? matchedCourse.code : (courseCode || 'CSE-101'),
         courseId: matchedCourse ? matchedCourse.id : (courseId || 'cc-101'),
         studentName: (studentName || 'Student Learner').trim(),
+        assignedFacultyId: finalFacultyId,
+        assignedFacultyName: finalFacultyName,
+        assignedFacultyEmail: finalFacultyEmail,
         timeAgo: 'Just now',
         createdAt: new Date().toISOString(),
         status: 'open',
@@ -1339,7 +1438,7 @@ const server = http.createServer(async (req, res) => {
 
       return sendJson(res, 201, {
         success: true,
-        message: 'Academic query posted to instructor forum. Awaiting faculty response.',
+        message: `Academic query routed directly to ${finalFacultyName}. Awaiting faculty response.`,
         thread: newThread
       });
     } catch (err) {

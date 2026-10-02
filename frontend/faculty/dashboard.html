@@ -571,11 +571,21 @@
 
         <!-- Academic Discussion Forum -->
         <div class="f-card">
-          <p class="f-card-title">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            Direct Academic Discussion Forum
-          </p>
-          <p class="f-card-sub">Direct student queries and curriculum discussions awaiting faculty instructor response</p>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
+            <div>
+              <p class="f-card-title" style="margin-bottom:4px;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Direct Academic Discussion Forum &amp; Assigned Doubts
+              </p>
+              <p class="f-card-sub" style="margin-bottom:0;">Student doubts routed directly to faculty instructors — answer to resolve academic questions</p>
+            </div>
+            
+            <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+              <button type="button" onclick="setForumFilter('all')" id="forum-filter-all" class="btn btn-primary btn-sm" style="font-size:11px; padding:4px 10px;">All Doubts</button>
+              <button type="button" onclick="setForumFilter('assigned')" id="forum-filter-assigned" class="btn btn-outline btn-sm" style="font-size:11px; padding:4px 10px;">Assigned to Me</button>
+              <button type="button" onclick="setForumFilter('pending')" id="forum-filter-pending" class="btn btn-outline btn-sm" style="font-size:11px; padding:4px 10px;">Awaiting Reply</button>
+            </div>
+          </div>
 
           <div id="forum-threads">
             <div style="padding:16px; text-align:center; color:#9ca3af;">Loading discussion threads...</div>
@@ -1534,44 +1544,104 @@
     }
 
     // 3. Forum Threads
+    allForumThreads = data.forumThreads || [];
+    renderForumThreads();
+  }
+
+  let allForumThreads = [];
+  let currentForumFilter = 'all';
+
+  function setForumFilter(filter) {
+    currentForumFilter = filter;
+    ['all', 'assigned', 'pending'].forEach(f => {
+      const btn = document.getElementById(`forum-filter-${f}`);
+      if (btn) {
+        if (f === filter) {
+          btn.className = 'btn btn-primary btn-sm';
+        } else {
+          btn.className = 'btn btn-outline btn-sm';
+        }
+      }
+    });
+    renderForumThreads();
+  }
+
+  function renderForumThreads() {
     const ft = document.getElementById('forum-threads');
-    if (ft && data.forumThreads) {
-      ft.innerHTML = data.forumThreads.map(t => {
-        const hasResponses = (t.responses && t.responses.length > 0);
-        const isResolved = (t.status === 'resolved') || hasResponses;
-        const totalReplies = hasResponses ? t.responses.length : (t.replies || 0);
+    if (!ft) return;
 
-        const responsesHtml = hasResponses
-          ? `<div class="thread-responses">
-              <span style="font-size:11px; font-weight:700; color:#3b82f6;">Faculty Clarification:</span>
-              ${t.responses.map(resp => `
-                <div class="thread-reply-bubble">
-                  <strong>${resp.author}:</strong> ${resp.text}
-                </div>
-              `).join('')}
-             </div>`
-          : '';
+    const currentUser = CourseCraftAuth.getCurrentUser() || { name: 'Dr. Aarav Sharma', uid: 'usr_faculty_01' };
+    const currentName = (currentUser.name || 'Dr. Aarav Sharma').toLowerCase();
+    const currentUid = (currentUser.uid || 'usr_faculty_01').toLowerCase();
 
-        return `
-          <div class="forum-thread" style="${!isResolved ? 'border-left:4px solid #f59e0b; background:#fffdfa;' : ''}">
-            <div class="thread-header">
-              <div>
-                <div class="thread-title">${t.title}</div>
-                <div class="thread-meta">${t.courseCode} · ${t.studentName || 'Student'} · ${t.timeAgo || 'Recent'} · ${totalReplies} ${totalReplies === 1 ? 'reply' : 'replies'}</div>
-              </div>
-              <span class="tag-pill ${isResolved ? 'tag-green' : 'tag-amber'}">${isResolved ? '✓ Resolved' : '🕒 Awaiting Faculty'}</span>
-            </div>
-            <div class="thread-body">${t.question || t.body}</div>
-            ${responsesHtml}
-            <div style="margin-top:12px;">
-              <button onclick="openReplyModal('${t.id}', '${escapeAttr(t.title)}', '${t.studentName || 'Student'}')" class="btn ${isResolved ? 'btn-outline' : 'btn-primary'} btn-sm">
-                ${isResolved ? 'Add Additional Clarification' : 'Reply to Student'}
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
+    let threads = allForumThreads || [];
+    if (currentForumFilter === 'assigned') {
+      threads = threads.filter(t => {
+        const aName = (t.assignedFacultyName || '').toLowerCase();
+        const aId = (t.assignedFacultyId || '').toLowerCase();
+        return aName.includes(currentName) || currentName.includes(aName) || aId === currentUid;
+      });
+    } else if (currentForumFilter === 'pending') {
+      threads = threads.filter(t => !(t.status === 'resolved' || (t.responses && t.responses.length > 0)));
     }
+
+    if (threads.length === 0) {
+      ft.innerHTML = `
+        <div style="padding:24px; text-align:center; color:#9ca3af; font-size:13px;">
+          ${currentForumFilter === 'assigned' 
+            ? 'No student doubts currently assigned to your queue.' 
+            : (currentForumFilter === 'pending' ? 'No pending doubts awaiting reply! All queries resolved.' : 'No discussion threads found.')}
+        </div>
+      `;
+      return;
+    }
+
+    ft.innerHTML = threads.map(t => {
+      const hasResponses = (t.responses && t.responses.length > 0);
+      const isResolved = (t.status === 'resolved') || hasResponses;
+      const totalReplies = hasResponses ? t.responses.length : (t.replies || 0);
+      const assignedProf = t.assignedFacultyName || 'Dr. Aarav Sharma';
+      const aName = assignedProf.toLowerCase();
+      const isAssignedToMe = aName.includes(currentName) || currentName.includes(aName) || (t.assignedFacultyId && t.assignedFacultyId.toLowerCase() === currentUid);
+
+      const responsesHtml = hasResponses
+        ? `<div class="thread-responses">
+            <span style="font-size:11px; font-weight:700; color:#3b82f6;">Faculty Clarification:</span>
+            ${t.responses.map(resp => `
+              <div class="thread-reply-bubble">
+                <strong>${resp.author}:</strong> ${resp.text}
+              </div>
+            `).join('')}
+           </div>`
+        : '';
+
+      return `
+        <div class="forum-thread" style="${!isResolved ? 'border-left:4px solid #f59e0b; background:#fffdfa;' : ''}">
+          <div class="thread-header">
+            <div>
+              <div class="thread-title">${t.title}</div>
+              <div class="thread-meta">
+                ${t.courseCode} · ${t.studentName || 'Student'} · ${t.timeAgo || 'Recent'} · ${totalReplies} ${totalReplies === 1 ? 'reply' : 'replies'}
+              </div>
+              <div style="margin-top:6px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <span style="font-size:11px; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; font-weight:600;">
+                  🎯 Assigned To: ${assignedProf}
+                </span>
+                ${isAssignedToMe ? `<span style="font-size:11px; background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:4px; font-weight:700;">★ Directed to You</span>` : ''}
+              </div>
+            </div>
+            <span class="tag-pill ${isResolved ? 'tag-green' : 'tag-amber'}">${isResolved ? '✓ Resolved' : '🕒 Awaiting Reply'}</span>
+          </div>
+          <div class="thread-body">${t.question || t.body}</div>
+          ${responsesHtml}
+          <div style="margin-top:12px;">
+            <button onclick="openReplyModal('${t.id}', '${escapeAttr(t.title)}', '${t.studentName || 'Student'}')" class="btn ${isResolved ? 'btn-outline' : 'btn-primary'} btn-sm">
+              ${isResolved ? 'Add Additional Clarification' : 'Reply to Student'}
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 
   function escapeAttr(text) {
@@ -1590,12 +1660,18 @@
     e.preventDefault();
     const threadId = document.getElementById('reply-thread-id').value;
     const replyText = document.getElementById('reply-text').value;
+    const currentUser = CourseCraftAuth.getCurrentUser() || { name: 'Dr. Aarav Sharma', uid: 'usr_faculty_01' };
 
     try {
       const res = await fetch('/api/faculty/forum/reply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ threadId, replyText, facultyName: 'Dr. Aarav Sharma' })
+        body: JSON.stringify({ 
+          threadId, 
+          replyText, 
+          facultyName: currentUser.name || 'Dr. Aarav Sharma',
+          facultyId: currentUser.uid || 'usr_faculty_01'
+        })
       });
       if (res.ok) {
         closeModal('replyModal');
