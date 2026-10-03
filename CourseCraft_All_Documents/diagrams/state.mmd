@@ -1,0 +1,22 @@
+stateDiagram-v2
+  [*] --> Created
+  Created --> PendingPayment: enrolment submitted
+  PendingPayment --> ActivePaid: verified payment success
+  PendingPayment --> PaymentFailed: provider failure
+  PaymentFailed --> PendingPayment: authorised retry
+  PaymentFailed --> Cancelled: learner/admin cancels
+  ActivePaid --> InProgress: first lesson started
+  InProgress --> Completed: all required lessons complete
+  ActivePaid --> Cancelled: approved cancellation before progress
+  InProgress --> Refunded: authorised refund/withdrawal
+  ActivePaid --> Refunded: authorised refund
+  Completed --> Refunded: policy-approved post-completion refund
+  Cancelled --> [*]
+  Refunded --> [*]
+  Completed --> [*]
+  note right of Completed
+    Course completion is separate
+    from certificate issuance.
+    Certificate service checks
+    quiz pass and approved rules.
+  end note

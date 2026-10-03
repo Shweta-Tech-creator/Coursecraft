@@ -1,0 +1,30 @@
+flowchart LR
+  Learner([Learner])
+  Faculty([Faculty])
+  Editor([Content editor])
+  Admin([Centre administrator])
+  Pay([Payment provider])
+  Video([Video delivery service])
+  subgraph CC[CourseCraft platform]
+    UC1([Browse and view courses])
+    UC2([Enrol and pay])
+    UC3([Watch lessons])
+    UC4([Record progress])
+    UC5([Complete quiz])
+    UC6([Evaluate eligibility and retrieve certificate])
+    UC7([Manage course and view dashboard])
+    UC8([Submit and validate content])
+    UC9([Publish course and view reports])
+  end
+  Learner --> UC1
+  Learner --> UC2
+  Learner --> UC3
+  Learner --> UC5
+  Learner --> UC6
+  UC3 --> UC4
+  UC2 <--> Pay
+  UC3 <--> Video
+  Faculty --> UC7
+  Faculty --> UC8
+  Editor --> UC8
+  Admin --> UC9

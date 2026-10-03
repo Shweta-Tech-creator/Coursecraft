@@ -1125,7 +1125,7 @@ const server = http.createServer(async (req, res) => {
         category: category || 'Computer Science & Engineering',
         level,
         description: description || 'Course proposed by faculty member awaiting editorial curriculum production.',
-        price: 4999,
+        price: 4500,
         duration: '12 Hours',
         status: 'planned',
         modules: []

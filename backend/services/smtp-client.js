@@ -81,8 +81,10 @@ function getSmtpConfig() {
   const secure = process.env.SMTP_SECURE === 'true' || port === 465;
   const resendApiKey = (process.env.RESEND_API_KEY || '').trim();
   const brevoApiKey = (process.env.BREVO_API_KEY || '').trim();
+  const brevoSenderEmail = (process.env.BREVO_SENDER_EMAIL || user || 'kadamsweta92@gmail.com').trim();
+  const brevoSenderName = (process.env.BREVO_SENDER_NAME || 'CourseCraft Admissions').trim();
 
-  return { host, port, user, pass, from, secure, resendApiKey, brevoApiKey };
+  return { host, port, user, pass, from, secure, resendApiKey, brevoApiKey, brevoSenderEmail, brevoSenderName };
 }
 
 /**
@@ -427,7 +429,19 @@ CourseCraft — University Continuing Education Centre
   const config = getSmtpConfig();
   let smtpResult = { sent: false };
 
-  if (config.resendApiKey) {
+  if (config.brevoApiKey) {
+    console.log(`[Email Dispatcher] Attempting HTTPS dispatch via Brevo (api.brevo.com) to ${email}...`);
+    const brevoFrom = `"${config.brevoSenderName}" <${config.brevoSenderEmail}>`;
+    smtpResult = await sendViaBrevo({
+      apiKey: config.brevoApiKey,
+      from: brevoFrom,
+      to: email,
+      subject,
+      html: htmlBody,
+      text: textBody
+    });
+    console.log(`[Email Dispatcher] Brevo result for ${email}:`, smtpResult);
+  } else if (config.resendApiKey) {
     console.log(`[Email Dispatcher] Attempting HTTPS dispatch via Resend to ${email}...`);
     smtpResult = await sendViaResend({
       apiKey: config.resendApiKey,
@@ -438,17 +452,6 @@ CourseCraft — University Continuing Education Centre
       text: textBody
     });
     console.log(`[Email Dispatcher] Resend result for ${email}:`, smtpResult);
-  } else if (config.brevoApiKey) {
-    console.log(`[Email Dispatcher] Attempting HTTPS dispatch via Brevo to ${email}...`);
-    smtpResult = await sendViaBrevo({
-      apiKey: config.brevoApiKey,
-      from: config.from,
-      to: email,
-      subject,
-      html: htmlBody,
-      text: textBody
-    });
-    console.log(`[Email Dispatcher] Brevo result for ${email}:`, smtpResult);
   } else if (isSmtpConfigured()) {
     console.log(`[SMTP Client] Attempting live SMTP dispatch to ${email} via ${config.host}:${config.port}...`);
     smtpResult = await sendSmtpRaw({

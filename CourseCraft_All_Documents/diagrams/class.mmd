@@ -1,0 +1,64 @@
+classDiagram
+  class User {
+    +userId
+    +name
+    +email
+  }
+  class Role {
+    +roleId
+    +name
+  }
+  class Course {
+    +courseId
+    +title
+    +status
+    +quizPassThreshold
+  }
+  class Lesson {
+    +lessonId
+    +title
+    +assetRef
+    +required
+  }
+  class Enrolment {
+    +enrolmentId
+    +state
+    +paymentRef
+    +paymentStatus
+    +activateVerifiedPayment()
+  }
+  class LessonProgress {
+    +completed
+    +completionPercent
+    +markComplete()
+  }
+  class QuizAttempt {
+    +attemptId
+    +score
+    +passed
+    +submittedAt
+  }
+  class Certificate {
+    +certificateId
+    +issuedAt
+    +verificationStatus
+  }
+  class PaymentAdapter {
+    <<interface>>
+    +initiatePayment()
+    +verifyCallback()
+  }
+  class VideoDeliveryAdapter {
+    <<interface>>
+    +getPlaybackAccess()
+  }
+  User "1" -- "*" Role : assigned
+  User "1" -- "*" Enrolment : learner
+  Course "1" -- "*" Enrolment : contains
+  Course "1" -- "1..*" Lesson : includes
+  Enrolment "1" -- "*" LessonProgress : tracks
+  Lesson "1" -- "*" LessonProgress : progress for
+  Enrolment "1" -- "*" QuizAttempt : attempts
+  Enrolment "1" -- "0..1" Certificate : earns
+  Enrolment ..> PaymentAdapter : delegates payment
+  Lesson ..> VideoDeliveryAdapter : delegates playback
