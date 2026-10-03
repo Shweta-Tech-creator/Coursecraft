@@ -328,7 +328,9 @@ function sendSmtpRaw({ host, port, user, pass, from, to, subject, html, text }) 
  * High-level email dispatcher for student credentials
  */
 async function dispatchStudentCredentialsEmail({ name, email, password, courseTitle, loginUrl }) {
-  const portalUrl = loginUrl || 'http://localhost:8085/login.html';
+  const rawPortalUrl = loginUrl || 'http://localhost:8085/login.html';
+  const baseUrl = rawPortalUrl.split('?')[0];
+  const portalUrl = `${baseUrl}?email=${encodeURIComponent(email)}&role=student`;
   const subject = `Welcome to CourseCraft: Your Student Login Credentials & Course Access`;
 
   const textBody = `
