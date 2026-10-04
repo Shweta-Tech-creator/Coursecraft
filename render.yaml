@@ -23,4 +23,13 @@ services:
         sync: false
       - key: BREVO_API_KEY
         sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        value: dinrv92oo
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false
+
 

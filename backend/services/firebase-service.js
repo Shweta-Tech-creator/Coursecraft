@@ -24,14 +24,41 @@ function initFirebase() {
   if (!admin || !getFirestore) return { initialized: false, error: 'firebase-admin not installed' };
 
   try {
-    const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
-    const localKeyPath = path.join(__dirname, '../data/service-account.json');
-    const targetKeyPath = (serviceAccountPath && fs.existsSync(serviceAccountPath))
-      ? serviceAccountPath
-      : (fs.existsSync(localKeyPath) ? localKeyPath : null);
+    let serviceAccount = null;
 
-    if (targetKeyPath) {
-      const serviceAccount = JSON.parse(fs.readFileSync(targetKeyPath, 'utf8'));
+    // 1. Direct JSON string in environment variable (Ideal for Render / Heroku / Cloud)
+    if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+      try {
+        serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+      } catch (pErr) {
+        console.warn('[Firebase Service] Could not parse FIREBASE_SERVICE_ACCOUNT_JSON:', pErr.message);
+      }
+    }
+
+    // 2. Base64 encoded JSON in environment variable
+    if (!serviceAccount && process.env.FIREBASE_SERVICE_ACCOUNT_BASE64) {
+      try {
+        const decoded = Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT_BASE64, 'base64').toString('utf8');
+        serviceAccount = JSON.parse(decoded);
+      } catch (bErr) {
+        console.warn('[Firebase Service] Could not parse FIREBASE_SERVICE_ACCOUNT_BASE64:', bErr.message);
+      }
+    }
+
+    // 3. File path (Render secret files or local development)
+    if (!serviceAccount) {
+      const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+      const localKeyPath = path.join(__dirname, '../data/service-account.json');
+      const targetKeyPath = (serviceAccountPath && fs.existsSync(serviceAccountPath))
+        ? serviceAccountPath
+        : (fs.existsSync(localKeyPath) ? localKeyPath : null);
+
+      if (targetKeyPath) {
+        serviceAccount = JSON.parse(fs.readFileSync(targetKeyPath, 'utf8'));
+      }
+    }
+
+    if (serviceAccount) {
       if (!admin.getApps().length) {
         admin.initializeApp({
           credential: admin.cert(serviceAccount),
