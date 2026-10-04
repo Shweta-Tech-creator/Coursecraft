@@ -697,7 +697,7 @@
             </button>
             <button onclick="switchAdminTab('catalog')" class="btn-glass">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
-              Manage <span id="admin-btn-course-count">46</span> Courses
+              Manage <span id="admin-btn-course-count">30</span> Courses
             </button>
           </div>
         </div>
@@ -886,7 +886,7 @@
             </select>
           </div>
           <div style="font-size:12.5px; color:#64748b;">
-            Showing <strong id="admin-catalog-visible-count">46</strong> of <span id="admin-catalog-total-count">46</span> courses
+            Showing <strong id="admin-catalog-visible-count">30</strong> of <span id="admin-catalog-total-count">30</span> courses
           </div>
         </div>
 
@@ -1372,6 +1372,14 @@
       document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
       const activePane = document.getElementById(`apane-${tabName}`);
       if (activePane) activePane.classList.add('active');
+
+      if (tabName === 'catalog') {
+        if (cachedCourses && cachedCourses.length) {
+          renderAdminCatalog(cachedCourses);
+        } else {
+          loadAdminCatalog();
+        }
+      }
     };
 
     // ── 1. Overview Loader ──
@@ -1641,8 +1649,9 @@
       if (countEl) countEl.innerText = courses.length;
       const totalEl = document.getElementById('admin-catalog-total-count');
       const btnEl = document.getElementById('admin-btn-course-count');
-      if (totalEl) totalEl.innerText = adminCourses.length;
-      if (btnEl) btnEl.innerText = adminCourses.length;
+      const totalCount = cachedCourses.length || courses.length;
+      if (totalEl) totalEl.innerText = totalCount;
+      if (btnEl) btnEl.innerText = totalCount;
 
       tbody.innerHTML = courses.map(c => {
         const statusBadge = c.status === 'ready'
