@@ -18,14 +18,17 @@ const { uploadCertificateToCloudinary } = require('./services/cloudinary-service
 const {
   initFirebase,
   syncLocalDataToFirestore,
+  saveStudentToFirestore,
+  saveFacultyToFirestore,
   saveCertificateToFirestore,
   getCertificateFromFirestore
 } = require('./services/firebase-service');
 
 const PORT = process.env.PORT || 8085;
 
-// Initialize Firebase Admin & Sync
+// Initialize Firebase Admin & Sync role-specific collections
 initFirebase();
+syncLocalDataToFirestore().catch(e => console.warn('[Server] Firestore auto-sync notice:', e.message));
 
 // Load Datasets
 const COURSES_FILE = path.join(__dirname, 'data', 'courses.json');
@@ -53,6 +56,18 @@ function writeJsonFile(filePath, data) {
   } catch (err) {
     console.error(`Error writing ${filePath}:`, err);
     return false;
+  }
+}
+
+// Automatically synchronizes user changes to disk and Firestore collections
+function persistUser(user) {
+  writeJsonFile(USERS_FILE, users);
+  if (user) {
+    if (user.role === 'student') {
+      saveStudentToFirestore(user).catch(e => console.warn('[Firebase] Student sync notice:', e.message));
+    } else if (user.role === 'faculty') {
+      saveFacultyToFirestore(user).catch(e => console.warn('[Firebase] Faculty sync notice:', e.message));
+    }
   }
 }
 
@@ -455,7 +470,7 @@ const server = http.createServer(async (req, res) => {
             enrolled.quizPassed = true;
             enrolled.certificateId = certId;
             enrolled.certificateIssuedAt = new Date().toISOString();
-            writeJsonFile(USERS_FILE, users);
+            persistUser(student);
           }
         }
       }
@@ -519,7 +534,7 @@ const server = http.createServer(async (req, res) => {
         }
         if (!student.payments) student.payments = [];
         student.payments.push(paymentRecord);
-        writeJsonFile(USERS_FILE, users);
+        persistUser(student);
       }
 
       return sendJson(res, 200, {
@@ -555,7 +570,7 @@ const server = http.createServer(async (req, res) => {
         enrollment.progressPercent = Math.min(100, Math.max(enrollment.progressPercent || 0, progressPercent));
       }
 
-      writeJsonFile(USERS_FILE, users);
+      persistUser(student);
       return sendJson(res, 200, {
         success: true,
         progressPercent: enrollment.progressPercent,
@@ -877,7 +892,7 @@ const server = http.createServer(async (req, res) => {
         targetCourse.status = newRecorded >= 12 ? 'ready' : (newRecorded > 0 ? 'in_production' : 'planned');
       }
 
-      writeJsonFile(USERS_FILE, users);
+      persistUser(faculty);
       writeJsonFile(COURSES_FILE, courses);
 
       return sendJson(res, 200, {
