@@ -809,6 +809,21 @@ const server = http.createServer(async (req, res) => {
     const totalTarget = assignedCourses.length * 12; // 60h for 5 courses
     const totalEditingHours = assignedCourses.reduce((acc, c) => acc + c.editingHours, 0);
 
+    const studentUsers = users.filter(u => u.role === 'student');
+    const relevantEnrollments = [];
+    studentUsers.forEach(s => {
+      (s.enrolledCourses || []).forEach(e => {
+        if (assignedIds.includes(e.courseId)) {
+          relevantEnrollments.push({ student: s, enrollment: e });
+        }
+      });
+    });
+
+    const totalEnrolledStudents = relevantEnrollments.length;
+    const avgCompletionRate = relevantEnrollments.length > 0
+      ? Math.round(relevantEnrollments.reduce((sum, item) => sum + (Number(item.enrollment.progressPercent) || 0), 0) / relevantEnrollments.length)
+      : 0;
+
     return sendJson(res, 200, {
       success: true,
       faculty: {
@@ -823,11 +838,11 @@ const server = http.createServer(async (req, res) => {
         assignedCoursesCount: assignedCourses.length,
         totalRecordedHours: totalRecorded,
         totalTargetHours: totalTarget,
-        recordingProgressPercent: Math.round((totalRecorded / totalTarget) * 100),
+        recordingProgressPercent: totalTarget > 0 ? Math.round((totalRecorded / totalTarget) * 100) : 0,
         totalEditingEffortHours: totalEditingHours,
         totalEditingTargetHours: assignedCourses.length * 36,
-        avgCompletionRate: 74,
-        totalEnrolledStudents: 312,
+        avgCompletionRate,
+        totalEnrolledStudents,
         annualTargetPerCourse: 150
       },
       phaseRoadmap: {
@@ -1048,35 +1063,92 @@ const server = http.createServer(async (req, res) => {
 
   // 7.6 Student Performance & Course Analytics
   if (pathname === '/api/faculty/analytics' && method === 'GET') {
-    const liveEnrolments = [
-      { courseId: 'cc-101', code: 'CSE-101', title: 'Modern Full-Stack Web Architecture', count: 98, target: 150, completionRate: 88 },
-      { courseId: 'cc-108', code: 'PM-808',  title: 'IT Project Leadership & Agile',       count: 84, target: 150, completionRate: 74 },
-      { courseId: 'cc-110', code: 'MB-110',  title: 'Cross-Platform Mobile with Flutter',   count: 71, target: 150, completionRate: 69 },
-      { courseId: 'cc-117', code: 'GD-117',  title: 'Game Development with Unity',          count: 41, target: 150, completionRate: 61 },
-      { courseId: 'cc-121', code: 'FIN-121', title: 'FinTech Engineering & Algo Trading',   count: 18, target: 150, completionRate: 0 }
-    ];
+    const studentUsers = users.filter(u => u.role === 'student');
+    const faculty = users.find(u => u.role === 'faculty') || {};
+    const assignedIds = faculty.assignedCourses || ['cc-101', 'cc-102', 'cc-108', 'cc-110', 'cc-117'];
+    const assignedCourseObjs = courses.filter(c => assignedIds.includes(c.id));
+
+    // Live enrollments per course from real student records
+    const liveEnrolments = (assignedCourseObjs.length ? assignedCourseObjs : courses.slice(0, 5)).map(c => {
+      let count = 0;
+      let progressSum = 0;
+      studentUsers.forEach(s => {
+        const enr = (s.enrolledCourses || []).find(e => e.courseId === c.id);
+        if (enr) {
+          count++;
+          progressSum += (Number(enr.progressPercent) || 0);
+        }
+      });
+      const completionRate = count > 0 ? Math.round(progressSum / count) : 0;
+      return {
+        courseId: c.id,
+        code: c.code,
+        title: c.title,
+        count,
+        target: 150,
+        completionRate
+      };
+    });
+
+    const totalEnrolmentsActive = liveEnrolments.reduce((sum, item) => sum + item.count, 0);
+
+    // Dropoff based on lesson milestones
+    let totalLessonsCompleted = 0;
+    studentUsers.forEach(s => {
+      (s.enrolledCourses || []).forEach(e => {
+        totalLessonsCompleted += (e.completedLessons || []).length;
+      });
+    });
 
     const dropoffAnalytics = [
-      { stage: 'Intro & Setup', completionPercent: 95, dropoffPercent: 5 },
-      { stage: 'Module 2 Core Theory', completionPercent: 84, dropoffPercent: 11 },
-      { stage: 'Module 3 Hands-on Lab', completionPercent: 76, dropoffPercent: 8 },
-      { stage: 'Module 4 Deployment', completionPercent: 68, dropoffPercent: 8 },
-      { stage: 'Final Certification Exam', completionPercent: 61, dropoffPercent: 7 }
+      { stage: 'Intro & Setup', completionPercent: totalEnrolmentsActive > 0 ? 100 : 0, dropoffPercent: 0 },
+      { stage: 'Module 1 Foundations', completionPercent: totalEnrolmentsActive > 0 ? Math.min(100, Math.round((totalLessonsCompleted / Math.max(1, totalEnrolmentsActive * 4)) * 100)) : 0, dropoffPercent: 0 },
+      { stage: 'Module 2 Deep Dive', completionPercent: totalEnrolmentsActive > 0 ? Math.min(100, Math.round((totalLessonsCompleted / Math.max(1, totalEnrolmentsActive * 8)) * 100)) : 0, dropoffPercent: 0 },
+      { stage: 'Module 3 Production Lab', completionPercent: totalEnrolmentsActive > 0 ? Math.min(100, Math.round((totalLessonsCompleted / Math.max(1, totalEnrolmentsActive * 12)) * 100)) : 0, dropoffPercent: 0 },
+      { stage: 'Final Certification', completionPercent: totalEnrolmentsActive > 0 ? Math.min(100, Math.round((totalLessonsCompleted / Math.max(1, totalEnrolmentsActive * 16)) * 100)) : 0, dropoffPercent: 0 }
     ];
 
+    // Real quiz distribution from student records
+    let passedCount = 0;
+    let failedCount = 0;
+    const histogramCounts = [0, 0, 0, 0, 0];
+
+    studentUsers.forEach(s => {
+      (s.enrolledCourses || []).forEach(e => {
+        if (e.quizScore !== null && e.quizScore !== undefined) {
+          const score = Number(e.quizScore);
+          const scoreOutOf10 = Math.round(score / 10);
+          if (e.quizPassed || score >= 70) {
+            passedCount++;
+          } else {
+            failedCount++;
+          }
+          if (scoreOutOf10 <= 2) histogramCounts[0]++;
+          else if (scoreOutOf10 <= 4) histogramCounts[1]++;
+          else if (scoreOutOf10 <= 6) histogramCounts[2]++;
+          else if (scoreOutOf10 <= 8) histogramCounts[3]++;
+          else histogramCounts[4]++;
+        }
+      });
+    });
+
+    const totalAttempts = passedCount + failedCount;
+    const passRatePercent = totalAttempts > 0 ? Math.round((passedCount / totalAttempts) * 100) : 0;
+    const failRatePercent = totalAttempts > 0 ? (100 - passRatePercent) : 0;
+
     const quizScoreDistribution = {
-      totalAttempts: 192,
+      totalAttempts,
       passThresholdPercent: 70,
-      passedCount: 146,
-      failedCount: 46,
-      passRatePercent: 76,
-      failRatePercent: 24,
+      passedCount,
+      failedCount,
+      passRatePercent,
+      failRatePercent,
       histogramBands: [
-        { band: '0–2', count: 5, color: '#ef4444', label: 'Critical Remediation' },
-        { band: '3–4', count: 11, color: '#f59e0b', label: 'Below Passing' },
-        { band: '5–6', count: 23, color: '#f59e0b', label: 'Near Passing (50-60%)' },
-        { band: '7–8', count: 72, color: '#10b981', label: 'Certified (70-80%)' },
-        { band: '9–10', count: 81, color: '#059669', label: 'Distinction (90-100%)' }
+        { band: '0–2', count: histogramCounts[0], color: '#ef4444', label: 'Critical Remediation' },
+        { band: '3–4', count: histogramCounts[1], color: '#f59e0b', label: 'Below Passing' },
+        { band: '5–6', count: histogramCounts[2], color: '#f59e0b', label: 'Near Passing (50-60%)' },
+        { band: '7–8', count: histogramCounts[3], color: '#10b981', label: 'Certified (70-80%)' },
+        { band: '9–10', count: histogramCounts[4], color: '#059669', label: 'Distinction (90-100%)' }
       ]
     };
 
@@ -1084,7 +1156,7 @@ const server = http.createServer(async (req, res) => {
       success: true,
       analytics: {
         targetPerCourseYear: 150,
-        totalEnrolmentsActive: 312,
+        totalEnrolmentsActive,
         liveEnrolments,
         dropoffAnalytics,
         quizScoreDistribution

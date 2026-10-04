@@ -265,7 +265,7 @@
           </div>
           <div>
             <div class="kpi-title">Avg Completion Rate</div>
-            <div class="kpi-value" id="kpi-completion-rate">74%</div>
+            <div class="kpi-value" id="kpi-completion-rate">0%</div>
             <div class="kpi-subtitle">Target: &gt;70%</div>
           </div>
         </div>
@@ -276,7 +276,7 @@
           </div>
           <div>
             <div class="kpi-title">Total Enrolled</div>
-            <div class="kpi-value" id="kpi-total-enrolled">312</div>
+            <div class="kpi-value" id="kpi-total-enrolled">0</div>
             <div class="kpi-subtitle">Target: 150 / course / yr</div>
           </div>
         </div>
@@ -515,16 +515,14 @@
             <div class="donut-wrap">
               <svg width="100" height="100" viewBox="0 0 36 36" style="flex-shrink:0;">
                 <circle cx="18" cy="18" r="15.915" fill="none" stroke="#f3f4f6" stroke-width="4"/>
-                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#10b981" stroke-width="4"
-                  stroke-dasharray="76 24" stroke-dashoffset="25"/>
-                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#ef4444" stroke-width="4"
-                  stroke-dasharray="24 76" stroke-dashoffset="-51"/>
-                <text x="18" y="21" text-anchor="middle" font-size="7" font-weight="700" fill="#111827">76%</text>
+                <circle id="donut-pass-circle" cx="18" cy="18" r="15.915" fill="none" stroke="#10b981" stroke-width="4"
+                  stroke-dasharray="100 0" stroke-dashoffset="25"/>
+                <text id="donut-center-text" x="18" y="21" text-anchor="middle" font-size="7" font-weight="700" fill="#111827">100%</text>
               </svg>
               <div class="donut-legend">
-                <div class="donut-legend-item"><div class="donut-dot" style="background:#10b981;"></div><span>Pass (≥70%): <strong>76% (146)</strong></span></div>
-                <div class="donut-legend-item"><div class="donut-dot" style="background:#ef4444;"></div><span>Fail (&lt;70%): <strong>24% (46)</strong></span></div>
-                <div style="font-size:11px; color:#9ca3af; margin-top:8px;">Based on 192 total academic quiz attempts</div>
+                <div class="donut-legend-item"><div class="donut-dot" style="background:#10b981;"></div><span>Pass (≥70%): <strong id="faculty-quiz-pass-summary">100% (1)</strong></span></div>
+                <div class="donut-legend-item"><div class="donut-dot" style="background:#ef4444;"></div><span>Fail (&lt;70%): <strong id="faculty-quiz-fail-summary">0% (0)</strong></span></div>
+                <div style="font-size:11px; color:#9ca3af; margin-top:8px;">Based on <span id="faculty-quiz-total-attempts">1</span> total academic quiz attempts</div>
               </div>
             </div>
           </div>
@@ -1482,6 +1480,24 @@
           <div class="bar-label">${d.band}</div>
         </div>
       `).join('');
+    }
+
+    // 5. Update Donut Chart
+    if (analytics.quizScoreDistribution) {
+      const qd = analytics.quizScoreDistribution;
+      const passText = document.getElementById('faculty-quiz-pass-summary');
+      const failText = document.getElementById('faculty-quiz-fail-summary');
+      const attText = document.getElementById('faculty-quiz-total-attempts');
+      const centerText = document.getElementById('donut-center-text');
+      const passCircle = document.getElementById('donut-pass-circle');
+
+      if (passText) passText.innerText = `${qd.passRatePercent}% (${qd.passedCount})`;
+      if (failText) failText.innerText = `${qd.failRatePercent}% (${qd.failedCount})`;
+      if (attText) attText.innerText = qd.totalAttempts;
+      if (centerText) centerText.innerText = `${qd.passRatePercent}%`;
+      if (passCircle) {
+        passCircle.setAttribute('stroke-dasharray', `${qd.passRatePercent} ${100 - qd.passRatePercent}`);
+      }
     }
   }
 
