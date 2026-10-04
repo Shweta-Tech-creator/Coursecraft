@@ -117,27 +117,9 @@
         </a>
       `;
     } else if (user.role === 'faculty') {
-      menuLinksHtml = `
-        <a href="/faculty/dashboard.html" class="dropdown-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
-          <span>Recording Studio</span>
-        </a>
-        <a href="/student/dashboard.html" class="dropdown-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <span>Student Portal View</span>
-        </a>
-      `;
+      menuLinksHtml = ``;
     } else if (user.role === 'admin') {
-      menuLinksHtml = `
-        <a href="/administrator/dashboard.html" class="dropdown-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
-          <span>Admin Analytics</span>
-        </a>
-        <a href="/student/dashboard.html" class="dropdown-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <span>Student Portal View</span>
-        </a>
-      `;
+      menuLinksHtml = ``;
     }
 
     widgetTarget.innerHTML = `
