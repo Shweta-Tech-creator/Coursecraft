@@ -34,25 +34,25 @@
             "id": "l101",
             "title": "Client-Server Paradigms & HTTP/3 Protocol",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l102",
             "title": "Loosely-Coupled Software Architecture",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l103",
             "title": "RESTful API Design & OpenAPI Contracts",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l104",
             "title": "State Management & Responsive Layouts",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -65,25 +65,25 @@
             "id": "l105",
             "title": "Cloud Firestore Data Modeling & Security Rules",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l106",
             "title": "Authentication, Tokens & Identity Federation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l107",
             "title": "Event-Driven Functions & Webhooks",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l108",
             "title": "Storage Buckets & Media Asset Optimization",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -96,25 +96,25 @@
             "id": "l109",
             "title": "Payment Gateway Integration Patterns & Webhooks",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l110",
             "title": "Idempotent Transaction Handling & Audit Logs",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l111",
             "title": "Adaptive Bitrate Video Streaming & HLS Delivery",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l112",
             "title": "Client Telemetry & Video Progress Tracking",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -127,25 +127,25 @@
             "id": "l113",
             "title": "OWASP Top 10 Protections & CSRF/XSS Mitigation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l114",
             "title": "Automated Testing Suites (Unit, Integration, E2E)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l115",
             "title": "CI/CD Deployment Pipelines & Cloud Hosting",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l116",
             "title": "Cryptographic Certificate Generation & Verification",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       }
@@ -489,25 +489,25 @@
             "id": "l201",
             "title": "IEEE 830 SRS Structure & Stakeholder Needs",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l202",
             "title": "Functional vs Non-Functional Requirements (SMART)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l203",
             "title": "MoSCoW Prioritization & Requirements Traceability (RTM)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l204",
             "title": "Agile User Stories & Acceptance Criteria Writing",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -520,25 +520,25 @@
             "id": "l205",
             "title": "COCOMO II & Function Point Analysis (FPA)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l206",
             "title": "Work Breakdown Structure (WBS) Level 1 to 4 Decomposition",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l207",
             "title": "Effort & Resource Capacity Planning (Case Study 108)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l208",
             "title": "Cost of Quality (CoQ) & Economic Feasibility",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -551,25 +551,25 @@
             "id": "l209",
             "title": "Network Diagrams: Precedence Diagramming Method (PDM)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l210",
             "title": "Critical Path Method (CPM): Forward & Backward Pass Calculations",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l211",
             "title": "Total Float, Free Float & Schedule Compression (Crashing/Fast-Tracking)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l212",
             "title": "Resource Leveling vs Resource Smoothing in Dual-Track Projects",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -582,25 +582,25 @@
             "id": "l213",
             "title": "RMMM (Risk Mitigation, Monitoring & Management) Matrices",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l214",
             "title": "Black-Box Testing: Equivalence Partitioning & Boundary Value Analysis",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l215",
             "title": "Decision Tables & State Transition Testing",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l216",
             "title": "Defect Density, Defect Removal Efficiency (DRE) & Release Readiness",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       }
@@ -753,25 +753,25 @@
             "id": "l301",
             "title": "Linear Regression, Loss Functions & Gradient Descent",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l302",
             "title": "Logistic Regression, Decision Trees & Random Forests",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l303",
             "title": "Support Vector Machines & Kernel Tricks",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l304",
             "title": "Model Evaluation Metrics: Precision, Recall, F1, ROC-AUC",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -784,25 +784,25 @@
             "id": "l305",
             "title": "Multi-Layer Perceptrons & Backpropagation Math",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l306",
             "title": "Convolutional Neural Networks (CNNs) & ResNet",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l307",
             "title": "Transfer Learning & Image Augmentation Strategies",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l308",
             "title": "Object Detection with YOLO Architectures",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -815,25 +815,25 @@
             "id": "l309",
             "title": "Tokenization, Word Embeddings & Recurrent Networks",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l310",
             "title": "Self-Attention Mechanism & The Transformer Blueprint",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l311",
             "title": "BERT, GPT & Pretrained Foundation Models",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l312",
             "title": "Retrieval-Augmented Generation (RAG) & Vector Stores",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -846,25 +846,25 @@
             "id": "l313",
             "title": "Model Serving with FastAPI, ONNX & Docker",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l314",
             "title": "Data Versioning, Drift Detection & Retraining Triggers",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l315",
             "title": "Explainable AI (XAI) with SHAP and LIME",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l316",
             "title": "AI Ethics, Bias Mitigation & Privacy Compliance",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       }
@@ -1017,25 +1017,25 @@
             "id": "l401",
             "title": "Cyber Kill Chain, MITRE ATT&CK & Threat Modeling",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l402",
             "title": "TCP/IP Protocol Security, Packet Sniffing & Wireshark",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l403",
             "title": "Firewalls, Next-Gen IDS/IPS & DMZ Segmentation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l404",
             "title": "Zero-Trust Architecture & Identity Access Management",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -1048,25 +1048,25 @@
             "id": "l405",
             "title": "SQL Injection, NoSQL Injection & Remediation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l406",
             "title": "Cross-Site Scripting (XSS) & CSRF Defense Mechanisms",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l407",
             "title": "Server-Side Request Forgery (SSRF) & Broken Access Control",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l408",
             "title": "Secure API Design, Rate Limiting & JWT Hardening",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -1079,25 +1079,25 @@
             "id": "l409",
             "title": "Symmetric Encryption (AES-GCM) & Key Management",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l410",
             "title": "Asymmetric Cryptography (RSA, ECC) & Digital Signatures",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l411",
             "title": "TLS 1.3 Protocol Handshake & Certificate Authorities",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l412",
             "title": "Password Hashing Algorithms (Argon2, bcrypt) & Salt/Pepper",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -1110,25 +1110,25 @@
             "id": "l413",
             "title": "Penetration Testing Methodology & Kali Linux Toolsets",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l414",
             "title": "SIEM Logging, Log Aggregation & Threat Detection Rules",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l415",
             "title": "Digital Forensics & Memory Analysis (Volatility)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l416",
             "title": "Incident Response Playbooks & ISO 27001 Auditing",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       }
@@ -1281,25 +1281,25 @@
             "id": "l501",
             "title": "Linux Namespaces, cgroups & Container Internals",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l502",
             "title": "Writing Production Dockerfiles & Multi-Stage Builds",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l503",
             "title": "Docker Compose & Multi-Container Networking",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l504",
             "title": "Image Security Scanning & Harbor Registries",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -1312,25 +1312,25 @@
             "id": "l505",
             "title": "Control Plane, Worker Nodes & Kubelet Workflow",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l506",
             "title": "Pods, Deployments, ReplicaSets & Rollouts",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l507",
             "title": "Services, ClusterIP, NodePort & Ingress Controllers",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l508",
             "title": "ConfigMaps, Secrets & Persistent Volume Claims (PVC)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -1343,25 +1343,25 @@
             "id": "l509",
             "title": "Terraform State Management, Providers & Modules",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l510",
             "title": "Helm Charts & Package Management for Kubernetes",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l511",
             "title": "GitOps Pipelines with ArgoCD & Flux",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l512",
             "title": "Canary Deployments & Flagger Automation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -1374,25 +1374,25 @@
             "id": "l513",
             "title": "Prometheus Metrics Scraping & Alertmanager Rules",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l514",
             "title": "Grafana Dashboards & Distributed Tracing with Jaeger",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l515",
             "title": "Service Level Objectives (SLOs), SLIs & Error Budgets",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l516",
             "title": "Chaos Engineering & Disaster Recovery Runbooks",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       }
@@ -1545,25 +1545,25 @@
             "id": "l601",
             "title": "Data Cleaning, Imputation & Feature Scaling in Pandas",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l602",
             "title": "Probability Distributions, CLT & Hypothesis Testing",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l603",
             "title": "ANOVA, Chi-Square Tests & A/B Experimentation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l604",
             "title": "High-Dimensional Data Visualization with Seaborn & Plotly",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -1576,25 +1576,25 @@
             "id": "l605",
             "title": "Spark Core: RDDs, Transformations, Actions & Lineage",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l606",
             "title": "Spark SQL & DataFrames: Optimization with Catalyst Optimizer",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l607",
             "title": "Handling Data Skew, Broadcast Joins & Partitioning",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l608",
             "title": "PySpark MLlib for Distributed Machine Learning",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -1607,25 +1607,25 @@
             "id": "l609",
             "title": "Kafka Architecture: Topics, Partitions, Brokers & Consumers",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l610",
             "title": "Kafka Producer Semantics & Consumer Group Rebalancing",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l611",
             "title": "Spark Structured Streaming: Windowing & Watermarking",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l612",
             "title": "Dead Letter Queues & Exactly-Once Processing (EOS)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -1638,25 +1638,25 @@
             "id": "l613",
             "title": "Star vs Snowflake Schemas & Dimensional Modeling",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l614",
             "title": "Snowflake Architecture: Storage vs Compute Separation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l615",
             "title": "dbt (data build tool) for Analytics Engineering",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l616",
             "title": "Data Lineage, Data Catalogs & GDPR Compliance",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       }
@@ -1809,25 +1809,25 @@
             "id": "l701",
             "title": "Generative User Research & Empathy Mapping",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l702",
             "title": "Card Sorting, Tree Testing & Site Navigation Hierarchies",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l703",
             "title": "Low-Fidelity Wireframing & Rapid Paper Prototyping",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l704",
             "title": "User Journey Mapping & Friction Point Identification",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -1840,25 +1840,25 @@
             "id": "l705",
             "title": "Atomic Design Principles: Atoms, Molecules, Organisms",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l706",
             "title": "Auto-Layout, Component Variants & Interactive Components",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l707",
             "title": "Design Tokens: Color Palettes, Typography Scales & Spacing",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l708",
             "title": "Exporting Tokens to CSS Variables & Style Dictionary",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -1871,25 +1871,25 @@
             "id": "l709",
             "title": "WCAG 2.2 Guidelines: Perceivable, Operable, Understandable, Robust",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l710",
             "title": "Color Contrast Ratios (4.5:1 / 3:1) & Visual Accessibility",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l711",
             "title": "Keyboard Navigation, Focus Traps & ARIA Attributes",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l712",
             "title": "Screen Reader Testing (VoiceOver / NVDA) & Automated Audits",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -1902,25 +1902,25 @@
             "id": "l713",
             "title": "Principles of UI Animation & Cubic-Bezier Curves",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l714",
             "title": "Micro-Interactions: Button States, Loaders & Toast Feedback",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l715",
             "title": "Moderated vs Unmoderated Usability Testing Protocols",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l716",
             "title": "System Usability Scale (SUS) Scoring & Analytics",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       }
@@ -2073,25 +2073,25 @@
             "id": "l801",
             "title": "Scrum Roles, Artifacts & Ceremony Facilitation",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l802",
             "title": "Backlog Refinement, User Story Sizing & Planning Poker",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l803",
             "title": "Kanban Boards, WIP Limits & Cumulative Flow Diagrams (CFD)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l804",
             "title": "Sprint Retrospective Techniques & Continuous Improvement",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       },
@@ -2104,25 +2104,25 @@
             "id": "l805",
             "title": "Planned Value (PV), Earned Value (EV) & Actual Cost (AC)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l806",
             "title": "Schedule Variance (SV), Cost Variance (CV) Calculations",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           },
           {
             "id": "l807",
             "title": "Cost Performance Index (CPI) & Schedule Performance Index (SPI)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l808",
             "title": "Estimate at Completion (EAC) & Forecasting Project Health",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           }
         ]
       },
@@ -2135,25 +2135,25 @@
             "id": "l809",
             "title": "ITIL 4 Service Value System & Four Dimensions of Service",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l810",
             "title": "Incident Management, Major Incident Protocols & SLA Targets",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           },
           {
             "id": "l811",
             "title": "Problem Management, Root Cause Analysis (5 Whys, Ishikawa)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+            "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
           },
           {
             "id": "l812",
             "title": "Change Enablement, Standard Changes & Change Advisory Board (CAB)",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+            "videoUrl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
           }
         ]
       },
@@ -2166,25 +2166,25 @@
             "id": "l813",
             "title": "Stakeholder Power/Interest Grid & Communication Plans",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "videoUrl": "https://www.w3schools.com/html/movie.mp4"
           },
           {
             "id": "l814",
             "title": "Kotter's 8-Step Change Model & Overcoming Resistance",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
           },
           {
             "id": "l815",
             "title": "Conflict Resolution Strategies & Negotiation in IT Projects",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
           },
           {
             "id": "l816",
             "title": "Post-Project Audits, Retrospectives & Lessons Learned Logs",
             "duration": "45m",
-            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+            "videoUrl": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
           }
         ]
       }
