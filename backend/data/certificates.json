@@ -10,6 +10,8 @@
     "issueDate": "September 10, 2026",
     "instructorName": "Dr. Aarav Sharma",
     "deanName": "Prof. Rajesh Nair",
-    "verificationStatus": "VERIFIED_ACTIVE"
+    "verificationStatus": "VERIFIED_ACTIVE",
+    "cloudinaryUrl": "https://res.cloudinary.com/dinrv92oo/image/upload/v1791109584/coursecraft_certificates/CC-CERT-2026-SE108-8842.png",
+    "uploadedToCloudinary": true
   }
 ]
