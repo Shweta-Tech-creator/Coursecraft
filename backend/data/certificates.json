@@ -1,0 +1,15 @@
+[
+  {
+    "certificateId": "CC-CERT-2026-SE108-8842",
+    "studentId": "usr_student_01",
+    "studentName": "Priya Sharma",
+    "courseId": "cc-101",
+    "courseTitle": "Modern Full-Stack Web Architecture & Cloud Systems",
+    "courseCode": "CSE-101",
+    "scorePercent": 90,
+    "issueDate": "September 10, 2026",
+    "instructorName": "Dr. Aarav Sharma",
+    "deanName": "Prof. Rajesh Nair",
+    "verificationStatus": "VERIFIED_ACTIVE"
+  }
+]

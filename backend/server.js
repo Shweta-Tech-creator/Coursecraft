@@ -14,14 +14,25 @@ const {
   isSmtpConfigured,
   getSmtpConfig
 } = require('./services/smtp-client');
+const { uploadCertificateToCloudinary } = require('./services/cloudinary-service');
+const {
+  initFirebase,
+  syncLocalDataToFirestore,
+  saveCertificateToFirestore,
+  getCertificateFromFirestore
+} = require('./services/firebase-service');
 
 const PORT = process.env.PORT || 8085;
+
+// Initialize Firebase Admin & Sync
+initFirebase();
 
 // Load Datasets
 const COURSES_FILE = path.join(__dirname, 'data', 'courses.json');
 const USERS_FILE = path.join(__dirname, 'data', 'users.json');
 const METRICS_FILE = path.join(__dirname, 'data', 'metrics.json');
 const FEEDBACK_FILE = path.join(__dirname, 'data', 'faculty_feedback.json');
+const CERTIFICATES_FILE = path.join(__dirname, 'data', 'certificates.json');
 
 function readJsonFile(filePath, defaultValue) {
   try {
@@ -50,8 +61,8 @@ let users = readJsonFile(USERS_FILE, []);
 let metrics = readJsonFile(METRICS_FILE, {});
 let facultyFeedback = readJsonFile(FEEDBACK_FILE, { ratingSummary: {}, reviews: [], forumThreads: [] });
 
-// In-Memory Certificates & Audit Logs
-let certificates = [
+// Certificates (Persisted to Disk, Firestore & Cloudinary)
+let certificates = readJsonFile(CERTIFICATES_FILE, [
   {
     certificateId: "CC-CERT-2026-SE108-8842",
     studentId: "usr_student_01",
@@ -65,7 +76,7 @@ let certificates = [
     deanName: "Prof. Rajesh Nair",
     verificationStatus: "VERIFIED_ACTIVE"
   }
-];
+]);
 
 // MIME types dictionary for static file serving
 const MIME_TYPES = {
@@ -415,7 +426,25 @@ const server = http.createServer(async (req, res) => {
           deanName: 'Prof. Rajesh Nair',
           verificationStatus: 'VERIFIED_ACTIVE'
         };
+        // 1. Upload Certificate to Cloudinary
+        try {
+          const uploadRes = await uploadCertificateToCloudinary(certificate);
+          certificate.cloudinaryUrl = uploadRes.secure_url;
+          certificate.uploadedToCloudinary = uploadRes.uploaded;
+        } catch (cErr) {
+          console.warn('[Server] Cloudinary upload notice:', cErr.message);
+        }
+
+        // 2. Save Certificate to Firestore
+        try {
+          await saveCertificateToFirestore(certificate);
+        } catch (fErr) {
+          console.warn('[Server] Firestore save notice:', fErr.message);
+        }
+
+        // 3. Persist to local certificates database
         certificates.push(certificate);
+        writeJsonFile(CERTIFICATES_FILE, certificates);
 
         // Update student record
         const student = users.find(u => u.uid === studentId);
@@ -624,10 +653,24 @@ const server = http.createServer(async (req, res) => {
     return sendJson(res, 200, { success: true, user: student });
   }
 
-  // 6. Certificate Verification
+  // 6. Certificate Verification (Checks Memory, Firestore & Disk)
   if (pathname.startsWith('/api/certificates/') && method === 'GET') {
     const certId = pathname.replace('/api/certificates/', '').trim();
-    const cert = certificates.find(c => c.certificateId.toLowerCase() === certId.toLowerCase());
+    let cert = certificates.find(c => c.certificateId.toLowerCase() === certId.toLowerCase());
+    
+    // Check Firestore if not in local cache
+    if (!cert) {
+      try {
+        cert = await getCertificateFromFirestore(certId);
+        if (cert) {
+          certificates.push(cert);
+          writeJsonFile(CERTIFICATES_FILE, certificates);
+        }
+      } catch (e) {
+        console.warn('[Server] Firestore cert lookup error:', e.message);
+      }
+    }
+
     if (!cert) {
       return sendJson(res, 404, {
         success: false,

@@ -4,6 +4,9 @@ node_modules/
 # Environment Variables & Credentials
 .env
 .env*.local
+*firebase-adminsdk*.json
+*service-account*.json
+backend/data/service-account.json
 
 # OS Metadata
 .DS_Store
